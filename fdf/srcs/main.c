@@ -10,51 +10,55 @@ int			my_key_funct(int keycode, void *mlx)
 	return (0);
 }
 
+void		draw_big_slope(t_cur cur, t_point *point1, t_point *point2)
+{
+	cur.max = fabs(cur.dy);
+	cur.neg = (cur.dy < 0) ? -1 : 1;
+	while (cur.i <= cur.max)
+	{
+		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_init) + X_CENTER, (cur.y - point1->y_init) + Y_CENTER, WHITE);
+		cur.y += cur.res * cur.neg; 
+		cur.x = (cur.x == point2->x_init) ? (cur.x) : (cur.y - cur.y_int) / cur.slope;
+		cur.i += cur.res;
+	}
+}
+
+void		draw_small_slope(t_cur cur, t_point *point1)
+{
+	cur.max = fabs(cur.dx);
+	cur.neg = (cur.dx < 0) ? -1 : 1;
+	while (cur.i <= cur.max)
+	{
+		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_init) + X_CENTER, (cur.y - point1->y_init) + Y_CENTER, WHITE);
+		cur.x += cur.res * cur.neg; 
+		cur.y = (cur.slope * cur.x) + cur.y_int;
+		cur.i += cur.res;
+	}
+}
+
+static void	setup_cur_line(t_cur *cur, t_point *point1, t_point *point2)
+{
+	cur->dx = point2->x_init - point1->x_init;
+	cur->dy = point2->y_init - point1->y_init;
+	cur->slope = cur->dy / cur->dx;
+	cur->x = point1->x_init;
+	cur->y = point1->y_init;
+	cur->y_int = cur->y - (cur->slope * cur->x);
+	cur->res = 0.5;
+	cur->i = 0.0;
+}
+
 void		draw_line(void *mlx, void *win, t_point *point1, t_point *point2)  
 {
 	t_cur	cur;
-	double	i;
-	double	max;
-	double	slope;
-	double	y_int;
-	double	res;
-	double	neg;
-	double	dx;
-	double	dy;
-
-	dx = point2->x_init - point1->x_init;
-	dy = point2->y_init - point1->y_init;
-	slope = dy / dx;
-	cur.x = point1->x_init;
-	cur.y = point1->y_init;
-	y_int = cur.y - (slope * cur.x);
-	res = 0.5;
-	i = 0.0;
-	if (fabs(slope) > 1.0)
-	{
-		max = fabs(dy);
-		neg = (dy < 0) ? -1 : 1;
-		while (i <= max)
-		{
-			mlx_pixel_put(mlx, win, (cur.x - point1->x_init) + X_CENTER, (cur.y - point1->y_init) + Y_CENTER, WHITE);
-			cur.y += res * neg; 
-			cur.x = (cur.x == point2->x_init) ? (cur.x) : (cur.y - y_int) / slope;
-			i += res;
-		}
-	}
+	
+	cur.mlx = mlx;
+	cur.win = win;
+	setup_cur_line(&cur, point1, point2);
+	if (fabs(cur.slope) > 1.0)
+		draw_big_slope(cur, point1, point2);
 	else
-	{
-		max = fabs(dx);
-		neg = (dx < 0) ? -1 : 1;
-		while (i <= max)
-		{
-			printf("cur.y: %lf, cur.x: %lf, slope: %lf, y_int: %lf\n", cur.y, cur.x, slope, y_int);
-			mlx_pixel_put(mlx, win, (cur.x - point1->x_init) + X_CENTER, (cur.y - point1->y_init) + Y_CENTER, WHITE);
-			cur.x += res * neg; 
-			cur.y = (slope * cur.x) + y_int;
-			i += res;
-		}
-	}
+		draw_small_slope(cur, point1);
 }
 
 void		add_init_points(t_point *point, double x_init, double y_init, double z_init)
@@ -105,65 +109,6 @@ void		add_init_points(t_point *point, double x_init, double y_init, double z_ini
 //	return (points);
 //}
 
-void		test_eight(void *mlx, void *win)
-{
-	t_point	one;
-	t_point	two;
-
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, 200.0, 200.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, 100.0, 200.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, 0.0, 200.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 200.0, 0.0); 
-	add_init_points(&two, 0.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 200.0, 0.0); 
-	add_init_points(&two, 200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 200.0, 0.0); 
-	add_init_points(&two, 100.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, 200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, -200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, -200.0, -200.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 0.0, 0.0); 
-	add_init_points(&two, -100.0, -200.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, -200.0, 0.0); 
-	add_init_points(&two, -200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, -200.0, 0.0); 
-	add_init_points(&two, -100.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, -100.0, 0.0); 
-	add_init_points(&two, -200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 100.0, 0.0); 
-	add_init_points(&two, 200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, -100.0, 0.0); 
-	add_init_points(&two, 200.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 200.0, 100.0, 0.0); 
-	add_init_points(&two, 0.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-	add_init_points(&one, 0.0, 100.0, 0.0); 
-	add_init_points(&two, 0.0, 0.0, 0.0); 
-	draw_line(mlx, win, &one, &two); 
-
-}
-
 int			main(int ac, char **av)
 {
 	void	*mlx;
@@ -177,7 +122,7 @@ int			main(int ac, char **av)
 	{
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
-		test_eight(mlx, win);
+		test_all_lines(mlx, win);
 	//	points = create_points(av[1]);
 	//	draw_line(mlx, win, &one, &two);
 		mlx_key_hook(win, my_key_funct, mlx);
