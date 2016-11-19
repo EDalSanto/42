@@ -1,0 +1,16 @@
+Objective: take file which contains numbers where length of rows and cols
+represent axis and ordinate (x and y) respecitively, and the value representing
+altitudes (z), and create a graphic plot
+
+Requirements: Makefile, fdf executable, libft, NO Globals, authorfile, miniLibX,
+math
+
+Function ideas: get_next_line, ft_split, ft_getnbr
+
+type of projection: parallel, iso, conic
+manage expose
+quit program with esc
+images from minilibX
+
+Bonus: fill boxes with a color according to altitude, manage correctly hidden
+surfaces, change types of projections

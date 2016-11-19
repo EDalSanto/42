@@ -1,0 +1,8 @@
+..##
+.##.
+....
+....
+
+if we've proved that we have a valid 4 x 4 lines piece with 4 contigous tetri(6 or 8 touches), we know that we have a valid tetri, so we just need to store the offsets
+	soo, we just simple need to struct cpy the offsets input_arr
+	butt we won't copy the right offsets for this 6 special cases

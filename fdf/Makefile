@@ -1,0 +1,60 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
+#    Updated: 2016/11/13 08:01:29 by edal-san         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FILENAMES	= main.c
+
+NAME		= fdf
+CC			= gcc
+CFLAGS		+= -Wall -Werror -Wextra
+INC			+= -Iincludes/
+
+SRCS		= $(addprefix srcs/, $(FILENAMES))
+OBJS		= $(addprefix build/, $(FILENAMES:.c=.o))
+
+LIBFT		= ./libft/libft.a 
+LIBFTINC	= -I./libft/includes/
+LIBFTLINK	= -L./libft -lft
+
+LIBMLX		= ./minilibx_macos/libmlx.a 
+LIBMLXINC	= -I./minilibx_macos/
+LIBMLXLINK	= -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit -Iminilibx_macos
+
+.PHONY: all clean fclean re
+
+all: libft $(NAME) clean
+
+build:
+	mkdir $@
+
+build/%.o: srcs/%.c | build
+	$(CC) $(CFLAGS) $(INC) $(LIBFTINC) $(LIBMLXINC) -o $@ -c $<
+
+libft: $(LIBFT)
+
+$(LIBFT):
+	make -C ./libft
+
+libmlx: $(LIBMLX)
+
+$(LIBMLX):
+	make -C ./minilibx_macos
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(LIBFTLINK) $(LIBMLXLINK) -o $@ $^
+
+clean:
+	rm -rf build/
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
