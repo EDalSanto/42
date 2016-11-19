@@ -6,7 +6,7 @@ int			my_key_funct(int keycode, void *mlx)
 	if (keycode == 53)
 		exit(1); 
 	(void)mlx;
-	ft_printf("key event %d\n", keycode);
+	printf("key event %d\n", keycode);
 	return (0);
 }
 
@@ -68,63 +68,82 @@ void		add_init_points(t_point *point, double x_init, double y_init, double z_ini
 	point->z_init = z_init;
 }
 
-//size_t		count_lines(char *file)
-//{
-//	int		fd;
-//	char	*line;
-//	size_t	lines;
-//
-//	lines = 0;
-//	fd = open(file);
-//	while ((get_next_line(&line, fd) == 1))
-//		lines++;
-//	close(fd);
-//	return (lines);
-//}
+size_t		count_lines(char *file)
+{
+	int		fd;
+	char	*line;
+	size_t	lines;
 
-//t_point		**create_points(char *file)
-//{
-//	t_point **points;
-//	char	*line;
-//	int		fd;
-//	int		i;
-//
-//	fd = open(file);
-//	i = 0;
-//	points = (t_points**)malloc(sizeof(t_points*) * count_lines(file));
-//	fd = open(file);
-//	while ((get_next_line(&line, fd)) == 1)		
-//	{
-//		while (*line)
-//		{
-//			while (ft_isdigit(*line))
-//			{
-//				z = (temp * 10) + (*line - '0')		
-//			}
-//			if (!temp)
-//				line++;
-//		}
-//		(*points)[i] = new_point 
-//	}
-//	return (points);
-//}
+	lines = 0;
+	fd = open(file, O_RDONLY);
+	while ((get_next_line(fd, &line) == 1))
+		lines++;
+	close(fd);
+	return (lines);
+}
+
+void		parse_line(t_point *point, char *line, int y)
+{
+	int		x;
+	int		i;
+	int		z;
+	t_point	*p;
+
+	x = 0;
+	i = 0;
+	p = point;
+	while (line[i])
+	{
+		z = 0;
+		if(ft_isdigit(line[i]))
+		{	
+			x++;
+			while(ft_isdigit(line[i])) 
+			{
+				z += (z * 10) + (line[i] - '0');		
+				i++;
+			}
+			add_init_points(point, x, y, z);
+			printf("x: %lf, y: %lf, z: %lf\n", point->x_init, point->y_init, point->z_init);
+			p++;
+		}
+		else
+			i++;
+	}
+}
+
+t_point		**create_points(char *file)
+{
+	t_point **points;
+	char	*line;
+	int		fd;
+	int		arr_i;
+
+	points = (t_point**)malloc(sizeof(t_point*) * count_lines(file));
+	fd = open(file, O_RDONLY);
+	arr_i = 0;
+	while ((get_next_line(fd, &line)) == 1)		
+	{
+		points[arr_i] = (t_point*)malloc(sizeof(t_point) * ((ft_strlen(line) / 3) + 1));
+		parse_line(points[arr_i], line, arr_i);
+		arr_i++;	
+	}
+	return (points);
+}
 
 int			main(int ac, char **av)
 {
 	void	*mlx;
 	void	*win;
-//	t_point	**points;
-//	t_point	one;
-//	t_point	two;
+	t_point	**points;
 
 	(void)av;
 	if (ac == 2)
 	{
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
-		test_all_lines(mlx, win);
-	//	points = create_points(av[1]);
-	//	draw_line(mlx, win, &one, &two);
+	//	test_all_lines(mlx, win);
+		points = create_points(av[1]);
 		mlx_key_hook(win, my_key_funct, mlx);
 		mlx_loop(mlx);	
 	}

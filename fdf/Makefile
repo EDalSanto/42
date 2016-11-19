@@ -6,15 +6,16 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/11/13 08:01:29 by edal-san         ###   ########.fr        #
+#    Updated: 2016/11/18 21:23:54 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILENAMES	= main.c
+FILENAMES	= main.c test_line_draw.c
 
 NAME		= fdf
 CC			= gcc
 CFLAGS		+= -Wall -Werror -Wextra
+AFLAGS		+= -fsanitize=address
 INC			+= -Iincludes/
 
 SRCS		= $(addprefix srcs/, $(FILENAMES))
