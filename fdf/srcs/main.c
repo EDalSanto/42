@@ -97,19 +97,20 @@ void		parse_line(t_point *point, char *line, int y)
 		z = 0;
 		if(ft_isdigit(line[i]))
 		{	
-			x++;
 			while(ft_isdigit(line[i])) 
 			{
-				z += (z * 10) + (line[i] - '0');		
+				z = (z * 10) + (line[i] - '0');		
 				i++;
 			}
-			add_init_points(point, x, y, z);
-			printf("x: %lf, y: %lf, z: %lf\n", point->x_init, point->y_init, point->z_init);
+			add_init_points(p, x, y, z);
 			p++;
+			x++;
 		}
 		else
 			i++;
 	}
+	printf("x: %lf, y: %lf, z: %lf\n", p->x_init, p->y_init, p->z_init);
+	p = 0;
 }
 
 t_point		**create_points(char *file)
@@ -119,17 +120,43 @@ t_point		**create_points(char *file)
 	int		fd;
 	int		arr_i;
 
-	points = (t_point**)malloc(sizeof(t_point*) * count_lines(file));
+	points = (t_point**)malloc(sizeof(t_point*) * count_lines(file) + sizeof(int));
 	fd = open(file, O_RDONLY);
 	arr_i = 0;
 	while ((get_next_line(fd, &line)) == 1)		
 	{
-		points[arr_i] = (t_point*)malloc(sizeof(t_point) * ((ft_strlen(line) / 3) + 1));
+		points[arr_i] = (t_point*)malloc(sizeof(t_point) * ((ft_strlen(line) / 3) + 1) + sizeof(int));
 		parse_line(points[arr_i], line, arr_i);
 		arr_i++;	
 	}
+	points[arr_i] = 0;
 	return (points);
 }
+
+//void		print_points(void *mlx, void *win, t_point **points)
+//{
+//	int		arr_i;
+//	t_point	*cur_point;
+//	t_point	*right_point;
+//	t_point	*below_point;
+//
+//	arr_i = 0;
+//	while (points[arr_i])
+//	{
+//		while (*(points[arr_i]) != 0)
+//		{
+//			cur_point = *(points[arr_i]);
+//			right_point = *(points[arr_i] + 1);
+//			below_point = *(points[arr_i + 1]);;
+//			if (right_point)
+//				draw_line(mlx, win, cur_point, right_point);   		
+//			if (below_point)
+//				draw_line(mlx, win, cur_point, below_point); 
+//			(*(points[arr_i]))++;  		
+//		}
+//		arr_i++;
+//	}
+//}
 
 int			main(int ac, char **av)
 {
@@ -144,6 +171,7 @@ int			main(int ac, char **av)
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
 	//	test_all_lines(mlx, win);
 		points = create_points(av[1]);
+//		print_points(mlx, win, points);
 		mlx_key_hook(win, my_key_funct, mlx);
 		mlx_loop(mlx);	
 	}

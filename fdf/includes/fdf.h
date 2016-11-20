@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/18 20:42:53 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/19 17:34:42 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ typedef struct	s_cur
 void        draw_line(void *mlx, void *win, t_point *point1, t_point *point2);
 void        add_init_points(t_point *point, double x_init, double y_init, double z_init);
 void		test_all_lines(void *mlx, void *win);
+
 #endif
