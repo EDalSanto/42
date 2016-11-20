@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/19 17:34:42 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/20 09:19:44 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_point
 	double		z_init;
 	double		x_prime;
 	double		y_prime;
+	int			end;
 }				t_point;
 
 typedef struct	s_cur
