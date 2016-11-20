@@ -40,8 +40,16 @@ void		draw_small_slope(t_cur cur, t_point *point1)
 
 static void	setup_cur_line(t_cur *cur, t_point *point1, t_point *point2)
 {
-	cur->dx = point2->x_init - point1->x_init;
-	cur->dy = point2->y_init - point1->y_init;
+	if (point1->z_init != 0.0 && point2->z_init != 0.0)
+	{
+		cur->dx = point2->x_init - point1->x_init;
+		cur->dy = point2->y_init - point1->y_init;
+	}
+	else
+	{
+		cur->dx = point2->x_prime - point1->x_prime;
+		cur->dy = point2->y_prime - point1->y_prime;
+	}
 	cur->slope = cur->dy / cur->dx;
 	cur->x = point1->x_init;
 	cur->y = point1->y_init;
@@ -65,9 +73,9 @@ void		draw_line(void *mlx, void *win, t_point *point1, t_point *point2)
 
 void		add_init_points(t_point *point, double x_init, double y_init, double z_init)
 {
-	point->x_init = x_init * 20;
-	point->y_init = y_init * 20;
-	point->z_init = z_init;
+	point->x_init = x_init * 25;
+	point->y_init = y_init * 25;
+	point->z_init = z_init * 25;
 	point->end = 0;
 }
 
@@ -83,6 +91,12 @@ size_t		count_lines(char *file)
 		lines++;
 	close(fd);
 	return (lines);
+}
+
+void		add_prime_points(t_point *point, double x_init, double y_init, double z_init)
+{
+	point->x_prime = x_init / z_init;
+	point->y_prime = y_init / z_init;
 }
 
 void		parse_line(t_point *point, char *line, int y)
@@ -106,6 +120,8 @@ void		parse_line(t_point *point, char *line, int y)
 				i++;
 			}
 			add_init_points(p, x, y, z);
+			if (z != 0.0)
+				add_prime_points(p, x, y, z);
 //			printf("p before increment: %p, point + x: %p, point + x->y: %lf, point + x->x: %lf, x: %d\n", p, point + x, (point + x)->y_init, (point + x)->x_init, x);
 			p++;
 			x++;
@@ -162,8 +178,7 @@ void		print_points(void *mlx, void *win, t_point **points)
 			if (points[arr_i + 1])
 			{
 				below_point = points[arr_i + 1][point_i];
-				printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n below->x: %lf, below->y: %lf, below->z: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init, below_point.x_init, below_point.y_init, below_point.z_init); 
-
+				//printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n below->x: %lf, below->y: %lf, below->z: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init, below_point.x_init, below_point.y_init, below_point.z_init); 
 				draw_line(mlx, win, &cur_point, &below_point); 
 			}
 			point_i++;  		
