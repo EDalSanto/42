@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/20 09:19:44 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/21 15:09:15 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define Y_CENTER 300.0
 
 # define WHITE 0x00FFFFFF
+# define SCALE 25
+# define ANGLE_X 45.0 * (M_PI / 180.0)
+# define ANGLE_Y 45.0 * (M_PI / 180.0)
+# define ANGLE_Z 45.0 * (M_PI / 180.0)
 
 typedef struct	s_point
 {
@@ -31,8 +35,16 @@ typedef struct	s_point
 	double		z_init;
 	double		x_prime;
 	double		y_prime;
+	double		z_prime;
 	int			end;
 }				t_point;
+
+typedef struct	s_angles
+{
+	double		a_x;
+	double		a_y;
+	double		a_z;
+}				t_angles;
 
 typedef struct	s_cur
 {
