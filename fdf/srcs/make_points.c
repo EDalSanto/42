@@ -6,11 +6,12 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:23:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 18:02:17 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/21 20:49:00 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void		parse_line(t_point *point, char *line, int y)
 {
@@ -87,7 +88,7 @@ void		add_init_points(t_point *point, double x_init, double y_init, double z_ini
 	point->x_prime = 0.0;
 	point->y_prime = 0.0;
 	point->z_prime = 0.0;
-//	printf("x_prime: %lf, y_prime: %lf\n", point->x_prime, point->y_prime);
+	printf("x_prime: %lf, y_prime: %lf\n", point->x_prime, point->y_prime);
 	point->end = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 18:02:20 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/21 20:57:10 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # define WHITE 0x00FFFFFF
 # define SCALE 25
+# define X_ANGLE 10
+# define Y_ANGLE 10
+# define Z_ANGLE 10
+
 
 typedef struct	s_point
 {
@@ -44,6 +48,14 @@ typedef struct	s_angles
 	double		a_y;
 	double		a_z;
 }				t_angles;
+
+typedef struct	s_map
+{
+	t_point		**points;
+	void		*mlx;
+	void		*win;
+	t_angles	angles;
+}				t_map;
 
 typedef struct	s_cur
 {

@@ -6,11 +6,11 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/11/18 21:23:54 by edal-san         ###   ########.fr        #
+#    Updated: 2016/11/21 17:50:46 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILENAMES	= main.c test_line_draw.c
+FILENAMES	= prime_line.c main.c test_line_draw.c line.c make_points.c print.c
 
 NAME		= fdf
 CC			= gcc
@@ -37,7 +37,7 @@ build:
 	mkdir $@
 
 build/%.o: srcs/%.c | build
-	$(CC) $(CFLAGS) $(INC) $(LIBFTINC) $(LIBMLXINC) -o $@ -c $<
+	$(CC) $(AFLAGS) $(CFLAGS) $(INC) $(LIBFTINC) $(LIBMLXINC) -o $@ -c $<
 
 libft: $(LIBFT)
 
@@ -50,7 +50,7 @@ $(LIBMLX):
 	make -C ./minilibx_macos
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(LIBFTLINK) $(LIBMLXLINK) -o $@ $^
+	$(CC) $(CFLAGS) $(AFLAGS) $(INC) $(LIBFTLINK) $(LIBMLXLINK) -o $@ $^
 
 clean:
 	rm -rf build/
