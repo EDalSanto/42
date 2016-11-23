@@ -127,38 +127,55 @@ void			reset_primes(t_point **points)
 	}
 }
 
+void	translate_points(t_map *map)
+{
+		reset_primes(map->points);
+		x_rotate(map->points, map->angles.a_x);
+		y_rotate(map->points, map->angles.a_y);
+		z_rotate(map->points, map->angles.a_z);
+		mlx_clear_window(map->mlx, map->win);
+		print_primes(map->mlx, map->win, map->points);
+}
+
+int				rot_key(int keycode)
+{
+	if (keycode == 12 || keycode == 0 || keycode == 13 || keycode == 1 
+		|| keycode == 14 || keycode == 2)
+		return (1);
+	else
+		return (0);
+}
+
+void			reset_map(t_map *map)
+{
+	init_angles(&map->angles);		
+	reset_primes(map->points);
+	mlx_clear_window(map->mlx, map->win);
+	print_inits(map->mlx, map->win, map->points);
+}
+
 int				my_key_funct(int keycode, t_map *map)
 {
 	if (keycode == 53)
 		exit(1);
-	else if (keycode == 12)
+	else if (rot_key(keycode))
 	{
-		update_angle(&map->angles, 'x', 1);
-		reset_primes(map->points);
-		x_rotate(map->points, map->angles.a_x);
-		y_rotate(map->points, map->angles.a_y);
-		z_rotate(map->points, map->angles.a_z);
-		mlx_clear_window(map->mlx, map->win);
-		print_primes(map->mlx, map->win, map->points);
+		if (keycode == 12)
+			update_angle(&map->angles, 'x', 1);
+		else if (keycode == 0)
+			update_angle(&map->angles, 'x', -1);
+		else if (keycode == 13)
+			update_angle(&map->angles, 'y', -1);
+		else if (keycode == 1)
+			update_angle(&map->angles, 'y', 1);
+		else if (keycode == 14)
+			update_angle(&map->angles, 'z', 1);
+		else if (keycode == 2)
+			update_angle(&map->angles, 'z', -1);
+		translate_points(map);
 	}
-	//else if (keycode == 0)
-	//	//x_neg_rotate(points, angles->a_x);
-	//else if (keycode == 13)
-	//	//y_neg_roate(points, angles->a_y);
-	//else if (keycode == 1)
-	//	//y_pos_rotate(points, angles->a_y);	
-	else if (keycode == 14)
-	{	
-		update_angle(&map->angles, 'z', 1);
-		reset_primes(map->points);
-		x_rotate(map->points, map->angles.a_x);
-		y_rotate(map->points, map->angles.a_y);
-		z_rotate(map->points, map->angles.a_z);
-		mlx_clear_window(map->mlx, map->win);
-		print_primes(map->mlx, map->win, map->points);
-	}
-	//else if (keycode == 2)
-	//	//z_neg_rotate(points, angles->a_z);
+	else if (keycode == 15)
+		reset_map(map);
 	return (0);
 }
 

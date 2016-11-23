@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/22 19:18:50 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/22 20:05:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <stdlib.h>
 # include "mlx.h"
 # include <fcntl.h>
-# define WIDTH 800 
-# define LENGTH 600
+# define WIDTH 2000 
+# define LENGTH 1600
 # define X_CENTER 400.0
 # define Y_CENTER 300.0
 
 # define WHITE 0x00FFFFFF
-# define SCALE 25
+# define SCALE 10
 # define X_ANGLE 15 
 # define Y_ANGLE 15
 # define Z_ANGLE 15
