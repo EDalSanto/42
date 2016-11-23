@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:23:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 20:49:00 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/22 19:12:55 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,9 @@ void		add_init_points(t_point *point, double x_init, double y_init, double z_ini
 	point->x_init = x_init * SCALE;
 	point->y_init = y_init * SCALE;
 	point->z_init = z_init * SCALE;
-	point->x_prime = 0.0;
-	point->y_prime = 0.0;
-	point->z_prime = 0.0;
-	printf("x_prime: %lf, y_prime: %lf\n", point->x_prime, point->y_prime);
+	point->x_prime = point->x_init;
+	point->y_prime = point->y_init;
+	point->z_prime = point->z_init;
+	//printf("x_prime: %lf, y_prime: %lf\n", point->x_prime, point->y_prime);
 	point->end = 0;
 }
-
-

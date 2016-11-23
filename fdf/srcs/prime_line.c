@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:27:09 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 20:25:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/22 18:17:31 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void		draw_prime_small_slope(t_cur cur, t_point *point1)
 	cur.neg = (cur.dx < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-//		printf("cur.x: %lf, point1.x_prime: %lf, cur.y: %lf, point1.y_prime: %lf\n", cur.x, point1->x_prime, cur.y, point1->y_prime);
-//		printf("where I'm printing, x: %lf, y: %lf\n", (cur.x - point1->x_prime) + X_CENTER - point1->x_prime, (cur.y - point1->y_prime) + Y_CENTER - point1->y_prime);
 		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_prime) + 100 + point1->x_prime, (cur.y - point1->y_prime) +  point1->y_prime + 100, WHITE);
 		cur.x += cur.res * cur.neg; 
 		cur.y = (cur.slope * cur.x) + cur.y_int;

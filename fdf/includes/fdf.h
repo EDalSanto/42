@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 20:57:10 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/22 19:18:50 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 # define WHITE 0x00FFFFFF
 # define SCALE 25
-# define X_ANGLE 10
-# define Y_ANGLE 10
-# define Z_ANGLE 10
+# define X_ANGLE 15 
+# define Y_ANGLE 15
+# define Z_ANGLE 15
 
 
 typedef struct	s_point
