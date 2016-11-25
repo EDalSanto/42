@@ -74,6 +74,7 @@ typedef struct	s_cur
 }				t_cur;
 
 t_point		**create_points(char *file);
+t_angles	init_angles(void);
 size_t		count_lines(char *file);
 void		parse_line(t_point *point, char *line, int y);
 void		print_inits(void *mlx, void *win, t_point **points);
@@ -82,5 +83,13 @@ void		draw_prime(void *mlx, void *win, t_point *point1, t_point *point2);
 void        draw_line(void *mlx, void *win, t_point *point1, t_point *point2);
 void        add_init_points(t_point *point, double x_init, double y_init, double z_init);
 void		test_all_lines(void *mlx, void *win);
+void		update_angle(t_angles *angles, char plane, int sign);
+void		z_rotate(t_point **points, double a_z);
+void		x_rotate(t_point **points, double a_x);
+void		y_rotate(t_point **points, double a_y);
+void		reset_primes(t_point **points);
+void		translate_points(t_map *map);
+void		reset_map(t_map *map);
+int			rot_key(int keycode);
 
 #endif
