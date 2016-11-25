@@ -9,7 +9,7 @@
 /*   Updated: 2016/11/21 17:58:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "fdf.h"
 
 void		print_inits(void *mlx, void *win, t_point **points)
@@ -27,7 +27,6 @@ void		print_inits(void *mlx, void *win, t_point **points)
 		while (!((points[arr_i][point_i]).end))
 		{
 			cur_point = points[arr_i][point_i];
-		//	printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init); 
 			if (!((points[arr_i][point_i + 1]).end))
 			{
 				right_point = points[arr_i][point_i + 1];
@@ -36,7 +35,6 @@ void		print_inits(void *mlx, void *win, t_point **points)
 			if (points[arr_i + 1])
 			{
 				below_point = points[arr_i + 1][point_i];
-				//printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n below->x: %lf, below->y: %lf, below->z: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init, below_point.x_init, below_point.y_init, below_point.z_init); 
 				draw_line(mlx, win, &cur_point, &below_point); 
 			}
 			point_i++;  		
@@ -60,7 +58,6 @@ void		print_primes(void *mlx, void *win, t_point **points)
 		while (!((points[arr_i][point_i]).end))
 		{
 			cur_point = points[arr_i][point_i];
-		//	printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init); 
 			if (!((points[arr_i][point_i + 1]).end))
 			{
 				right_point = points[arr_i][point_i + 1];
@@ -69,7 +66,6 @@ void		print_primes(void *mlx, void *win, t_point **points)
 			if (points[arr_i + 1])
 			{
 				below_point = points[arr_i + 1][point_i];
-				//printf("cur_point->x_init: %lf, cur_point->y_init: %lf, cur_point->z_init: %lf\n below->x: %lf, below->y: %lf, below->z: %lf\n", cur_point.x_init, cur_point.y_init, cur_point.z_init, below_point.x_init, below_point.y_init, below_point.z_init); 
 				draw_prime(mlx, win, &cur_point, &below_point); 
 			}
 			point_i++;  		

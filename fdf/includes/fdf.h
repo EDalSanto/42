@@ -24,9 +24,9 @@
 
 # define WHITE 0x00FFFFFF
 # define SCALE 20
-# define X_ANGLE 15 
-# define Y_ANGLE 15
-# define Z_ANGLE 15
+# define X_ANGLE 45 
+# define Y_ANGLE 45 
+# define Z_ANGLE 45
 
 
 typedef struct	s_point

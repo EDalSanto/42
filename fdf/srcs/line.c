@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void		draw_big_slope(t_cur cur, t_point *point1, t_point *point2)
 {
@@ -31,8 +32,6 @@ void		draw_small_slope(t_cur cur, t_point *point1)
 	cur.neg = (cur.dx < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-//		printf("cur.x: %lf, point1.x_init: %lf, cur.y: %lf, point1.y_init: %lf\n", cur.x, point1->x_init, cur.y, point1->y_init);
-//		printf("where I'm printing, x: %lf, y: %lf\n", (cur.x - point1->x_init) + X_CENTER - point1->x_init, (cur.y - point1->y_init) + Y_CENTER - point1->y_init);
 		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_init) + 200 + point1->x_init, (cur.y - point1->y_init) +  point1->y_init + 250, WHITE);
 		cur.x += cur.res * cur.neg; 
 		cur.y = (cur.slope * cur.x) + cur.y_int;

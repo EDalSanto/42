@@ -24,20 +24,14 @@ void			update_angle(t_angles *angles, char plane, int sign)
 		else
 			angles->a_y -= Y_ANGLE * (M_PI / 180.0);
 	}
-	else
+	else if (plane == 'z')
 	{
 		if (sign == 1)
 			angles->a_z += Z_ANGLE * (M_PI / 180.0);
 		else
 			angles->a_z -= Z_ANGLE * (M_PI / 180.0);
-
 	}
 }
-
-//void		translate_point(t_point **points)
-//{
-//
-//}
 
 void		z_rotate(t_point **points, double a_z)
 {
@@ -52,9 +46,9 @@ void		z_rotate(t_point **points, double a_z)
 		while (!((points[arr_i][point_i]).end))
 		{
 			point = &(points[arr_i][point_i]); 
-			point->x_prime = (point->x_prime * cos(a_z)) - (point->y_prime * sin(a_z));
-			point->y_prime = (point->x_prime * sin(a_z)) + (point->y_prime * cos(a_z));
-			point->z_prime = point->z_prime;
+			point->z_prime = point->z_init;
+			point->x_prime = (point->x_init * cos(a_z)) - (point->y_init * sin(a_z));
+			point->y_prime = (point->x_init * sin(a_z)) + (point->y_init * cos(a_z));
 			point_i++;  		
 		}
 		arr_i++;
@@ -96,8 +90,8 @@ void		y_rotate(t_point **points, double a_y)
 		while (!((points[arr_i][point_i]).end))
 		{
 			point = &(points[arr_i][point_i]);
-			point->x_prime = (point->z_prime * sin(a_y)) + (point->x_prime * cos(a_y));
 			point->y_prime = point->y_prime;
+			point->x_prime = (point->z_prime * sin(a_y)) + (point->x_prime * cos(a_y));
 			point->z_prime = (point->z_prime * cos(a_y)) - (point->x_prime * sin(a_y)); 
 			point_i++;
 		}
@@ -130,9 +124,9 @@ void			reset_primes(t_point **points)
 void	translate_points(t_map *map)
 {
 		reset_primes(map->points);
+		z_rotate(map->points, map->angles.a_z);
 		x_rotate(map->points, map->angles.a_x);
 		y_rotate(map->points, map->angles.a_y);
-		z_rotate(map->points, map->angles.a_z);
 		mlx_clear_window(map->mlx, map->win);
 		print_primes(map->mlx, map->win, map->points);
 }

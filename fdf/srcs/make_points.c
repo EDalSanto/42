@@ -34,16 +34,13 @@ void		parse_line(t_point *point, char *line, int y)
 				i++;
 			}
 			add_init_points(p, x, y, z);
-			//printf("z: %lf, p before increment: %p, point + x: %p, point + x->y: %lf, point + x->x: %lf, x: %d\n", z, p, point + x, (point + x)->y_init, (point + x)->x_init, x);
 			p++;
 			x++;
 		}
 		else
 			i++;
 	}
-//	printf("x: %lf\n", x);
 	p->end = 1;
-	//printf("p end: %p, point + x->end: %d\n", p, (point + x)->end);
 }
 
 t_point		**create_points(char *file)
@@ -88,6 +85,5 @@ void		add_init_points(t_point *point, double x_init, double y_init, double z_ini
 	point->x_prime = point->x_init;
 	point->y_prime = point->y_init;
 	point->z_prime = point->z_init;
-	//printf("x_prime: %lf, y_prime: %lf\n", point->x_prime, point->y_prime);
 	point->end = 0;
 }
