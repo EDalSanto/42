@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include <stdio.h>
 
 int				my_key_funct(int keycode, t_map *map)
 {
@@ -22,6 +23,8 @@ int				my_key_funct(int keycode, t_map *map)
 	}
 	else if (keycode == 15)
 		reset_map(map);
+	else if (keycode == 6 || keycode == 7)
+		zoom(map);
 	return (0);
 }
 
@@ -40,6 +43,7 @@ int				main(int ac, char **av)
 		map->points = create_points(av[1]);
 		map->mlx = mlx;
 		map->win = win;
+		map->zoom_factor = 0;
 		print_inits(mlx, win, map->points);
 		mlx_key_hook(win, my_key_funct, (void*)map);
 		mlx_loop(mlx);	

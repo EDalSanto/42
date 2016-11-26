@@ -40,6 +40,7 @@ typedef struct	s_point
 	void		*mlx;
 	void		*win;
 	int			end;
+	int			zoom_factor;
 }				t_point;
 
 typedef struct	s_angles
