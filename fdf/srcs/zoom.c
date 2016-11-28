@@ -1,21 +1,55 @@
-void	adjust_scale(t_map *map)
+#include "fdf.h"
+
+void	unzoom(t_map *map)
 {
 	int		arr_i;
 	int		point_i;
 	t_point	*point;
 
 	arr_i = 0;
-	while (points[arr_i] != NULL)
+	while (map->points[arr_i] != NULL)
 	{
 		point_i = 0;
-		while (!((points[arr_i][point_i]).end))
+		while (!((map->points[arr_i][point_i]).end))
 		{
-			point = &(points[arr_i][point_i]); 
-			point->z_init += (point->z_init * .1 * map->zoom_factor);
-			point->x_init += (point->x_init * .1 * map->zoom_factor);
-			point->y_init += (point->y_init * .1 * map->zoom_factor);
+			point = &(map->points[arr_i][point_i]); 
+			point->z_prime *= 0.9;
+			point->x_prime *= 0.9;
+			point->y_prime *= 0.9;
 			point_i++;  		
 		}
 		arr_i++;
 	}
+}
+
+void	zoom(t_map *map)
+{
+	int		arr_i;
+	int		point_i;
+	t_point	*point;
+
+	arr_i = 0;
+	while (map->points[arr_i] != NULL)
+	{
+		point_i = 0;
+		while (!((map->points[arr_i][point_i]).end))
+		{
+			point = &(map->points[arr_i][point_i]); 
+			point->z_prime *= 1.1;
+			point->x_prime *= 1.1;
+			point->y_prime *= 1.1;
+			point_i++;  		
+		}
+		arr_i++;
+	}
+}
+
+void	zoom_detective(t_map *map)
+{
+		if (map->zoom_sign == 1)
+			zoom(map);
+		else if (map->zoom_sign == -1)
+			unzoom(map);
+		mlx_clear_window(map->mlx, map->win);
+		print_primes(map->mlx, map->win, map->points);
 }

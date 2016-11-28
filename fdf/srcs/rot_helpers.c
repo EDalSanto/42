@@ -24,10 +24,23 @@ void		reset_primes(t_point **points)
 
 void		translate_points(t_map *map)
 {
+		int	zf;
+
+		zf = map->zoom_factor;
 		reset_primes(map->points);
 		z_rotate(map->points, map->angles.a_z);
 		x_rotate(map->points, map->angles.a_x);
 		y_rotate(map->points, map->angles.a_y);
+		if (zf > 0)
+		{
+			while (zf--)	
+				zoom(map);
+		}
+		else if (zf < 0)
+		{
+			while (zf++)	
+				unzoom(map);
+		}
 		mlx_clear_window(map->mlx, map->win);
 		print_primes(map->mlx, map->win, map->points);
 }
@@ -35,6 +48,8 @@ void		translate_points(t_map *map)
 void		reset_map(t_map *map)
 {
 	map->angles = init_angles();		
+	map->zoom_factor = 0;
+	map->zoom_sign = 0;
 	reset_primes(map->points);
 	mlx_clear_window(map->mlx, map->win);
 	print_inits(map->mlx, map->win, map->points);

@@ -24,7 +24,20 @@ int				my_key_funct(int keycode, t_map *map)
 	else if (keycode == 15)
 		reset_map(map);
 	else if (keycode == 6 || keycode == 7)
-		zoom(map);
+	{
+		if (keycode == 6)	
+		{
+			map->zoom_factor += 1;
+			map->zoom_sign = 1;
+		}
+		else
+		{
+			map->zoom_factor -= 1;
+			map->zoom_sign = -1;
+		}
+		zoom_detective(map);
+	}
+	//printf("keycode: %d\n", keycode);
 	return (0);
 }
 
@@ -44,6 +57,7 @@ int				main(int ac, char **av)
 		map->mlx = mlx;
 		map->win = win;
 		map->zoom_factor = 0;
+		map->zoom_sign = 0;
 		print_inits(mlx, win, map->points);
 		mlx_key_hook(win, my_key_funct, (void*)map);
 		mlx_loop(mlx);	

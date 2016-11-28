@@ -40,7 +40,6 @@ typedef struct	s_point
 	void		*mlx;
 	void		*win;
 	int			end;
-	int			zoom_factor;
 }				t_point;
 
 typedef struct	s_angles
@@ -56,6 +55,8 @@ typedef struct	s_map
 	void		*mlx;
 	void		*win;
 	t_angles	angles;
+	int			zoom_factor;
+	int			zoom_sign;
 }				t_map;
 
 typedef struct	s_cur
@@ -91,6 +92,9 @@ void		y_rotate(t_point **points, double a_y);
 void		reset_primes(t_point **points);
 void		translate_points(t_map *map);
 void		reset_map(t_map *map);
+void		unzoom(t_map *map);
+void		zoom(t_map *map);
+void		zoom_detective(t_map *map);
 int			rot_key(int keycode);
 
 #endif
