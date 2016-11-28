@@ -17,16 +17,16 @@
 # include <stdlib.h>
 # include "mlx.h"
 # include <fcntl.h>
-# define WIDTH 800 
-# define LENGTH 600
+# define WIDTH 1200
+# define LENGTH 900
 # define X_CENTER 400.0
 # define Y_CENTER 300.0
 
 # define WHITE 0x00FFFFFF
-# define SCALE 20
-# define X_ANGLE 45 
-# define Y_ANGLE 45 
-# define Z_ANGLE 45
+# define SCALE 15
+# define X_ANGLE 30 
+# define Y_ANGLE 30 
+# define Z_ANGLE 30
 
 
 typedef struct	s_point
