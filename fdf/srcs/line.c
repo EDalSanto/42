@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void		draw_big_slope(t_cur cur, t_point *point1, t_point *point2)
 {

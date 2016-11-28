@@ -9,7 +9,7 @@
 /*   Updated: 2016/11/21 17:58:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "fdf.h"
 
 void		print_inits(void *mlx, void *win, t_point **points)

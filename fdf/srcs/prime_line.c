@@ -18,7 +18,7 @@ void		draw_prime_big_slope(t_cur cur, t_point *point1, t_point *point2)
 	cur.neg = (cur.dy < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_prime) + 200 + point1->x_prime, (cur.y - point1->y_prime) + 250 + point1->y_prime, WHITE);
+		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_prime) + 200 + point1->x_prime, (cur.y - point1->y_prime) + 150 + point1->y_prime, WHITE);
 		cur.y += cur.res * cur.neg;
 		cur.x = (cur.x == point2->x_prime) ? (cur.x) : (cur.y - cur.y_int) / cur.slope;
 		cur.i += cur.res;
@@ -31,7 +31,7 @@ void		draw_prime_small_slope(t_cur cur, t_point *point1)
 	cur.neg = (cur.dx < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_prime) + 200 + point1->x_prime, (cur.y - point1->y_prime) +  point1->y_prime + 250, WHITE);
+		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_prime) + 200 + point1->x_prime, (cur.y - point1->y_prime) +  point1->y_prime + 150, WHITE);
 		cur.x += cur.res * cur.neg; 
 		cur.y = (cur.slope * cur.x) + cur.y_int;
 		cur.i += cur.res;
