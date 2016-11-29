@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:23:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 13:19:01 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 13:55:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		parse_line(t_point *point, char *line, int y)
 				z = (z * 10.0) + (line[i] - '0');		
 				i++;
 			}
-			add_init_points(p, x, y, z * sign);
+			add_init_points(p, x, y, (z * sign));
 			p++;
 			x++;
 		}

@@ -41,6 +41,18 @@ int				my_key_funct(int keycode, t_map *map)
 	return (0);
 }
 
+void			center(t_map *map)
+{
+	if (((map->max_strlen * map->scale) / 2) > X_CENTER)
+		map->x_start = (WIDTH - (map->scale * map->max_strlen)) / 2;
+	else
+		map->x_start = X_CENTER - ((map->max_strlen) * map->scale / 2);
+	if (((map->num_lines * map->scale) / 2) > Y_CENTER)
+		map->y_start = 0;
+	else
+		map->y_start = Y_CENTER - ((map->num_lines * map->scale) / 2);
+}
+
 int				main(int ac, char **av)
 {
 	void		*mlx;
@@ -50,23 +62,25 @@ int				main(int ac, char **av)
 	map = (t_map*)malloc(sizeof(t_map));
 	if (ac == 2)
 	{
+		map->num_lines = count_lines(av[1], map);
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
 		map->angles = init_angles();
-		map->num_lines = count_lines(av[1], map);
 		map->points = create_points(av[1], map);
 		map->mlx = mlx;
 		map->win = win;
+		map->scale = SCALE;
 		map->zoom_factor = 0;
 		map->zoom_sign = 0;
-		if (((map->max_strlen * SCALE) / 2) > X_CENTER)
-			map->x_start = 0;
-		else
-			map->x_start = X_CENTER - ((map->max_strlen) * SCALE / 2);
-		if (((map->num_lines * SCALE) / 2) > Y_CENTER)
-			map->y_start = 0;
-		else
-			map->y_start = Y_CENTER - ((map->num_lines * SCALE) / 2);
+		area_img = (map->num_lines * map->scale) * (map->max_strlen * map->scale); 
+		area_win = (WIDTH * LENGTH);
+		if ((area_img) < (.7 * (area_win)))
+		{
+			dif = area_win - area_img; 
+			perc = dif / (area_win);
+			
+		}
+		center(map);
 		print_inits(map);
 		mlx_key_hook(win, my_key_funct, (void*)map);
 		mlx_loop(mlx);	

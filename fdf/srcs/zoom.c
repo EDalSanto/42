@@ -20,6 +20,7 @@ void	unzoom(t_map *map)
 		}
 		arr_i++;
 	}
+	map->scale *= 0.95;
 }
 
 void	zoom(t_map *map)
@@ -42,6 +43,7 @@ void	zoom(t_map *map)
 		}
 		arr_i++;
 	}
+	map->scale *= 1.05;
 }
 
 void	zoom_detective(t_map *map)
@@ -51,5 +53,6 @@ void	zoom_detective(t_map *map)
 		else if (map->zoom_sign == -1)
 			unzoom(map);
 		mlx_clear_window(map->mlx, map->win);
+		center(map);
 		print_primes(map);
 }

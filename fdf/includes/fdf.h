@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 11:58:31 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 14:19:01 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@
 # define Y_CENTER 450
 
 # define WHITE 0x00FFFFFF
-# define SCALE 5
+# define SCALE 15
 # define X_ANGLE 30 
 # define Y_ANGLE 30 
 # define Z_ANGLE 30
-
 
 typedef struct	s_point
 {
@@ -61,6 +60,7 @@ typedef struct	s_map
 	size_t		max_strlen;
 	double		x_start;
 	double		y_start;
+	double		scale;
 }				t_map;
 
 typedef struct	s_cur
@@ -99,6 +99,7 @@ void		reset_map(t_map *map);
 void		unzoom(t_map *map);
 void		zoom(t_map *map);
 void		zoom_detective(t_map *map);
+void		center(t_map *map);
 int			rot_key(int keycode);
 
 #endif
