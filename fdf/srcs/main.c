@@ -59,8 +59,14 @@ int				main(int ac, char **av)
 		map->win = win;
 		map->zoom_factor = 0;
 		map->zoom_sign = 0;
-		map->x_start = X_CENTER - ((map->max_strlen) * SCALE / 2);
-		map->y_start = Y_CENTER - ((map->num_lines * SCALE) / 2);
+		if (((map->max_strlen * SCALE) / 2) > X_CENTER)
+			map->x_start = 0;
+		else
+			map->x_start = X_CENTER - ((map->max_strlen) * SCALE / 2);
+		if (((map->num_lines * SCALE) / 2) > Y_CENTER)
+			map->y_start = 0;
+		else
+			map->y_start = Y_CENTER - ((map->num_lines * SCALE) / 2);
 		print_inits(map);
 		mlx_key_hook(win, my_key_funct, (void*)map);
 		mlx_loop(mlx);	

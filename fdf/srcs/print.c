@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:22:37 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/21 17:58:08 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 11:52:13 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void		print_inits(t_map *map)
 			if (!((map->points[arr_i][point_i + 1]).end))
 			{
 				right_point = map->points[arr_i][point_i + 1];
-				printf("cur.x_init: %lf, cur.y_init: %lf, right point.x_init: %lf, right_point.y: %lf\n", cur_point.x_init, cur_point.y_init, right_point.x_init,
-				right_point.y_init);
+			//	printf("cur.x_init: %lf, cur.y_init: %lf, right point.x_init: %lf, right_point.y: %lf\n", cur_point.x_init, cur_point.y_init, right_point.x_init, right_point.y_init);
 				draw_line(map, &cur_point, &right_point);   		
 			}
 			if (map->points[arr_i + 1])
