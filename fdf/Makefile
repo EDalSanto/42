@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILENAMES	= prime_line.c main.c test_line_draw.c line.c make_points.c print.c\
+FILENAMES	= prime_line.c main.c line.c make_points.c print.c\
 			  rots.c angles.c rot_helpers.c zoom.c
 
 NAME		= fdf

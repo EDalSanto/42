@@ -53,12 +53,15 @@ int				main(int ac, char **av)
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
 		map->angles = init_angles();
-		map->points = create_points(av[1]);
+		map->num_lines = count_lines(av[1], map);
+		map->points = create_points(av[1], map);
 		map->mlx = mlx;
 		map->win = win;
 		map->zoom_factor = 0;
 		map->zoom_sign = 0;
-		print_inits(mlx, win, map->points);
+		map->x_start = X_CENTER - ((map->max_strlen) * SCALE / 2);
+		map->y_start = Y_CENTER - ((map->num_lines * SCALE) / 2);
+		print_inits(map);
 		mlx_key_hook(win, my_key_funct, (void*)map);
 		mlx_loop(mlx);	
 	}

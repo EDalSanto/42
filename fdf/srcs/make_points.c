@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void		parse_line(t_point *point, char *line, int y)
 {
@@ -43,19 +42,19 @@ void		parse_line(t_point *point, char *line, int y)
 	p->end = 1;
 }
 
-t_point		**create_points(char *file)
+t_point		**create_points(char *file, t_map *map)
 {
 	t_point **points;
 	char	*line;
 	int		fd;
 	int		arr_i;
 
-	points = (t_point**)malloc(sizeof(t_point*) * count_lines(file) + sizeof(void*));
+	points = (t_point**)malloc(sizeof(t_point*) * map->num_lines + sizeof(void*));
 	fd = open(file, O_RDONLY);
 	arr_i = 0;
 	while ((get_next_line(fd, &line)) == 1)		
 	{
-		points[arr_i] = (t_point*)malloc(sizeof(t_point) * ((ft_strlen(line) / 2) + 2));
+		points[arr_i] = (t_point*)malloc(sizeof(t_point) * (map->max_strlen) + 2);
 		parse_line(points[arr_i], line, arr_i);
 		arr_i++;	
 	}
@@ -63,17 +62,24 @@ t_point		**create_points(char *file)
 	return (points);
 }
 
-size_t		count_lines(char *file)
+size_t		count_lines(char *file, t_map *map)
 {
 	int		fd;
+	size_t	max_strlen;
 	char	*line;
 	size_t	lines;
 
 	lines = 0;
 	fd = open(file, O_RDONLY);
+	max_strlen = 0;
 	while ((get_next_line(fd, &line) == 1))
+	{
 		lines++;
+		if ((ft_strlen(line) / 2) > max_strlen)
+			max_strlen = (ft_strlen(line) / 2); 
+	}
 	close(fd);
+	map->max_strlen = max_strlen;
 	return (lines);
 }
 

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void		print_inits(void *mlx, void *win, t_point **points)
+void		print_inits(t_map *map)
 {
 	int		arr_i;
 	int		point_i;
@@ -21,21 +21,21 @@ void		print_inits(void *mlx, void *win, t_point **points)
 	t_point	below_point;
 
 	arr_i = 0;
-	while (points[arr_i] != NULL)
+	while (map->points[arr_i] != NULL)
 	{
 		point_i = 0;
-		while (!((points[arr_i][point_i]).end))
+		while (!((map->points[arr_i][point_i]).end))
 		{
-			cur_point = points[arr_i][point_i];
-			if (!((points[arr_i][point_i + 1]).end))
+			cur_point = map->points[arr_i][point_i];
+			if (!((map->points[arr_i][point_i + 1]).end))
 			{
-				right_point = points[arr_i][point_i + 1];
-				draw_line(mlx, win, &cur_point, &right_point);   		
+				right_point = map->points[arr_i][point_i + 1];
+				draw_line(map, &cur_point, &right_point);   		
 			}
-			if (points[arr_i + 1])
+			if (map->points[arr_i + 1])
 			{
-				below_point = points[arr_i + 1][point_i];
-				draw_line(mlx, win, &cur_point, &below_point); 
+				below_point = map->points[arr_i + 1][point_i];
+				draw_line(map, &cur_point, &below_point); 
 			}
 			point_i++;  		
 		}
@@ -43,7 +43,7 @@ void		print_inits(void *mlx, void *win, t_point **points)
 	}
 }
 
-void		print_primes(void *mlx, void *win, t_point **points)
+void		print_primes(t_map *map)
 {
 	int		arr_i;
 	int		point_i;
@@ -52,21 +52,21 @@ void		print_primes(void *mlx, void *win, t_point **points)
 	t_point	below_point;
 
 	arr_i = 0;
-	while (points[arr_i] != NULL)
+	while (map->points[arr_i] != NULL)
 	{
 		point_i = 0;
-		while (!((points[arr_i][point_i]).end))
+		while (!((map->points[arr_i][point_i]).end))
 		{
-			cur_point = points[arr_i][point_i];
-			if (!((points[arr_i][point_i + 1]).end))
+			cur_point = map->points[arr_i][point_i];
+			if (!((map->points[arr_i][point_i + 1]).end))
 			{
-				right_point = points[arr_i][point_i + 1];
-				draw_prime(mlx, win, &cur_point, &right_point);   		
+				right_point = map->points[arr_i][point_i + 1];
+				draw_prime(map, &cur_point, &right_point);   		
 			}
-			if (points[arr_i + 1])
+			if (map->points[arr_i + 1])
 			{
-				below_point = points[arr_i + 1][point_i];
-				draw_prime(mlx, win, &cur_point, &below_point); 
+				below_point = map->points[arr_i + 1][point_i];
+				draw_prime(map, &cur_point, &below_point); 
 			}
 			point_i++;  		
 		}

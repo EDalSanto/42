@@ -51,5 +51,5 @@ void	zoom_detective(t_map *map)
 		else if (map->zoom_sign == -1)
 			unzoom(map);
 		mlx_clear_window(map->mlx, map->win);
-		print_primes(map->mlx, map->win, map->points);
+		print_primes(map);
 }

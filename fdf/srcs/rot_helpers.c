@@ -42,7 +42,7 @@ void		translate_points(t_map *map)
 				unzoom(map);
 		}
 		mlx_clear_window(map->mlx, map->win);
-		print_primes(map->mlx, map->win, map->points);
+		print_primes(map);
 }
 
 void		reset_map(t_map *map)
@@ -52,5 +52,5 @@ void		reset_map(t_map *map)
 	map->zoom_sign = 0;
 	reset_primes(map->points);
 	mlx_clear_window(map->mlx, map->win);
-	print_inits(map->mlx, map->win, map->points);
+	print_inits(map);
 }
