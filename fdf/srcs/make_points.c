@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:23:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/22 19:12:55 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 13:19:01 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void		parse_line(t_point *point, char *line, int y)
 {
+	int		sign;
 	int		x;
 	int		i;
 	double	z;
@@ -26,6 +27,12 @@ void		parse_line(t_point *point, char *line, int y)
 	while (line[i])
 	{
 		z = 0.0;
+		sign = 1;
+		if (line[i] == '-')
+		{
+			i++;
+			sign = -1;
+		}
 		if(ft_isdigit(line[i]))
 		{	
 			while(ft_isdigit(line[i])) 
@@ -33,7 +40,7 @@ void		parse_line(t_point *point, char *line, int y)
 				z = (z * 10.0) + (line[i] - '0');		
 				i++;
 			}
-			add_init_points(p, x, y, z);
+			add_init_points(p, x, y, z * sign);
 			p++;
 			x++;
 		}
