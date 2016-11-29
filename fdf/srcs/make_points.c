@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void		parse_line(t_point *point, char *line, int y)
 {
@@ -54,6 +55,7 @@ t_point		**create_points(char *file, t_map *map)
 	arr_i = 0;
 	while ((get_next_line(fd, &line)) == 1)		
 	{
+		printf("maxstrlen to mall: %zu\n", map->max_strlen);
 		points[arr_i] = (t_point*)malloc(sizeof(t_point) * (map->max_strlen) + 2);
 		parse_line(points[arr_i], line, arr_i);
 		arr_i++;	
@@ -76,7 +78,7 @@ size_t		count_lines(char *file, t_map *map)
 	{
 		lines++;
 		if ((ft_strlen(line) / 2) > max_strlen)
-			max_strlen = (ft_strlen(line) / 2); 
+			max_strlen = (ft_strlen(line) / 2) + 1; 
 	}
 	close(fd);
 	map->max_strlen = max_strlen;
