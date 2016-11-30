@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 17:35:57 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 17:36:00 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 20:00:36 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ static void		setup_map(t_map *map, char *file, void *mlx, void *win)
 	center(map);
 }
 
+int				valid_file(char *file)
+{
+	int			valid;
+	int			fd;
+
+	if ((fd = open(file, O_RDONLY)) == -1)
+		valid = 0;
+	else
+		valid = 1;
+	close(fd);
+	return (valid);
+}
+
 int				main(int ac, char **av)
 {
 	void		*mlx;
@@ -74,7 +87,7 @@ int				main(int ac, char **av)
 	t_map		*map;
 
 	map = (t_map*)malloc(sizeof(t_map));
-	if (ac == 2)
+	if (ac == 2 && valid_file(av[1]))
 	{
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
