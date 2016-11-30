@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 19:40:44 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 20:49:55 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 08:24:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,20 @@ void		reset_map(t_map *map)
 	center(map);
 	mlx_clear_window(map->mlx, map->win);
 	print_inits(map);
+}
+
+void		update_angles(int keycode, t_map *map)
+{
+	if (keycode == 12)
+		update_angle(&map->angles, 'x', 1);
+	else if (keycode == 0)
+		update_angle(&map->angles, 'x', -1);
+	else if (keycode == 13)
+		update_angle(&map->angles, 'y', -1);
+	else if (keycode == 1)
+		update_angle(&map->angles, 'y', 1);
+	else if (keycode == 14)
+		update_angle(&map->angles, 'z', 1);
+	else if (keycode == 2)
+		update_angle(&map->angles, 'z', -1);
 }

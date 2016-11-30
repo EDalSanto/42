@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 20:51:07 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 08:22:21 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void			zoom(t_map *map);
 void			zoom_detective(t_map *map);
 void			center(t_map *map);
 void			scale_detective(t_map *map);
+void			free_points(t_map *map);
+void			update_angles(int keycode, t_map *map);
 int				rot_key(int keycode);
 
 #endif

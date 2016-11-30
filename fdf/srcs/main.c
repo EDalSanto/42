@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 17:35:57 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 20:49:33 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 08:21:03 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,14 @@ void			zoom_key(t_map *map, int keycode)
 int				my_key_funct(int keycode, t_map *map)
 {
 	if (keycode == 53)
+	{
+		free_points(map);
+		free(map);
 		exit(1);
+	}
 	else if (rot_key(keycode))
 	{
-		if (keycode == 12)
-			update_angle(&map->angles, 'x', 1);
-		else if (keycode == 0)
-			update_angle(&map->angles, 'x', -1);
-		else if (keycode == 13)
-			update_angle(&map->angles, 'y', -1);
-		else if (keycode == 1)
-			update_angle(&map->angles, 'y', 1);
-		else if (keycode == 14)
-			update_angle(&map->angles, 'z', 1);
-		else if (keycode == 2)
-			update_angle(&map->angles, 'z', -1);
+		update_angles(keycode, map);
 		translate_points(map);
 	}
 	else if (keycode == 15)
