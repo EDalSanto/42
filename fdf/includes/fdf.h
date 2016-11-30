@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 19:48:53 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 20:51:07 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define Y_CENTER 450
 
 # define WHITE 0x00FFFFFF
-# define X_ANGLE 30
-# define Y_ANGLE 30
-# define Z_ANGLE 30
+# define X_ANGLE 15
+# define Y_ANGLE 15
+# define Z_ANGLE 15
 
 typedef struct	s_point
 {
@@ -60,6 +60,7 @@ typedef struct	s_map
 	double		x_start;
 	double		y_start;
 	double		scale;
+	int			translate_adj;
 }				t_map;
 
 typedef struct	s_cur

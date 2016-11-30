@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 19:40:44 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 19:42:21 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 20:49:55 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ void		reset_primes(t_point **points)
 
 void		translate_points(t_map *map)
 {
-	int	zf;
+	int		zf;
 
 	zf = map->zoom_factor;
 	reset_primes(map->points);
 	z_rotate(map->points, map->angles.a_z);
 	x_rotate(map->points, map->angles.a_x);
 	y_rotate(map->points, map->angles.a_y);
+	map->translate_adj = 1;
 	if (zf > 0)
 	{
 		while (zf--)
@@ -53,6 +54,7 @@ void		translate_points(t_map *map)
 		while (zf++)
 			unzoom(map);
 	}
+	map->translate_adj = 0;
 	mlx_clear_window(map->mlx, map->win);
 	print_primes(map);
 }

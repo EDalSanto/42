@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 17:35:57 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 20:00:36 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 20:49:33 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void		setup_map(t_map *map, char *file, void *mlx, void *win)
 	map->points = create_points(file, map);
 	map->zoom_factor = 0;
 	map->zoom_sign = 0;
+	map->translate_adj = 0;
 	center(map);
 }
 

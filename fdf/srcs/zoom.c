@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 19:46:17 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 19:47:13 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 20:52:42 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	unzoom(t_map *map)
 		}
 		arr_i++;
 	}
-	map->scale *= 0.95;
+	if (!map->translate_adj)
+		map->scale *= 0.95;
 }
 
 void	zoom(t_map *map)
@@ -55,7 +56,8 @@ void	zoom(t_map *map)
 		}
 		arr_i++;
 	}
-	map->scale *= 1.05;
+	if (!map->translate_adj)
+		map->scale *= 1.05;
 }
 
 void	zoom_detective(t_map *map)
