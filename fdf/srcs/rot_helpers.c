@@ -50,9 +50,9 @@ void		reset_map(t_map *map)
 	map->angles = init_angles();		
 	map->zoom_factor = 0;
 	map->zoom_sign = 0;
-	map->scale = SCALE;
-	center(map);
+	scale_detective(map);
 	reset_primes(map->points);
+	center(map);
 	mlx_clear_window(map->mlx, map->win);
 	print_inits(map);
 }

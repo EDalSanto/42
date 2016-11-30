@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 14:19:01 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 16:52:09 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct	s_cur
 t_point		**create_points(char *file, t_map *map);
 t_angles	init_angles(void);
 size_t		count_lines(char *file, t_map *map);
-void		parse_line(t_point *point, char *line, int y);
+void		parse_line(t_point *point, char *line, int y, t_map *map);
 void		print_inits(t_map *map);
 void		print_primes(t_map *map);
 void		draw_prime(t_map *map, t_point *point1, t_point *point2);
@@ -100,6 +100,7 @@ void		unzoom(t_map *map);
 void		zoom(t_map *map);
 void		zoom_detective(t_map *map);
 void		center(t_map *map);
+void		scale_detective(t_map *map);
 int			rot_key(int keycode);
 
 #endif

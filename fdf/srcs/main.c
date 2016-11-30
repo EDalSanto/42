@@ -1,5 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/29 17:35:57 by edal-san          #+#    #+#             */
+/*   Updated: 2016/11/29 17:36:00 by edal-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include <stdio.h>
+
+void			zoom_key(t_map *map, int keycode)
+{
+	if (keycode == 6)
+	{
+		map->zoom_factor += 1;
+		map->zoom_sign = 1;
+	}
+	else
+	{
+		map->zoom_factor -= 1;
+		map->zoom_sign = -1;
+	}
+	zoom_detective(map);
+}
 
 int				my_key_funct(int keycode, t_map *map)
 {
@@ -24,33 +50,21 @@ int				my_key_funct(int keycode, t_map *map)
 	else if (keycode == 15)
 		reset_map(map);
 	else if (keycode == 6 || keycode == 7)
-	{
-		if (keycode == 6)	
-		{
-			map->zoom_factor += 1;
-			map->zoom_sign = 1;
-		}
-		else
-		{
-			map->zoom_factor -= 1;
-			map->zoom_sign = -1;
-		}
-		zoom_detective(map);
-	}
-	//printf("keycode: %d\n", keycode);
+		zoom_key(map, keycode);
 	return (0);
 }
 
-void			center(t_map *map)
+static void		setup_map(t_map *map, char *file, void *mlx, void *win)
 {
-	if (((map->max_strlen * map->scale) / 2) > X_CENTER)
-		map->x_start = (WIDTH - (map->scale * map->max_strlen)) / 2;
-	else
-		map->x_start = X_CENTER - ((map->max_strlen) * map->scale / 2);
-	if (((map->num_lines * map->scale) / 2) > Y_CENTER)
-		map->y_start = 0;
-	else
-		map->y_start = Y_CENTER - ((map->num_lines * map->scale) / 2);
+	map->mlx = mlx;
+	map->win = win;
+	map->num_lines = count_lines(file, map);
+	map->angles = init_angles();
+	scale_detective(map);
+	map->points = create_points(file, map);
+	map->zoom_factor = 0;
+	map->zoom_sign = 0;
+	center(map);
 }
 
 int				main(int ac, char **av)
@@ -62,28 +76,12 @@ int				main(int ac, char **av)
 	map = (t_map*)malloc(sizeof(t_map));
 	if (ac == 2)
 	{
-		map->num_lines = count_lines(av[1], map);
 		mlx = mlx_init();
 		win = mlx_new_window(mlx, WIDTH, LENGTH, "mlx 42");
-		map->angles = init_angles();
-		map->points = create_points(av[1], map);
-		map->mlx = mlx;
-		map->win = win;
-		map->scale = SCALE;
-		map->zoom_factor = 0;
-		map->zoom_sign = 0;
-		area_img = (map->num_lines * map->scale) * (map->max_strlen * map->scale); 
-		area_win = (WIDTH * LENGTH);
-		if ((area_img) < (.7 * (area_win)))
-		{
-			dif = area_win - area_img; 
-			perc = dif / (area_win);
-			
-		}
-		center(map);
+		setup_map(map, av[1], mlx, win);
 		print_inits(map);
 		mlx_key_hook(win, my_key_funct, (void*)map);
-		mlx_loop(mlx);	
+		mlx_loop(mlx);
 	}
 	else
 		ft_putstr("Invalid Argument\n");
