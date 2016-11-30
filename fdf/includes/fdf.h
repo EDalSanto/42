@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:03:55 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 16:52:09 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 19:48:53 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 # define Y_CENTER 450
 
 # define WHITE 0x00FFFFFF
-# define SCALE 15
-# define X_ANGLE 30 
-# define Y_ANGLE 30 
+# define X_ANGLE 30
+# define Y_ANGLE 30
 # define Z_ANGLE 30
 
 typedef struct	s_point
@@ -79,28 +78,29 @@ typedef struct	s_cur
 	void		*win;
 }				t_cur;
 
-t_point		**create_points(char *file, t_map *map);
-t_angles	init_angles(void);
-size_t		count_lines(char *file, t_map *map);
-void		parse_line(t_point *point, char *line, int y, t_map *map);
-void		print_inits(t_map *map);
-void		print_primes(t_map *map);
-void		draw_prime(t_map *map, t_point *point1, t_point *point2);
-void        draw_line(t_map *map, t_point *point1, t_point *point2);
-void        add_init_points(t_point *point, double x_init, double y_init, double z_init);
-void		test_all_lines(void *mlx, void *win);
-void		update_angle(t_angles *angles, char plane, int sign);
-void		z_rotate(t_point **points, double a_z);
-void		x_rotate(t_point **points, double a_x);
-void		y_rotate(t_point **points, double a_y);
-void		reset_primes(t_point **points);
-void		translate_points(t_map *map);
-void		reset_map(t_map *map);
-void		unzoom(t_map *map);
-void		zoom(t_map *map);
-void		zoom_detective(t_map *map);
-void		center(t_map *map);
-void		scale_detective(t_map *map);
-int			rot_key(int keycode);
+t_point			**create_points(char *file, t_map *map);
+t_angles		init_angles(void);
+size_t			count_lines(char *file, t_map *map);
+void			parse_line(t_point *point, char *line, int y, t_map *map);
+void			print_inits(t_map *map);
+void			print_primes(t_map *map);
+void			draw_prime(t_map *map, t_point *point1, t_point *point2);
+void			draw_line(t_map *map, t_point *point1, t_point *point2);
+void			add_init_points(t_point *point, double x_init,
+									double y_init, double z_init);
+void			test_all_lines(void *mlx, void *win);
+void			update_angle(t_angles *angles, char plane, int sign);
+void			z_rotate(t_point **points, double a_z);
+void			x_rotate(t_point **points, double a_x);
+void			y_rotate(t_point **points, double a_y);
+void			reset_primes(t_point **points);
+void			translate_points(t_map *map);
+void			reset_map(t_map *map);
+void			unzoom(t_map *map);
+void			zoom(t_map *map);
+void			zoom_detective(t_map *map);
+void			center(t_map *map);
+void			scale_detective(t_map *map);
+int				rot_key(int keycode);
 
 #endif

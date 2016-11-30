@@ -6,24 +6,23 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 17:26:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 17:27:29 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 19:45:34 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void			center(t_map *map)
+void		center(t_map *map)
 {
-		map->x_start = (WIDTH - (map->scale * map->max_strlen)) / 2;
-		map->y_start = (LENGTH - (map->scale * map->num_lines)) / 2;
-		/*printf("xstart: %lf, width: %d, map->scale: %lf, map->max_strlen: %zu, y_start: %lf\n", map->x_start, WIDTH, map->scale, map->max_strlen, map->y_start);*/
+	map->x_start = (WIDTH - (map->scale * map->max_strlen)) / 2;
+	map->y_start = (LENGTH - (map->scale * map->num_lines)) / 2;
 }
 
-void			scale_detective(t_map *map)
+void		scale_detective(t_map *map)
 {
-	double		scale;
-	double		area_win;
-	double		area_img;
+	double	scale;
+	double	area_win;
+	double	area_img;
 
 	area_win = WIDTH * LENGTH;
 	scale = 1;
