@@ -6,12 +6,13 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/11/21 17:50:46 by edal-san         ###   ########.fr        #
+#    Updated: 2016/11/29 19:39:41 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILENAMES	= prime_line.c main.c test_line_draw.c line.c make_points.c print.c\
-			  rots.c angles.c rot_helpers.c zoom.c
+FILENAMES	= prime_line.c main.c line.c make_points.c print.c  \
+			  rots.c angles.c rot_helpers.c zoom.c scale.c      \
+			  print_primes.c
 
 NAME		= fdf
 CC			= gcc

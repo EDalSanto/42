@@ -6,34 +6,45 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:27:09 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/22 19:45:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/11/29 17:35:01 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		draw_big_slope(t_cur cur, t_point *point1, t_point *point2)
+void		draw_big_slope(t_map *map, t_cur cur,
+							t_point *point1, t_point *point2)
 {
+	double	x_to_print;
+	double	y_to_print;
+
 	cur.max = fabs(cur.dy);
 	cur.neg = (cur.dy < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_init) + 200 +
-		point1->x_init, (cur.y - point1->y_init) + 150 + point1->y_init, WHITE);
+		x_to_print = ((cur.x - point1->x_init) + map->x_start + point1->x_init);
+		y_to_print = ((cur.y - point1->y_init) + map->y_start + point1->y_init);
+		mlx_pixel_put(cur.mlx, cur.win, x_to_print, y_to_print, WHITE);
 		cur.y += cur.res * cur.neg;
-		cur.x = (cur.x == point2->x_init) ? (cur.x) : (cur.y - cur.y_int) / cur.slope;
+		cur.x = (cur.x == point2->x_init) ? (cur.x) :
+												(cur.y - cur.y_int) / cur.slope;
 		cur.i += cur.res;
 	}
 }
 
-void		draw_small_slope(t_cur cur, t_point *point1)
+void		draw_small_slope(t_map *map, t_cur cur, t_point *point1)
 {
+	double	x_to_print;
+	double	y_to_print;
+
 	cur.max = fabs(cur.dx);
 	cur.neg = (cur.dx < 0) ? -1 : 1;
 	while (cur.i <= cur.max)
 	{
-		mlx_pixel_put(cur.mlx, cur.win, (cur.x - point1->x_init) + 200 + point1->x_init, (cur.y - point1->y_init) +  point1->y_init + 150, WHITE);
-		cur.x += cur.res * cur.neg; 
+		x_to_print = ((cur.x - point1->x_init) + map->x_start + point1->x_init);
+		y_to_print = ((cur.y - point1->y_init) + map->y_start + point1->y_init);
+		mlx_pixel_put(cur.mlx, cur.win, x_to_print, y_to_print, WHITE);
+		cur.x += cur.res * cur.neg;
 		cur.y = (cur.slope * cur.x) + cur.y_int;
 		cur.i += cur.res;
 	}
@@ -51,15 +62,15 @@ static void	setup_cur_line(t_cur *cur, t_point *point1, t_point *point2)
 	cur->i = 0.0;
 }
 
-void		draw_line(void *mlx, void *win, t_point *point1, t_point *point2)  
+void		draw_line(t_map *map, t_point *point1, t_point *point2)
 {
 	t_cur	cur;
-	
-	cur.mlx = mlx;
-	cur.win = win;
+
+	cur.mlx = map->mlx;
+	cur.win = map->win;
 	setup_cur_line(&cur, point1, point2);
 	if (fabs(cur.slope) > 1.0)
-		draw_big_slope(cur, point1, point2);
+		draw_big_slope(map, cur, point1, point2);
 	else
-		draw_small_slope(cur, point1);
+		draw_small_slope(map, cur, point1);
 }
