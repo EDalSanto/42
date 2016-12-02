@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/02 09:27:18 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/02 14:59:09 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,11 +49,11 @@ $(CH_TARGET): $(CH_OBJ)
 
 $(PSW_OBJ_PATH)%.o: $(PSW_SRC_PATH)%.c
 	@mkdir $(PSW_OBJ_PATH)
-	@$(CC) $(CFLAGS) $(PSW_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(PSW_INC) $(LIBFTINC) -o $@ -c $<
 
 $(CH_OBJ_PATH)%.o: $(CH_SRC_PATH)%.c
 	@mkdir $(CH_OBJ_PATH)
-	@$(CC) $(CFLAGS) $(CH_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(CH_INC) $(LIBFTINC) -o $@ -c $<
 
 clean:
 	@make -C libft/ clean
