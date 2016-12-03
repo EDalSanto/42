@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/03 08:55:17 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/03 09:57:09 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ LIBFTINC		= -I./libft/includes/
 LIBFTLINK		= -L./libft -lft
 
 PSW_SRC_PATH	= ./p_swap/srcs/
-PSW_FILES		= main.c
+PSW_FILES		= main.c ops1.c ops2.c display.c
 PSW_OBJ_PATH	= ./ps_objs/
 PSW_SRC			= $(addprefix $(PSW_SRC_PATH), $(PSW_FILES))
 PSW_OBJ			= $(addprefix $(PSW_OBJ_PATH), $(PSW_FILES:.c=.o))
 PSW_INC			= -I./p_swap/includes/ $(LIBFTINC)
 
 CH_SRC_PATH		= ./p_checker/srcs/
-CH_FILES		= main.c ops1.c ops2.c
+CH_FILES		= main.c ops1.c ops2.c display.c
 CH_OBJ_PATH		= ./pc_objs/
 CH_SRC			= $(addprefix $(CH_SRC_PATH), $(CH_FILES))
 CH_OBJ			= $(addprefix $(CH_OBJ_PATH), $(CH_FILES:.c=.o))
@@ -48,11 +48,11 @@ $(CH_TARGET): $(CH_OBJ)
 	@echo "checker: compiled with success!"
 
 $(PSW_OBJ_PATH)%.o: $(PSW_SRC_PATH)%.c
-	@mkdir $(PSW_OBJ_PATH)
+	@mkdir $(PSW_OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) $(PSW_INC) $(LIBFTINC) -o $@ -c $<
 
 $(CH_OBJ_PATH)%.o: $(CH_SRC_PATH)%.c
-	@mkdir $(CH_OBJ_PATH)
+	@mkdir $(CH_OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) $(CH_INC) $(LIBFTINC) -o $@ -c $<
 
 clean:

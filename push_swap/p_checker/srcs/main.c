@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 08:58:14 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 09:44:15 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,18 @@ int		make_stackA(int ac, char **av, int **stackA)
 	return (1);
 }
 
-static void	setup(int *stackA, int *stackB)
-{
-	stackA = (int*)malloc(sizeof(int) * ac);
-	ft_bzero(stackA, (ac - 1) * sizeof(int));
-	stackB = (int*)malloc(sizeof(int) * ac);
-	ft_bzero(stackB, (ac - 1) * sizeof(int));
-}
-
 int		main(int ac, char **av)
 {
 	int	*stackA;
 	int	*stackB;
+	int	size;
 
-	setup(stackA, stackB);
-	if ((ac > 1) && (make_stackA(ac, av, &stackA)))
+	size = ac - 1;	
+	stackA = (int*)malloc(sizeof(int) * size);
+	ft_bzero(stackA, (size - 1) * sizeof(int));
+	stackB = (int*)malloc(sizeof(int) * size);
+	ft_bzero(stackB, (size - 1) * sizeof(int));
+	if ((size) && (make_stackA(ac, av, &stackA)))
 	{
 		print_int_arr(stackA, (ac - 1));	
 	}

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:54:33 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 09:09:49 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 09:58:12 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	push_on_A(int *stackA, int *stackB, int size)
 {
 	int	temp;
 
-	if (!empty_stack(stackB[i], size))
+	if (!empty_stack(stackB, size))
 	{
 		temp = stackB[0];
 		ft_memmove(&stackB[0], &stackB[1], sizeof(int) * (size - 1));
@@ -57,7 +57,7 @@ void	push_on_B(int *stackA, int *stackB, int size)
 {
 	int	temp;
 
-	if (!empty_stack(stackA[i], size))
+	if (!empty_stack(stackA, size))
 	{
 		temp = stackA[0];
 		ft_memmove(&stackA[0], &stackA[1], sizeof(int) * (size - 1));
