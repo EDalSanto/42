@@ -6,11 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:54:33 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 09:10:19 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 09:09:49 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "swap.h" 
 
 void	swap_first_two(int *stack)
 {
