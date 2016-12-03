@@ -27,27 +27,45 @@ void	swap_both(int *stackA, int *stackB)
 	swap_first_two(stackB);
 }
 
-void	push_on_A(int *stackA, int *stackB)
+int		empty_stack(int arr, int size)
 {
-	int	temp;
 	int	i;
 
 	i = 0;
-	if (stackB[i])
+	while (i < size)
 	{
-		temp = stackB[i++];
-		while (stackB[i])
-		{
-			stackB[i - 1] = stackb[i];
-			i++;
-		}
-		i = 0;
-		while (stackA[i])
-		{
-			stackA[i + 1]
-		}
+		if (arr[i])	
+			return (0);
+	}
+	return (1);
+}
+
+void	push_on_A(int *stackA, int *stackB, int size)
+{
+	int	temp;
+
+	if (!empty_stack(stackB[i], size))
+	{
+		temp = stackB[i];
+		ft_memmove(&stackB[i], &stackB[i + 1], sizeof(int) * (size - 1));
+		ft_memmove(&stackA[i + 1], &stackA[i], sizeof(int) * (size - 1));
+		stackA[0] = temp;
 	}
 }
+
+void	push_on_B(int *stackA, int *stackB, int size)
+{
+	int	temp;
+
+	if (!empty_stack(stackA[i], size))
+	{
+		temp = stackA[i];
+		ft_memmove(&stackA[i], &stackA[i + 1], sizeof(int) * (size - 1));
+		ft_memmove(&stackB[i + 1], &stackB[i], sizeof(int) * (size - 1));
+		stackB[0] = temp;
+	}
+}
+
 
 int		make_stack(int ac, char **av, int **stackA)
 {
@@ -73,10 +91,10 @@ int		main(int ac, char **av)
 	int	*stackA;
 	int	*stackB;
 
-	stackA = (int*)malloc(sizeof(int) * (ac - 1));
-	ft_bzero(stackA, (ac - 1));
-	stackB = (int*)malloc(sizeof(int) * (ac - 1));
-	ft_bzero(stackB, (ac - 1));
+	stackA = (int*)malloc(sizeof(int) * ac);
+	ft_bzero(stackA, (ac - 1) * sizeof(int));
+	stackB = (int*)malloc(sizeof(int) * ac);
+	ft_bzero(stackB, (ac - 1) * sizeof(int));
 	if ((ac > 1) && (make_stack(ac, av, &stackA)))
 	{
 		print_int_arr(stackA, (ac - 1));	
