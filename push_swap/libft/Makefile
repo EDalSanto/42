@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/26 08:49:34 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/02 09:17:42 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/02 16:57:44 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIBFT_FILES	=	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint		\
 				ft_memset ft_bzero ft_strnew ft_memalloc ft_strdup			\
 				ft_memdel ft_strdel ft_strclr ft_striter ft_striteri		\
 				ft_strmap ft_strmapi ft_lstadd  ft_lstdel ft_lstdelone		\
-				ft_lstmap ft_lstiter ft_lstnew ft_print_int_arr 			\
+				ft_lstmap ft_lstiter ft_lstnew print_int_arr 			\
 				ft_realloc ft_int_len ft_put_base ft_put_base_unsigned		\
 				ft_itoa_capital_base ft_itoa_base_unsigned_cap				\
 				get_next_line

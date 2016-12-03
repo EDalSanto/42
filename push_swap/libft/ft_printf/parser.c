@@ -6,13 +6,13 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:00:41 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/07 19:57:19 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/02 17:06:37 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft_printf.h"
 
-void		parse_nums(t_pf_detective *pf)
+void	parse_nums(t_pf_detective *pf)
 {
 	char	*pr;
 	char	*fw;

@@ -6,13 +6,14 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 15:05:48 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/10 20:15:20 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/02 17:02:56 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # define WS(c)(c==' '||c=='\t'||c=='\n'||c=='\r'||c=='\v'||c=='\f')
+# include "libft_printf.h"
 # include <string.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -104,6 +105,7 @@ void					ft_lstdelone(t_list **alst,
 void					ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void					ft_lstadd(t_list **alst, t_list *new);
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+void					print_int_arr(int *arr, int len);
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elm));
 
 #endif
