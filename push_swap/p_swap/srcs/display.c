@@ -6,28 +6,31 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 09:39:29 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 15:37:36 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-void	display_stacks(int *stackA, int *stackB, int size)
+void	display_stacks(t_stack *stackA, t_stack *stackB)
 {
-	int	i;
+	int	a;
+	int	b;
 
-	i = 0;
-	while (i < size)
+	a = 0;
+	b = 0;
+	while ((a < (stackA->cur_size) || (b < (stackB->cur_size))))
 	{
-		if (!empty_stack((stackA + i), (size - i)))
-			ft_printf("%d ", stackA[i]);
+		if (a < (stackA->cur_size))
+			ft_printf("%d ", stackA[a]);
 		else
 			ft_printf(" ");
-		if (!empty_stack((stackB + i), (size - i)))
-			ft_printf("%d\n", stackB[i]);
+		if (b < (stackB->cur_size))
+			ft_printf("%d\n", stackB[b]);
 		else
-			printf("\n");
-		i++;
+			ft_printf("\n");
+		a++;
+		b++;
 	}
-	printf("\n- -\na b\n--------\n");
+	ft_printf("\n- -\na b\n--------\n");
 }

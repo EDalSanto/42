@@ -6,62 +6,65 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:54:33 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 09:58:12 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 15:33:47 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "swap.h" 
+#include "swap.h"
 
-void	swap_first_two(int *stack)
+void	swap_first_two(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack[0];
-	stack[0] = stack[1];
-	stack[1] = temp;
+	temp = stack->nums[0];
+	stack->nums[0] = stack->nums[1];
+	stack->nums[1] = temp;
 }
 
-void	swap_both(int *stackA, int *stackB)
+void	swap_both(t_stack *stackA, t_stack *stackB)
 {
 	swap_first_two(stackA);
 	swap_first_two(stackB);
 }
 
-int		empty_stack(int *arr, int size)
+int		empty_stack(t_stack *stack)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i++])	
-			return (0);
-	}
-	return (1);
+	if (!stack->cur_size)	
+		return (1);
+	else
+		return (0);
 }
 
-void	push_on_A(int *stackA, int *stackB, int size)
+void	push_on_A(t_stack *stackA, t_stack *stackB)
 {
 	int	temp;
 
-	if (!empty_stack(stackB, size))
+	if (!empty_stack(stackB))
 	{
-		temp = stackB[0];
-		ft_memmove(&stackB[0], &stackB[1], sizeof(int) * (size - 1));
-		ft_memmove(&stackA[1], &stackA[0], sizeof(int) * (size - 1));
-		stackA[0] = temp;
+		temp = (stackB->nums)[0];
+		ft_memmove(&(stackB->nums[0]), &(stackB->nums[1]),
+					sizeof(int) * (stackB->cur_size));
+		ft_memmove(&(stackA->nums[1]), &(stackA->nums[0]),
+					sizeof(int) * (stackA->cur_size));
+		(stackA->nums)[0] = temp;
+		(stackA->cur_size)++;
+		(stackB->cur_size)--;
 	}
 }
 
-void	push_on_B(int *stackA, int *stackB, int size)
+void	push_on_B(t_stack *stackA, t_stack *stackB)
 {
 	int	temp;
 
-	if (!empty_stack(stackA, size))
+	if (!empty_stack(stackA))
 	{
-		temp = stackA[0];
-		ft_memmove(&stackA[0], &stackA[1], sizeof(int) * (size - 1));
-		ft_memmove(&stackB[1], &stackB[0], sizeof(int) * (size - 1));
-		stackB[0] = temp;
+		temp = (stackA->nums)[0];
+		ft_memmove(&(stackA->nums[0]), &(stackA->nums[1]),
+					sizeof(int) * (stackA->cur_size));
+		ft_memmove(&(stackB->nums[1]), &(stackB->nums[0]),
+					sizeof(int) * (stackB->cur_size));
+		(stackB->nums)[0] = temp;
+		(stackB->cur_size)++;
+		(stackA->cur_size)--;
 	}
 }

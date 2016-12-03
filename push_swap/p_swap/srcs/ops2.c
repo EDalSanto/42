@@ -6,38 +6,40 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:55:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 09:31:07 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 15:23:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-void	rotate(int *stack, int size)
+void	rotate(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack[0];
-	ft_memmove(&stack[0], &stack[1], sizeof(int) * (size - 1));
-	stack[size - 1] = temp;
+	temp = (stack->nums)[0];
+	ft_memmove(&(stack->nums[0]), &(stack->nums[1]),
+				sizeof(int) * (stack->cur_size));
+	stack->nums[stack->cur_size - 1] = temp;
 }
 
-void	rotate_both(int *stackA, int *stackB, int size)
+void	rotate_both(t_stack *stackA, t_stack *stackB)
 {
-	rotate(stackA, size);
-	rotate(stackB, size);
+	rotate(stackA);
+	rotate(stackB);
 }
 
-void	reverse_rotate(int *stack, int size)
+void	reverse_rotate(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack[size - 1];
-	ft_memmove(&stack[1], &stack[0], sizeof(int) * (size - 1));
-	stack[0] = temp;
+	temp = stack->nums[stack->cur_size - 1];
+	ft_memmove(&(stack->nums[1]), &(stack->nums[0]),
+				sizeof(int) * (stack->cur_size));
+	stack->nums[0] = temp;
 }
 
-void	reverse_rotate_both(int *stackA, int *stackB, int size)
+void	reverse_rotate_both(t_stack *stackA, t_stack *stackB)
 {
-	reverse_rotate(stackA, size);
-	reverse_rotate(stackB, size);
+	reverse_rotate(stackA);
+	reverse_rotate(stackB);
 }
