@@ -64,13 +64,30 @@ int			main(int ac, char **av)
 				while (top != stackA.min_num)		
 				{
 					if (stackA.min_idx > (stackA.cur_size / 2))	
+					{
 						perform_op("rra", &stackA, &stackB, &flags);	
+						solution = update_solution(solution, "rra");
+					}
 					else if (stackA.min_idx <= (stackA.cur_size / 2))
+					{
 						perform_op("ra", &stackA, &stackB, &flags);	
+						solution = update_solution(solution, "ra");
+					}	
 					top = stackA.nums[0];
 				}
 				if (!is_sorted(stackA.nums, stackA.cur_size))
+				{
 					perform_op("pb", &stackA, &stackB, &flags);
+					solution = update_solution(solution, "pb");
+				}
+				else
+				{
+					while (stackB.cur_size)	
+					{
+						perform_op("pa", &stackA, &stackB, &flags);
+						solution = update_solution(solution, "pa");
+					}
+				}
 			}
 		}
 		else
@@ -80,7 +97,7 @@ int			main(int ac, char **av)
 		}
 		if (is_sorted(stackA.nums, stackA.cur_size) &&
 												stackB.cur_size == 0)
-			ft_printf("OK\n");
+			ft_printf("%s", solution);
 		else
 			ft_printf("KO\n");
 	}
