@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   is.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 16:11:36 by edal-san         ###   ########.fr       */
+/*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
+/*   Updated: 2016/12/03 16:06:35 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "swap.h"
 
-void	display_stacks(t_stack *stackA, t_stack *stackB)
+int		is_sorted(int *nums, int size)
 {
-	int	a;
-	int	b;
+	int	i;
 
-	a = 0;
-	b = 0;
-	while ((a < (stackA->cur_size) || (b < (stackB->cur_size))))
+	i = 0;
+	while (i < (size - 1))
 	{
-		if (a < (stackA->cur_size))
-			ft_printf("%d ", stackA->nums[a]);
-		else
-			ft_printf(" ");
-		if (b < (stackB->cur_size))
-			ft_printf("%d\n", stackB->nums[b]);
-		else
-			ft_printf("\n");
-		a++;
-		b++;
+		if (nums[i] > nums[i + 1])
+			return (0);
+		i++;
 	}
-	ft_printf("\n- -\na b\n--------\n");
+	return (1);
+}
+
+int		is_number(char *str)
+{
+	if (*str == '-')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }
