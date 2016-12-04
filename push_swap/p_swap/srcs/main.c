@@ -44,6 +44,7 @@ int			main(int ac, char **av)
 	t_stack	stackA;
 	t_stack stackB;
 	t_flags	flags;
+	int		top;
 	char	*solution;
 
 	if (ac > 1)
@@ -58,15 +59,18 @@ int			main(int ac, char **av)
 			while(!(is_sorted(stackA.nums, stackA.cur_size) &&
 													!stackB.cur_size))
 			{	
-				if (is_sorted(stackA.nums, stackA.cur_size) &&
-					is_revsorted(stackB.nums, stackB.cur_size))
+				find_min(&stackA);
+				top = stackA.nums[0];
+				while (top != stackA.min_num)		
 				{
-					while (stackB.cur_size)
-					{
-						perform_op("pa", &stackA, &stackB, &flags);
-						solution = update_solution(solution, "pa");
-					}
+					if (stackA.min_idx > (stackA.cur_size / 2))	
+						perform_op("rra", &stackA, &stackB, &flags);	
+					else if (stackA.min_idx <= (stackA.cur_size / 2))
+						perform_op("ra", &stackA, &stackB, &flags);	
+					top = stackA.nums[0];
 				}
+				if (!is_sorted(stackA.nums, stackA.cur_size))
+					perform_op("pb", &stackA, &stackB, &flags);
 			}
 		}
 		else

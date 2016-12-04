@@ -25,6 +25,8 @@ typedef struct	s_stack
 	int			*nums;
 	int			cur_size;
 	int			max_size;
+	int			min_idx;
+	int			min_num;
 }				t_stack;
 
 char			*update_solution(char *solution, char *op);
@@ -46,5 +48,6 @@ void			rotate_both(t_stack *stackA, t_stack *stackB);
 void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stackA, t_stack *stackB);
 void			display_stacks(t_stack *stackA, t_stack *stackB);
+void			find_min(t_stack *stackA);
 
 #endif

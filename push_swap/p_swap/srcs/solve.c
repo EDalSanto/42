@@ -25,7 +25,7 @@ char		*update_solution(char *solution, char *op)
 	return (solution);
 }
 
-int		perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
+int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 {
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stackA);
@@ -57,4 +57,23 @@ int		perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 	if (flags->v)	
 		display_stacks(stackA, stackB);
 	return (1);
+}
+
+void		find_min(t_stack *stackA)
+{
+	int		min;
+	int		i;
+
+	min = stackA->nums[0];
+	i = 1;
+	while (stackA->nums[i])
+	{
+		if (stackA->nums[i] < min)	
+		{
+			min = stackA->nums[i];
+			stackA->min_num = min;
+			stackA->min_idx = i;
+		}
+		i++;
+	}
 }
