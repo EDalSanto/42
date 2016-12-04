@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/03 16:05:31 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/04 10:17:46 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ LIBFTINC		= -I./libft/includes/
 LIBFTLINK		= -L./libft -lft
 
 PSW_SRC_PATH	= ./p_swap/srcs/
-PSW_FILES		= main.c ops1.c ops2.c display.c is.c
+PSW_FILES		= main.c ops1.c ops2.c display.c is.c flags.c solve.c
 PSW_OBJ_PATH	= ./ps_objs/
 PSW_SRC			= $(addprefix $(PSW_SRC_PATH), $(PSW_FILES))
 PSW_OBJ			= $(addprefix $(PSW_OBJ_PATH), $(PSW_FILES:.c=.o))
 PSW_INC			= -I./p_swap/includes/ $(LIBFTINC)
 
 CH_SRC_PATH		= ./p_checker/srcs/
-CH_FILES		= main.c ops1.c ops2.c display.c is.c
+CH_FILES		= main.c ops1.c ops2.c display.c is.c flags.c solve.c
 CH_OBJ_PATH		= ./pc_objs/
 CH_SRC			= $(addprefix $(CH_SRC_PATH), $(CH_FILES))
 CH_OBJ			= $(addprefix $(CH_OBJ_PATH), $(CH_FILES:.c=.o))
