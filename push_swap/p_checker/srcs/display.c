@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 16:11:36 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 20:36:41 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void	display_stacks(t_stack *stackA, t_stack *stackB)
 
 	a = 0;
 	b = 0;
+	ft_printf("--------\n");
 	while ((a < (stackA->cur_size) || (b < (stackB->cur_size))))
 	{
 		if (a < (stackA->cur_size))
 			ft_printf("%d ", stackA->nums[a]);
 		else
-			ft_printf(" ");
+			ft_printf("  ");
 		if (b < (stackB->cur_size))
 			ft_printf("%d\n", stackB->nums[b]);
 		else
@@ -32,5 +33,5 @@ void	display_stacks(t_stack *stackA, t_stack *stackB)
 		a++;
 		b++;
 	}
-	ft_printf("\n- -\na b\n--------\n");
+	ft_printf("- -\na b\n--------\n");
 }

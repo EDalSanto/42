@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 15:05:48 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/02 17:02:56 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 18:13:57 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "get_next_line.h"
 
 typedef struct			s_list
 {
