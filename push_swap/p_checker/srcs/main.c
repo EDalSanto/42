@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 20:33:24 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 20:40:17 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int			main(int ac, char **av)
 	{
 		av = check_for_flags(av, &flags, &ac);
 		setup(&stackA, &stackB, (ac - 1));
+		print_int_arr(stackB.nums, stackB.max_size);
 		if (make_stackA(av, &stackA))
 		{
 			if (flags.v)

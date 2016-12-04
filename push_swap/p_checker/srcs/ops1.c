@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:54:33 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 20:32:44 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 20:41:44 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void	swap_first_two(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack->nums[0];
-	stack->nums[0] = stack->nums[1];
-	stack->nums[1] = temp;
+	if (stack->cur_size >= 2)
+	{
+		temp = stack->nums[0];
+		stack->nums[0] = stack->nums[1];
+		stack->nums[1] = temp;
+	}
 }
 
 void	swap_both(t_stack *stackA, t_stack *stackB)
