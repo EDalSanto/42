@@ -6,11 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 16:05:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 08:49:20 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "swap.h"
 
 int		is_sorted(int *nums, int size)
 {
@@ -20,6 +20,20 @@ int		is_sorted(int *nums, int size)
 	while (i < (size - 1))
 	{
 		if (nums[i] > nums[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		is_revsorted(int *nums, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < (size - 1))
+	{
+		if (nums[i] < nums[i + 1])
 			return (0);
 		i++;
 	}

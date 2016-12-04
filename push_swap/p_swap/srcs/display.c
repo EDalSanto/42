@@ -6,11 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 20:36:41 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 08:54:10 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "swap.h"
 
 void	display_stacks(t_stack *stackA, t_stack *stackB)
 {

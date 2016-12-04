@@ -6,11 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:55:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 20:29:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 08:40:35 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "swap.h"
 
 void	rotate(t_stack *stack)
 {

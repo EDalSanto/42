@@ -4,7 +4,26 @@
 #include <string.h>
 #include "checker.h"
 
-int		main(void)
+char		*update_str(char *str, char *op)
 {
-	ft_printf("%d\n", ft_atoi("-32"));
+	char	*dst;
+	size_t	len;
+
+	len = ft_strlen(str);
+	dst = str + len;
+	ft_strcpy(dst, op);
+	ft_strcat(dst, "\n");
+	str = ft_realloc(str, len + 5);
+	return (str);
+}
+
+int			main(void)
+{
+	char	*str;
+	
+	str = (char*)malloc(5);
+	ft_bzero(str, 5);
+	str = update_str(str, "pa");
+	str = update_str(str, "pb");
+	printf("%s", str);
 }

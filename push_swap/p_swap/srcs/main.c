@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 21:23:24 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 10:06:15 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		make_stackA(char **av, t_stack *stackA)
 	return (1);
 }
 
-static void	setup(t_stack *stackA, t_stack *stackB, int size)
+static void	setup(char *solution, t_stack *stackA, t_stack *stackB, int size)
 {
 	stackA->max_size = size;
 	stackA->cur_size = size;
@@ -63,7 +63,35 @@ static void	setup(t_stack *stackA, t_stack *stackB, int size)
 //	ft_bzero(stackB->nums, size * sizeof(int));
 }
 
-int		perform_op(char *op, t_stack *stackA, t_stack *stackB)
+char		**check_for_flags(char **av, t_flags *flags, int *ac)
+{
+	int		s;
+	int		c;
+	
+	s = 1;
+	c = 0;
+	while (av[s][c] == '-' && !ft_isdigit(av[s][c + 1]))
+	{
+		c++;
+		if (av[s][c] == 'v')
+		{
+			flags->v = 1;
+			c++;
+		}
+		if (av[s][c] == 'c')
+		{
+			flags->c = 1;
+			c++;
+		}
+		(*ac)--;
+		s++;
+		c = 0;
+	}
+	return (&(av[s]));
+}
+
+
+int		perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 {
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stackA);
@@ -88,8 +116,26 @@ int		perform_op(char *op, t_stack *stackA, t_stack *stackB)
 	else if (ft_strcmp(op, "rrr") == 0)
 		reverse_rotate_both(stackA, stackB);
 	else
-		return (0);
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+	if (flags->v)	
+		display_stacks(stackA, stackB);
 	return (1);
+}
+
+char		*update_solution(char *solution, char *op)
+{
+	char	*dst;
+	size_t	len;
+
+	len = ft_strlen(solution);
+	dst = solution + len;
+	ft_strcpy(dst, op); 
+	ft_strcat(dst, "\n");
+	solution = ft_realloc(solution, len + 5);
+	return (solution);
 }
 
 int			main(int ac, char **av)
@@ -97,24 +143,29 @@ int			main(int ac, char **av)
 	t_stack	stackA;
 	t_stack stackB;
 	t_flags	flags;
-	char	*line;
+	char	*solution;
 
 	if (ac > 1)
 	{
-		av = &(av[1]);
+		av = check_for_flags(av, &flags, &ac);
+		solution = ft_strnew(5);
 		setup(&stackA, &stackB, (ac - 1));
 		if (make_stackA(av, &stackA))
 		{
-			while(!is_sorted(stackA.nums, stackA.cur_size) &&
-													stackB.cur_size)
+			if (flags.v)	
+				display_stacks(&stackA, &stackB);
+			while(!(is_sorted(stackA.nums, stackA.cur_size) &&
+													!stackB.cur_size))
 			{	
-				if (!perform_op(line, &stackA, &stackB))
+				if (is_sorted(stackA.nums, stackA.cur_size) &&
+					is_revsorted(stackB.nums, stackB.cur_size))
 				{
-					ft_printf("Error\n");
-					exit(1);
+					while (stackB.cur_size)
+					{
+						perform_op("pa", &stackA, &stackB, &flags);
+						solution = update_solution(solution, "pa");
+					}
 				}
-				if (flags.v)	
-					display_stacks(&stackA, &stackB);
 			}
 		}
 		else
