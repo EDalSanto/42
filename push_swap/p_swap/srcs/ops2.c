@@ -6,20 +6,23 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:55:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 15:23:08 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/03 20:29:59 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "swap.h"
+#include "checker.h"
 
 void	rotate(t_stack *stack)
 {
 	int	temp;
 
-	temp = (stack->nums)[0];
-	ft_memmove(&(stack->nums[0]), &(stack->nums[1]),
-				sizeof(int) * (stack->cur_size));
-	stack->nums[stack->cur_size - 1] = temp;
+	if (stack->cur_size)
+	{
+		temp = (stack->nums)[0];
+		ft_memmove(&(stack->nums[0]), &(stack->nums[1]),
+					sizeof(int) * (stack->cur_size));
+		stack->nums[stack->cur_size - 1] = temp;
+	}
 }
 
 void	rotate_both(t_stack *stackA, t_stack *stackB)
