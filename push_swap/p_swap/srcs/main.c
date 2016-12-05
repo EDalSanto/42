@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 10:15:37 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 17:16:50 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,16 @@ int			main(int ac, char **av)
 													!stackB.cur_size))
 			{	
 				find_min(&stackA);
+				ft_printf("min_num: %d, min_idx: %d\n", stackA.min_num, stackA.min_idx);
 				top = stackA.nums[0];
 				while (top != stackA.min_num)		
 				{
-					if (stackA.min_idx > (stackA.cur_size / 2))	
+					if (stackA.min_idx >= (stackA.cur_size / 2))	
 					{
 						perform_op("rra", &stackA, &stackB, &flags);	
 						solution = update_solution(solution, "rra");
 					}
-					else if (stackA.min_idx <= (stackA.cur_size / 2))
+					else if (stackA.min_idx < (stackA.cur_size / 2))
 					{
 						perform_op("ra", &stackA, &stackB, &flags);	
 						solution = update_solution(solution, "ra");
@@ -95,8 +96,8 @@ int			main(int ac, char **av)
 			ft_printf("Error\n");
 			exit(1);
 		}
-		if (is_sorted(stackA.nums, stackA.cur_size) &&
-												stackB.cur_size == 0)
+//		ft_printf("issorted: %d, B_size: %d\n", is_sorted(stackA.nums, stackA.cur_size), stackB.cur_size);
+		if (is_sorted(stackA.nums, stackA.cur_size) && (stackB.cur_size == 0))
 			ft_printf("%s", solution);
 		else
 			ft_printf("KO\n");

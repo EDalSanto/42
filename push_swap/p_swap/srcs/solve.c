@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 10:17:09 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 17:20:00 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 char		*update_solution(char *solution, char *op)
 {
 	char	*dst;
+	char	*s;
 	size_t	len;
 
-	len = ft_strlen(solution);
+	ft_printf("solution before each update: %s\n", solution);
+	s = (char*)malloc(ft_strlen(solution));
+	len = ft_strlen(s);
 	dst = solution + len;
 	ft_strcpy(dst, op); 
 	ft_strcat(dst, "\n");
-	solution = ft_realloc(solution, len + 5);
+	ft_printf("s before realloc: %s\n", s);
+	solution = ft_realloc(s, len + 5);
+	ft_printf("solution after each update: %s\n", solution);
 	return (solution);
 }
 
@@ -66,7 +71,7 @@ void		find_min(t_stack *stackA)
 
 	min = stackA->nums[0];
 	i = 1;
-	while (stackA->nums[i])
+	while (i < stackA->cur_size)
 	{
 		if (stackA->nums[i] < min)	
 		{
