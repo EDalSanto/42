@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 10:34:08 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 10:37:28 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int		get_nums(char *str, t_stack *stackA)
 			num = (num * 10) + (*str - '0');
 		if (*str == ' ' || !(*(str + 1)))
 		{
+			num *= sign;
 			if (!is_valid(num, stackA))
 			{
 				ft_printf("Error\n");
 				exit(1);
 			}
 			i = stackA->cur_size;
-			stackA->nums[i] = sign * num;
+			stackA->nums[i] = num;
 			stackA->cur_size++;
 			num = 0;
 			sign = 1;
