@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 10:25:24 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 11:06:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		*update_solution(char *solution, char *op)
 	return (solution);
 }
 
-int		perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
+int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 {
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stackA);
@@ -57,4 +57,24 @@ int		perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 	if (flags->v)	
 		display_stacks(stackA, stackB);
 	return (1);
+}
+
+void		find_min(t_stack *stackA)
+{
+	int		min;
+	int		i;
+
+	min = stackA->nums[0];
+	stackA->min_num = min;
+	i = 1;
+	while (i < stackA->cur_size)
+	{
+		if (stackA->nums[i] < min)	
+		{
+			min = stackA->nums[i];
+			stackA->min_num = min;
+			stackA->min_idx = i;
+		}
+		i++;
+	}
 }

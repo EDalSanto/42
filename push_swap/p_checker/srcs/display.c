@@ -6,39 +6,46 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 20:15:16 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 11:05:20 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	print_spaces(int spaces)
+void		print_spaces(int spaces)
 {
 	while (spaces--)
 		ft_printf(" ");
 }
 
-int		longest_int_len(t_stack *stackA)
+int			longest_int_len(t_stack *stackA)
 {
-	int	longest;
-	int	i;
+	int		longest;
+	size_t	len;
+	int		i;
 
 	longest = stackA->nums[0];
+	len = ft_int_len(longest);
 	i = 1;
 	while (i < stackA->cur_size)
 	{
-		if (stackA->nums[i] > longest)
+		if (ft_int_len(stackA->nums[i]) > len)
+		{
 			longest = stackA->nums[i];
+			len = ft_int_len(stackA->nums[i]);
+		}
 		i++;
 	}
-	return (ft_int_len(longest));
+	if (longest < 0)
+		len++;
+	return (len);
 }
 
-void	display_stacks(t_stack *stackA, t_stack *stackB)
+void		display_stacks(t_stack *stackA, t_stack *stackB)
 {
-	int	a;
-	int	b;
-	int	spaces;
+	int		a;
+	int		b;
+	int		spaces;
 
 	a = 0;
 	b = 0;

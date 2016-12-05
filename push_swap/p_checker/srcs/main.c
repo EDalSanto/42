@@ -6,37 +6,82 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 10:26:39 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 11:08:48 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		make_stackA(char **av, t_stack *stackA)
+int		get_nums(char *str, t_stack *stackA)
+{
+	int	sign;
+	int	num;
+	int	i;
+
+	num = 0;
+	sign = 1;
+	while (*str)
+	{
+		if (*str == '-')
+			sign = -1;
+		else if (ft_isdigit(*str))
+			num = (num * 10) + (*str - '0');
+		if (*str == ' ' || !(*(str + 1)))
+		{
+			num *= sign;
+			if (!is_valid(num, stackA))
+			{
+				ft_printf("Error\n");
+				exit(1);
+			}
+			i = stackA->cur_size;
+			stackA->nums[i] = num;
+			stackA->cur_size++;
+			num = 0;
+			sign = 1;
+			i++;
+		}
+		str++;
+	}
+	return (1);
+}
+
+int		make_stackA(char **av, int ac, t_stack *stackA)
 {
 	int	i;
 
 	i = 0;
-	while (i < stackA->max_size)
+	while (i < ac)
 	{
-		if (!is_valid(av[i], stackA)) 
-			return (0);
-		stackA->nums[i] = ft_atoi(av[i]);
+		get_nums(av[i], stackA);
 		i++;
 	}
 	return (1);
 }
 
-static void	setup(t_stack *stackA, t_stack *stackB, int size)
+static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
 {
-	stackA->max_size = size;
-	stackA->cur_size = size;
-	stackA->nums = (int*)malloc(sizeof(int) * size); 
-//	ft_bzero(stackA->nums, size * sizeof(int));
-	stackB->max_size = size;
+	int		nums;
+	int		i;
+
+	i = 0;
+	nums = 0;
+	while (i < size)
+	{
+		if (!are_numbers(av[i]))
+		{
+			ft_printf("Error\n");
+			exit(1);
+		}
+		nums += are_numbers(av[i]);
+		i++;
+	}
+	stackA->max_size = nums;
+	stackA->cur_size = 0;
+	stackA->nums = (int*)malloc(sizeof(int) * nums); 
+	stackB->max_size = nums;
 	stackB->cur_size = 0;
-	stackB->nums = (int*)malloc(sizeof(int) * size); 
-//	ft_bzero(stackB->nums, size * sizeof(int));
+	stackB->nums = (int*)malloc(sizeof(int) * nums); 
 }
 
 int			main(int ac, char **av)
@@ -49,13 +94,13 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		av = check_for_flags(av, &flags, &ac);
-		setup(&stackA, &stackB, (ac - 1));
-		if (make_stackA(av, &stackA))
+		setup(&stackA, &stackB, (ac - 1), av);
+		if (make_stackA(av, (ac - 1), &stackA))
 		{
 			if (flags.v)
 				display_stacks(&stackA, &stackB);
-			while((get_next_line(0, &line) == 1))
-			{	
+			while ((get_next_line(0, &line) == 1))
+			{
 				if (!perform_op(line, &stackA, &stackB, &flags))
 				{
 					ft_printf("Error\n");
@@ -68,8 +113,7 @@ int			main(int ac, char **av)
 			ft_printf("Error\n");
 			exit(1);
 		}
-		if (is_sorted(stackA.nums, stackA.cur_size) &&
-												stackB.cur_size == 0)
+		if (is_sorted(stackA.nums, stackA.cur_size) && (stackB.cur_size == 0))
 			ft_printf("OK\n");
 		else
 			ft_printf("KO\n");

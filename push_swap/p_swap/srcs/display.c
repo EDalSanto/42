@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 10:35:21 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 10:39:00 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int			longest_int_len(t_stack *stackA)
 		}
 		i++;
 	}
+	if (longest < 0)
+		len++;
 	return (len);
 }
 
