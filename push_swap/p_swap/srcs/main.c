@@ -6,17 +6,17 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:00:47 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 11:17:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-int		get_nums(char *str, t_stack *stackA)
+int			get_nums(char *str, t_stack *stackA)
 {
-	int	sign;
-	int	num;
-	int	i;
+	int		sign;
+	int		num;
+	int		i;
 
 	num = 0;
 	sign = 1;
@@ -46,9 +46,9 @@ int		get_nums(char *str, t_stack *stackA)
 	return (1);
 }
 
-int		make_stackA(char **av, int ac, t_stack *stackA)
+int			make_stackA(char **av, int ac, t_stack *stackA)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < ac)
@@ -108,7 +108,12 @@ int			main(int ac, char **av)
 				top = stackA.nums[0];
 				while (top != stackA.min_num)		
 				{
-					if (stackA.min_idx > (stackA.cur_size / 2))	
+					if (stackA.min_idx == 1)
+					{
+						perform_op("sa", &stackA, &stackB, &flags);	
+						solution = update_solution(solution, "sa");
+					}
+					else if (stackA.min_idx > (stackA.cur_size / 2))	
 					{
 						perform_op("rra", &stackA, &stackB, &flags);	
 						solution = update_solution(solution, "rra");
