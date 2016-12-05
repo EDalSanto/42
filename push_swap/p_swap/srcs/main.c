@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 17:16:50 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 19:34:52 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,18 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		av = check_for_flags(av, &flags, &ac);
-		solution = ft_strnew(5);
+	//	solution = ft_strnew(5);
 		setup(&stackA, &stackB, (ac - 1));
 		if (make_stackA(av, &stackA))
 		{
+			solution = ft_strnew(5);
 			if (flags.v)	
 				display_stacks(&stackA, &stackB);
 			while(!(is_sorted(stackA.nums, stackA.cur_size) &&
 													!stackB.cur_size))
 			{	
 				find_min(&stackA);
-				ft_printf("min_num: %d, min_idx: %d\n", stackA.min_num, stackA.min_idx);
+				//ft_printf("min_num: %d, min_idx: %d\n", stackA.min_num, stackA.min_idx);
 				top = stackA.nums[0];
 				while (top != stackA.min_num)		
 				{

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 17:20:00 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 19:35:15 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 char		*update_solution(char *solution, char *op)
 {
 	char	*dst;
-	char	*s;
 	size_t	len;
 
-	ft_printf("solution before each update: %s\n", solution);
-	s = (char*)malloc(ft_strlen(solution));
-	len = ft_strlen(s);
+	len = ft_strlen(solution);
 	dst = solution + len;
 	ft_strcpy(dst, op); 
 	ft_strcat(dst, "\n");
-	ft_printf("s before realloc: %s\n", s);
-	solution = ft_realloc(s, len + 5);
-	ft_printf("solution after each update: %s\n", solution);
+	solution = ft_realloc(solution, len + 5);
 	return (solution);
 }
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include "checker.h"
+#include "swap.h"
 
 char		*update_str(char *str, char *op)
 {
