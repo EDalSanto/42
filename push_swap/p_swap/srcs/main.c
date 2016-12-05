@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:17:19 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 12:30:02 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int			main(int ac, char **av)
 	t_stack	stackA;
 	t_stack stackB;
 	t_flags	flags;
-	int		top;
 	char	*solution;
 
 	if (ac > 1)
@@ -101,44 +100,7 @@ int			main(int ac, char **av)
 			solution = ft_strnew(5);
 			if (flags.v)	
 				display_stacks(&stackA, &stackB);
-			while(!(is_sorted(stackA.nums, stackA.cur_size) &&
-													!stackB.cur_size))
-			{	
-				find_min(&stackA);
-				top = stackA.nums[0];
-				while (top != stackA.min_num)		
-				{
-					if (stackA.min_idx == 1)
-					{
-						perform_op("sa", &stackA, &stackB, &flags);	
-						solution = update_solution(solution, "sa");
-					}
-					else if (stackA.min_idx > (stackA.cur_size / 2))	
-					{
-						perform_op("rra", &stackA, &stackB, &flags);	
-						solution = update_solution(solution, "rra");
-					}
-					else if (stackA.min_idx <= (stackA.cur_size / 2))
-					{
-						perform_op("ra", &stackA, &stackB, &flags);	
-						solution = update_solution(solution, "ra");
-					}	
-					top = stackA.nums[0];
-				}
-				if (!is_sorted(stackA.nums, stackA.cur_size))
-				{
-					perform_op("pb", &stackA, &stackB, &flags);
-					solution = update_solution(solution, "pb");
-				}
-				else
-				{
-					while (stackB.cur_size)	
-					{
-						perform_op("pa", &stackA, &stackB, &flags);
-						solution = update_solution(solution, "pa");
-					}
-				}
-			}
+			solution = min_num_solver(solution, &stackA, &stackB, &flags);	
 		}
 		else
 		{

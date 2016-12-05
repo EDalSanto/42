@@ -6,12 +6,14 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 09:35:38 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 12:29:23 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SWAP_H
 # define SWAP_H
+# define ANSI_COLOR_BLUE "\x1b[34m"
+# define ANSI_COLOR_MAGENTA "\x1b[35m"
 # include "libft.h"
 
 typedef struct	s_flags
@@ -49,5 +51,9 @@ void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stackA, t_stack *stackB);
 void			display_stacks(t_stack *stackA, t_stack *stackB);
 void			find_min(t_stack *stackA);
+char			*move_min_num(char *solution, t_stack *stackA,
+								t_stack *stackB, t_flags *flags);
+char			*min_num_solver(char *solution, t_stack *stackA,
+								t_stack *stackB, t_flags *flags);
 
 #endif
