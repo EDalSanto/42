@@ -6,11 +6,18 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 19:56:52 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 20:53:41 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
+
+void	get_nums(char *str, t_stack *stackA)
+{
+	while (*str)
+	{
+		
+}
 
 int		make_stackA(char **av, t_stack *stackA)
 {
@@ -19,6 +26,7 @@ int		make_stackA(char **av, t_stack *stackA)
 	i = 0;
 	while (i < stackA->max_size)
 	{
+		get_nums(av[i], stackA);
 		if (!is_valid(av[i], stackA)) 
 			return (0);
 		stackA->nums[i] = ft_atoi(av[i]);

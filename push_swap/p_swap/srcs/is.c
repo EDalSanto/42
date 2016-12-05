@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 10:13:36 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 20:54:59 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,15 @@ int		is_revsorted(int *nums, int size)
 	return (1);
 }
 
-int		is_number(char *str)
+int		get_number(char *str)
 {
+	int	num;
+	int	sign;
+
+	num = 0;
 	if (*str == '-')
 		str++;
-	while (*str)
+	while (*str && *str != ' ')
 	{
 		if (!ft_isdigit(*str))
 			return (0);
