@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 19:35:15 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 10:33:53 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		find_min(t_stack *stackA)
 	int		i;
 
 	min = stackA->nums[0];
+	stackA->min_num = min;
 	i = 1;
 	while (i < stackA->cur_size)
 	{

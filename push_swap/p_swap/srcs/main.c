@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 10:16:27 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 10:34:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int		get_nums(char *str, t_stack *stackA)
 		}
 		str++;
 	}
-	print_int_arr(stackA->nums, stackA->cur_size);
 	return (1);
 }
 
