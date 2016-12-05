@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 19:34:52 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/04 19:56:52 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int			main(int ac, char **av)
 				top = stackA.nums[0];
 				while (top != stackA.min_num)		
 				{
-					if (stackA.min_idx >= (stackA.cur_size / 2))	
+					if (stackA.min_idx > (stackA.cur_size / 2))	
 					{
 						perform_op("rra", &stackA, &stackB, &flags);	
 						solution = update_solution(solution, "rra");
 					}
-					else if (stackA.min_idx < (stackA.cur_size / 2))
+					else if (stackA.min_idx <= (stackA.cur_size / 2))
 					{
 						perform_op("ra", &stackA, &stackB, &flags);	
 						solution = update_solution(solution, "ra");
