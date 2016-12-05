@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/04 20:54:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 09:34:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		is_duplicate(t_stack *stack, int num)
 	return (0);
 }
 
-int		is_valid(char *arg, t_stack *stackA)
+int		is_valid(int num, t_stack *stackA)
 {
-	if (!is_number(arg) || (ft_atoi(arg) > 2147483647) ||
-			((long)ft_atoi(arg) < -2147483648) ||
-			is_duplicate(stackA, ft_atoi(arg))) 
+	if ((num > 2147483647) ||
+			(num < -2147483648) ||
+			is_duplicate(stackA, num)) 
 		return (0);
 	else
 		return (1);
@@ -64,19 +64,28 @@ int		is_revsorted(int *nums, int size)
 	return (1);
 }
 
-int		get_number(char *str)
+int		are_numbers(char *str)
 {
-	int	num;
-	int	sign;
+	int	nums;
 
-	num = 0;
-	if (*str == '-')
-		str++;
-	while (*str && *str != ' ')
+	nums = 0;
+	while (*str)
 	{
-		if (!ft_isdigit(*str))
+		if (*str == '-' && ft_isdigit(*(str + 1)))
+			str++;
+		else if (*str == ' ' && (ft_isdigit(*(str - 1)) || ft_isdigit(*(str + 1))))
+		{
+			str++;
+			nums++;
+		}
+		else if (ft_isdigit(*str))
+		{
+			str++;
+			if (!*str)
+				nums++;
+		}
+		else
 			return (0);
-		str++;
 	}
-	return (1);
+	return (nums);
 }
