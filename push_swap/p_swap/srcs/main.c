@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 12:30:02 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 12:38:28 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,33 +84,34 @@ static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
 	stackB->nums = (int*)malloc(sizeof(int) * nums); 
 }
 
+void		solve(t_stack *stackA, t_stack *stackB, t_flags *flags)
+{
+	char	*solution;
+
+	solution = ft_strnew(5);
+	if (flags->v)	
+		display_stacks(stackA, stackB);
+	solution = min_num_solver(solution, stackA, stackB, flags);	
+	ft_printf("%s", solution);
+}
+
 int			main(int ac, char **av)
 {
 	t_stack	stackA;
 	t_stack stackB;
 	t_flags	flags;
-	char	*solution;
 
 	if (ac > 1)
 	{
 		av = check_for_flags(av, &flags, &ac);
 		setup(&stackA, &stackB, (ac - 1), av);
 		if (make_stackA(av, (ac - 1), &stackA))
-		{
-			solution = ft_strnew(5);
-			if (flags.v)	
-				display_stacks(&stackA, &stackB);
-			solution = min_num_solver(solution, &stackA, &stackB, &flags);	
-		}
+			solve(&stackA, &stackB, &flags);
 		else
 		{
 			ft_printf("Error\n");
 			exit(1);
 		}
-		if (is_sorted(stackA.nums, stackA.cur_size) && (stackB.cur_size == 0))
-			ft_printf("%s", solution);
-		else
-			ft_printf("KO\n");
 	}
 //	free(stackA);
 //	free(stackB);
