@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 12:31:02 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 20:20:52 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,21 @@ char	*min_num_solver(char *solution, t_stack *stackA,
 	return (solution);
 }
 
-void		find_min(t_stack *stackA)
+void		find_min(t_stack *stack)
 {
 	int		min;
 	int		i;
 
-	min = stackA->nums[0];
-	stackA->min_num = min;
+	min = stack->nums[0];
+	stack->min_num = min;
 	i = 1;
-	while (i < stackA->cur_size)
+	while (i < stack->cur_size)
 	{
-		if (stackA->nums[i] < min)	
+		if (stack->nums[i] < min)	
 		{
-			min = stackA->nums[i];
-			stackA->min_num = min;
-			stackA->min_idx = i;
+			min = stack->nums[i];
+			stack->min_num = min;
+			stack->min_idx = i;
 		}
 		i++;
 	}

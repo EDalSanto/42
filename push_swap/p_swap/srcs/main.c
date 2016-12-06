@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 12:38:55 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/05 20:49:49 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,53 @@ static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
 	stackB->nums = (int*)malloc(sizeof(int) * nums); 
 }
 
+int			find_right_location(t_stack *stack, int num)
+{
+		
+}
+
+char		*revsort(char *solution, t_stack *stack, t_flags *flags)
+{
+	int		min;
+	int		num_to_sort;
+	int		mid;
+
+	min = find_min(stack);
+	num_to_sort = stack->nums[0];
+	if ((min == num_to_sort) && (solution = update_solution(solution, "rb")))
+		perform_op("rb", stack, flags);	
+	else if ((num_to_sort > stack->nums[2]) && (num_to_sort < stack->nums[1])
+			(solution = update_solution(solution, "sb")))
+		perform_op("sb", stack, flags);	
+	mid = stack->nums[cur_size / 2];
+	while (!is_revsorted(stack->nums, stack->cur_size))
+	{
+		if (num_to_sort > mid)
+		{
+			solution = move_down_one(stack, num_to_sort);
+		}
+		else if (num_to_sort < mid)
+		{
+			solution = move_up_one(stack, num_to_sort);
+		}
+	}
+	return (solution);
+}
+
+char		*b_stack_solver(char *solution, t_stack *stackA,
+		t_stack *stackB, t_flags *flags)
+{
+	while (!empty(stackA))	
+	{
+		perform_op("pb", stackA, stackB, flags);	
+		solution = update_solution(solution, "pb");
+		if (!is_revsorted(stackB->nums, stackB->cur_size))
+		{
+			solution = revsort(solution, stackB, flags);
+		}
+	}
+}
+
 void		solve(t_stack *stackA, t_stack *stackB, t_flags *flags)
 {
 	char	*solution;
@@ -91,7 +138,8 @@ void		solve(t_stack *stackA, t_stack *stackB, t_flags *flags)
 	solution = ft_strnew(5);
 	if (flags->v)	
 		display_stacks(stackA, stackB);
-	solution = min_num_solver(solution, stackA, stackB, flags);	
+	//	solution = min_num_solver(solution, stackA, stackB, flags);	
+	solution = b_stack_solver(solution, stackA, stackB, flags);
 	ft_printf("%s", solution);
 }
 
@@ -113,6 +161,6 @@ int			main(int ac, char **av)
 			exit(1);
 		}
 	}
-//	free(stackA);
-//	free(stackB);
+	//	free(stackA);
+	//	free(stackB);
 }
