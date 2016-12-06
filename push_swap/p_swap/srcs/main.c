@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 20:49:49 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/06 08:25:44 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,17 @@ static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
 	stackB->nums = (int*)malloc(sizeof(int) * nums); 
 }
 
-int			find_right_location(t_stack *stack, int num)
+int			find_right_location_desc(t_stack *stack, int num)
 {
-		
+	int		i;
+
+	i = 0;
+	if (num > stack->nums[0])
+		return (i);
+	while ((i < (stack->cur_size)) &&
+			!((num < stack->nums[i] && (num > stack->nums[i + 1]))))
+		i++;
+	return (i + 1);
 }
 
 char		*revsort(char *solution, t_stack *stack, t_flags *flags)
@@ -107,11 +115,11 @@ char		*revsort(char *solution, t_stack *stack, t_flags *flags)
 	{
 		if (num_to_sort > mid)
 		{
-			solution = move_down_one(stack, num_to_sort);
+			solution = move_down(stack, num_to_sort);
 		}
 		else if (num_to_sort < mid)
 		{
-			solution = move_up_one(stack, num_to_sort);
+			solution = move_up(stack, num_to_sort);
 		}
 	}
 	return (solution);
