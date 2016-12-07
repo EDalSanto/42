@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 20:20:09 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/06 14:24:03 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct	s_stack
 	int			min_num;
 }				t_stack;
 
+char			*quicksort(char *solution, t_stack *stackA,
+					t_stack *stackB, t_flags *flags);
 char			*update_solution(char *solution, char *op);
 char			**check_for_flags(char **av, t_flags *flags, int *ac);
 void			swap_first_two(t_stack *stack);
