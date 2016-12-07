@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/06 14:24:31 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/07 11:26:06 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		solve(t_stack *stackA, t_stack *stackB, t_flags *flags)
 	if (flags->v)	
 		display_stacks(stackA, stackB);
 	//solution = min_num_solver(solution, stackA, stackB, flags);	
-	solution = quicksort(solution, stackA, stackB, flags);
+	solution = b_solver(solution, stackA, stackB, flags);	
 	ft_printf("%s", solution);
 }
 

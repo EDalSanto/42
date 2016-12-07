@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/06 12:16:31 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/07 10:46:34 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*move_min_num(char *solution, t_stack *stackA,
 		solution = update_solution(solution, "sa");
 	}
 	else if (stackA->min_idx > (stackA->cur_size / 2))	
-	{
+	{	
 		perform_op("rra", stackA, stackB, flags);	
 		solution = update_solution(solution, "rra");
 	}
