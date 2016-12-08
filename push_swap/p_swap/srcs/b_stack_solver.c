@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/07 12:47:52 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/08 12:10:46 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*move_to_B(char *solution, t_stack *stackA, t_stack *stackB, t_flags *flags
 	int	midB;
 
 	idx_to_move = find_shortest_path_to_sorted_B(stackA, stackB, flags);
-//	ft_printf("idx to move: %d\n", idx_to_move);
+	ft_printf("idx to move in move to B: %d\n", idx_to_move);
 	num_to_move = stackA->nums[idx_to_move];
 	//move to top of A
 	midA = stackA->cur_size / 2;
@@ -39,29 +39,69 @@ char	*move_to_B(char *solution, t_stack *stackA, t_stack *stackB, t_flags *flags
 			perform_op("ra", stackA, stackB, flags);
 		}
 	}
-	// push on B
-	solution = update_solution(solution, "pb");
-	perform_op("pb", stackA, stackB, flags);
-	//move to B loc
 	midB = stackB->nums[stackB->cur_size / 2];		
-	//ft_printf("midb: %d, num: %d\n", midB, num_to_move);
+//	ft_printf("midb: %d, num: %d\n", midB, num_to_move);
 	if (midB != num_to_move)
 		solution = revsort(solution, stackA, stackB, flags);
 //	ft_printf("solution after moveB :%s\n", solution);
 	return (solution);
 }
 
+int		find_max(int *nums, int size)
+{
+	int	i;
+	int	max_num;
+	int	max_idx;
+
+	i = 1;
+	max_num = nums[0];
+	max_idx = 0;
+	while (i < size)
+	{
+		if (nums[i] > max_num)
+		{
+			max_num = nums[i];
+			max_idx = i;
+		}
+		i++;
+	}
+	return (i - 1);
+}
+
+char	*push_back_on_A(char *solution, t_stack *stackA, t_stack *stackB, t_flags *flags)
+{
+	int	max;
+	int	mid;
+
+	max = find_max(stackB->nums, stackB->cur_size);
+	ft_printf("max: %d\n", max);
+	mid = stackB->cur_size / 2;
+	while (stackB->nums[0] != max)
+	{
+		if (max < mid)
+		{
+			solution = update_solution(solution, "rb");
+			perform_op("rb", stackA, stackB, flags);
+		}
+		else
+		{
+			solution = update_solution(solution, "rrb");
+			perform_op("rrb", stackA, stackB, flags);
+		}
+	}
+	solution = update_solution(solution, "pa");
+	perform_op("pa", stackA, stackB, flags);
+	return (solution);
+}
+
 char	*b_solver(char *solution, t_stack *stackA,
 						t_stack *stackB, t_flags *flags)
 {
-	while ((!(is_sorted(stackA->nums, stackA->cur_size) &&
-					is_revsorted(stackB->nums, stackB->cur_size) &&
-					stackA->nums[0] > stackB->nums[0])) && !empty_stack(stackA))
+	while (!empty_stack(stackA)) 
 	{
 		solution = move_to_B(solution, stackA, stackB, flags);
 	}
-	while ((solution = update_solution(solution, "pa")) &&
-				stackB->cur_size)	
-		perform_op("pa", stackA, stackB, flags);
+	while (stackB->cur_size)	
+		solution = push_back_on_A(solution, stackA, stackB, flags);
 	return (solution);
 }

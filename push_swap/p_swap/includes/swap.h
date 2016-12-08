@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/07 12:16:03 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/08 11:14:46 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char			*move_min_num(char *solution, t_stack *stackA,
 								t_stack *stackB, t_flags *flags);
 char			*min_num_solver(char *solution, t_stack *stackA,
 								t_stack *stackB, t_flags *flags);
-int				find_right_location_desc(t_stack *stack, int num);
+int				find_right_location(t_stack *stack, int num);
 char			*move_down(char *solution, t_stack *stackA,
 							t_stack *stackB, t_flags *flags);
 char			*move_up(char *solution, t_stack *stackA,
