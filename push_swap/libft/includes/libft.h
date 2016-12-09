@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 15:05:48 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/03 18:13:57 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:44:42 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
+int						ft_abs(int n);
 void					*ft_memcpy(void *dst, const void *src, size_t n);
 void					ft_bzero(void *s, size_t n);
 void					*ft_memccpy(void *dst, const void *src,

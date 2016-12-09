@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/26 08:49:34 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/02 16:57:44 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/09 10:43:34 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIBFT_FILES	=	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint		\
 				ft_lstmap ft_lstiter ft_lstnew print_int_arr 			\
 				ft_realloc ft_int_len ft_put_base ft_put_base_unsigned		\
 				ft_itoa_capital_base ft_itoa_base_unsigned_cap				\
-				get_next_line
+				get_next_line ft_abs
 
 PRINTF_FILES	=	adders detectives ft_printf ft_putwchar fw_and_pr_helpers	\
 				get_arg get_arg_len handle_arg handle_flags handle_nums			\

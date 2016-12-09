@@ -6,18 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 12:13:16 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 10:36:45 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:44:57 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
-
-int			ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
 
 int			find_right_location(t_stack *stack, int num)
 {
