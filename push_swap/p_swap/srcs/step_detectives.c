@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 12:13:16 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 12:27:17 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 12:28:48 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			find_right_location(t_stack *stack, int num)
 	}
 	else if (num > stack->max_num)
 	{
-		ft_printf("maxidx: %d, min_idx: %d, num: %d\n", stack->max_idx, stack->min_idx, num);
 		if (stack->max_idx - 1 == stack->min_idx)
 			return (stack->max_idx);
 		return (stack->max_idx + 1);
