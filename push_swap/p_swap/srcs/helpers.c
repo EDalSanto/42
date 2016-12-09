@@ -6,11 +6,18 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 12:13:16 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/08 21:44:38 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:07:40 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
+
+int			ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
 int			find_right_location(t_stack *stack, int num)
 {
@@ -24,21 +31,26 @@ int			find_right_location(t_stack *stack, int num)
 	min_dif = 2147483647;
 	right_loc = -1;
 	find_min(stack);
-	if (stack->cur_size == 0 ||
-			(num > stack->nums[0] && num < stack->nums[stack->cur_size - 1]) || 
+	if (stack->cur_size == 0 || 
 			(num < stack->min_num && stack->nums[0] == stack->min_num))
 		return (0);
 	else if (num < stack->min_num)
 	{
-		right_loc = stack->min_idx + 1;
+		right_loc = stack->min_idx;
 		return (right_loc);
+	}
+	if ((num > stack->nums[0] && num < stack->nums[stack->cur_size - 1]) ||
+			(num < stack->nums[0] && num > stack->nums[stack->cur_size - 1])) 
+	{
+		right_loc = 0;
+		min_dif = ft_abs(stack->nums[0] - stack->nums[stack->cur_size - 1]); 
 	}
 	while (i < (stack->cur_size - 1)) 
 	{
 		if ((num > stack->nums[i] && num < stack->nums[i + 1]) ||
 				(num < stack->nums[i] && num > stack->nums[i + 1]))
 		{
-			dif = stack->nums[i + 1] - stack->nums[i];	
+			dif = ft_abs(stack->nums[i + 1] - stack->nums[i]);	
 			if (dif < min_dif)
 			{
 				right_loc = i + 1;
@@ -49,45 +61,37 @@ int			find_right_location(t_stack *stack, int num)
 	}
 	if (right_loc == -1)
 		right_loc = i;
+	ft_printf("right loc: %d\n", right_loc);
 	return (right_loc);
 }
 
 int			calculate_steps(int indexA, t_super_stack *super_stack)
 {
 	int		steps;
-	int		mid;
+	int		midB_idx;
 	int		flag_holder;
+	int		B_loc;
 
 	steps = 0;
-	mid = 0;
+	midB_idx = 0;
+	B_loc = find_right_location(super_stack->stackB, super_stack->stackA->nums[indexA]);
 	if (indexA == 0)
 		steps = 0;
 	else if (indexA <= super_stack->stackA->cur_size / 2)
-	{
 		steps += indexA;
-	//	super_stack->moves->ra = indexA;
-	}
 	else
-	{
 		steps += super_stack->stackA->cur_size - indexA;
-//		super_stack->moves->rra = super_stack->stackA->cur_size - indexA;
-	}
 	steps++;
-	mid = super_stack->stackB->nums[(super_stack->stackB->cur_size / 2)];
+	midB_idx = super_stack->stackB->cur_size / 2;
 	flag_holder = super_stack->flags->v;
 	super_stack->flags->v = 0;
-	find_min(super_stack->stackB);	
-	if (super_stack->stackA->nums[indexA] > mid)
+	if (B_loc <= midB_idx)
 	{
-		steps += find_right_location(super_stack->stackB,
-				super_stack->stackA->nums[indexA]);
-//		super_stack->moves->rb = (steps - super_stack->moves->ra); 
+		steps += B_loc;
 	}
 	else
 	{
-		steps += super_stack->stackB->cur_size - 
-			find_right_location(super_stack->stackB, super_stack->stackA->nums[indexA]);
-//		super_stack->moves->rrb = (steps - super_stack->moves->rra); 
+		steps += super_stack->stackB->cur_size - B_loc;
 	}
 	super_stack->flags->v = flag_holder;
 	return (steps);
@@ -99,6 +103,7 @@ int			find_shortest_path_to_sorted_B(t_super_stack *super_stack)
 	int		min_idx;
 	int		i;
 	int		steps;
+	int		B_loc;
 
 	i = 0;
 	min_steps = 400000;
@@ -113,50 +118,15 @@ int			find_shortest_path_to_sorted_B(t_super_stack *super_stack)
 		}
 		i++;
 	}
+	B_loc = find_right_location(super_stack->stackB, super_stack->stackA->nums[min_idx]);
+	ft_printf("min_steps found: %d, b_loc: %d\n", min_steps, B_loc);
 	if (min_idx <= super_stack->stackA->cur_size / 2)
 		super_stack->moves->ra = min_idx;
 	else
 		super_stack->moves->rra = super_stack->stackA->cur_size - min_idx;
-	if (super_stack->stackA->nums[min_idx] > super_stack->stackB->nums[(super_stack->stackB->cur_size / 2)])
-		super_stack->moves->rb = (min_steps - super_stack->moves->ra - 1); 
+	if (B_loc <= super_stack->stackB->cur_size / 2)
+		super_stack->moves->rb = (min_steps - super_stack->moves->ra - super_stack->moves->rra - 1); 
 	else
-		super_stack->moves->rrb = (min_steps - super_stack->moves->rra - 1); 
+		super_stack->moves->rrb = (min_steps - super_stack->moves->ra - super_stack->moves->rra - 1); 
 	return (min_idx);
 }
-
-//char		*revsort(char *solution, t_super_stack *super_stack)
-//{
-//	int		min;
-//	int		num_to_sort;
-//	int		mid;
-//	int		right_place;
-//	int		i;
-//	
-//	min = super_stack->stackB->min_num; 	
-//	num_to_sort = super_stack->stackA->nums[0];
-//	right_place = find_right_location(stackB, num_to_sort);
-//	i = right_place;
-//	mid = stackB->cur_size / 2;
-//	if (right_place <= mid)
-//	{
-//		while (i)
-//		{
-//			solution = update_solution(solution, "rb");
-//			perform_op("rb", stackA, stackB, flags);
-//			i--;
-//		}
-//	}
-//	else
-//	{
-//		i = stackB->cur_size - i;
-//		while (i)
-//		{
-//			solution = update_solution(solution, "rrb");
-//			perform_op("rrb", stackA, stackB, flags);
-//			i--;
-//		}
-//	}
-//	solution = update_solution(solution, "pb");
-//	perform_op("pb", stackA, stackB, flags);	
-//	return (solution);
-//}

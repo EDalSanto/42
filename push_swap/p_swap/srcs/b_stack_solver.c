@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/08 21:42:48 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 09:24:29 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*move_to_B(char *solution, t_super_stack *super_stack)
 	int	midB;
 	int	right_place;
 
+	find_min(super_stack->stackB);
 	idx_to_move = find_shortest_path_to_sorted_B(super_stack);
 	num_to_move = super_stack->stackA->nums[idx_to_move];
-	find_min(super_stack->stackB);
 	midA = super_stack->stackA->cur_size / 2;
 	midB = super_stack->stackB->nums[super_stack->stackB->cur_size / 2];		
 	right_place = find_right_location(super_stack->stackB, num_to_move);
-	ft_printf("idx_to_move: %d, right_place: %d, rra: %d, rrb: %d, rb: %d, ra: %d\n", idx_to_move, right_place, super_stack->moves->rra, super_stack->moves->rrb, super_stack->moves->rb, super_stack->moves->ra);
+	//ft_printf("idx_to_move: %d, right_place: %d, rra: %d, rrb: %d, rb: %d, ra: %d\n", idx_to_move, right_place, super_stack->moves->rra, super_stack->moves->rrb, super_stack->moves->rb, super_stack->moves->ra);
 	while (((super_stack->moves->rrb)) && ((super_stack->moves->rra)))
 	{
 		solution = update_solution(solution, "rrr");
