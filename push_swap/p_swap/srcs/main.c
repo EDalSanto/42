@@ -6,58 +6,11 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 08:51:07 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 11:45:55 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
-
-int			get_nums(char *str, t_stack *stackA)
-{
-	int		sign;
-	int		num;
-	int		i;
-
-	num = 0;
-	sign = 1;
-	while (*str)
-	{
-		if (*str == '-')
-			sign = -1;
-		else if (ft_isdigit(*str))
-			num = (num * 10) + (*str - '0');
-		if (*str == ' ' || !(*(str + 1)))
-		{
-			num *= sign;
-			if (!is_valid(num, stackA))
-			{
-				ft_printf("Error\n");
-				exit(1);
-			}
-			i = stackA->cur_size;
-			stackA->nums[i] = num;
-			stackA->cur_size++;
-			num = 0;
-			sign = 1;
-			i++;
-		}
-		str++;
-	}
-	return (1);
-}
-
-int			make_stackA(char **av, int ac, t_stack *stackA)
-{
-	int		i;
-
-	i = 0;
-	while (i < ac)
-	{
-		get_nums(av[i], stackA);
-		i++;
-	}
-	return (1);
-}
 
 static void	setup_stacks(t_stack *stackA, t_stack *stackB, int size, char **av)
 {
@@ -82,32 +35,6 @@ static void	setup_stacks(t_stack *stackA, t_stack *stackB, int size, char **av)
 	stackB->max_size = nums;
 	stackB->cur_size = 0;
 	stackB->nums = (int*)malloc(sizeof(int) * nums); 
-}
-
-void		solve(t_super_stack *super_stack)
-{
-	char	*solution;
-
-	solution = ft_strnew(5);
-	if (super_stack->flags->v)	
-		display_stacks(super_stack->stackA, super_stack->stackB);
-	solution = b_solver(solution, super_stack);	
-	ft_printf("%s", solution);
-}
-
-void		zero_super_stack_moves(t_super_stack *super_stack)
-{
-	super_stack->moves->rb = 0;
-	super_stack->moves->ra = 0;
-	super_stack->moves->rr = 0;
-	super_stack->moves->rrb = 0;
-	super_stack->moves->rra = 0;
-	super_stack->moves->rrr = 0;
-	super_stack->moves->sb = 0;
-	super_stack->moves->sa = 0;
-	super_stack->moves->ss = 0;
-	super_stack->moves->pb = 0;
-	super_stack->moves->pa = 0;
 }
 
 int			main(int ac, char **av)

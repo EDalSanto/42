@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 10:53:30 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 11:48:09 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ typedef struct	s_super_stack
 	t_flags		*flags;
 }				t_super_stack;
 
+int				make_stackA(char **av, int ac, t_stack *stackA);
+int				get_nums(char *str, t_stack *stackA);
+void			solve(t_super_stack *super_stack);
+char			*reverse_rotations(char *solution, t_super_stack *super_stack);
+char			*forward_rotations(char *solution, t_super_stack *super_stack);
+char			*move_to_B(char *solution, t_super_stack *super_stack);
 void			find_max(t_stack *stack);
 void			zero_super_stack_moves(t_super_stack *super_stack);
 char			*quicksort(char *solution, t_stack *stackA,
