@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 10:25:02 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:53:17 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,46 +69,48 @@ char	*move_to_B(char *solution, t_super_stack *super_stack)
 	return (solution);
 }
 
-int		find_max_idx(int *nums, int size)
+//int		find_max_idx(int *nums, int size)
+//{
+//	int	i;
+//	int	max_num;
+//	int	max_idx;
+//
+//	i = 1;
+//	max_num = nums[0];
+//	max_idx = 0;
+//	while (i < size)
+//	{
+//		if (nums[i] > max_num)
+//		{
+//			max_num = nums[i];
+//			max_idx = i;
+//		}
+//		i++;
+//	}
+//	return (max_idx);
+//}
+
+void	find_max(t_stack *stack)
 {
 	int	i;
 	int	max_num;
 	int	max_idx;
 
 	i = 1;
-	max_num = nums[0];
+	max_num = stack->nums[0];
 	max_idx = 0;
-	while (i < size)
+	while (i < stack->cur_size)
 	{
-		if (nums[i] > max_num)
+		if (stack->nums[i] > max_num)
 		{
-			max_num = nums[i];
+			max_num = stack->nums[i];
 			max_idx = i;
 		}
 		i++;
 	}
-	return (max_idx);
-}
-
-int		find_max_num(int *nums, int size)
-{
-	int	i;
-	int	max_num;
-	int	max_idx;
-
-	i = 1;
-	max_num = nums[0];
-	max_idx = 0;
-	while (i < size)
-	{
-		if (nums[i] > max_num)
-		{
-			max_num = nums[i];
-			max_idx = i;
-		}
-		i++;
-	}
-	return (max_num);
+	stack->max_idx = max_idx;
+	stack->max_num = max_num;
+	//return (max_num);
 }
 
 char	*push_back_on_A(char *solution, t_super_stack *super_stack)
@@ -116,7 +118,7 @@ char	*push_back_on_A(char *solution, t_super_stack *super_stack)
 	int	max;
 	int	mid;
 
-	max = find_max_num(super_stack->stackB->nums, super_stack->stackB->cur_size);
+	max = super_stack->stackB->max_num;
 	mid = super_stack->stackB->nums[super_stack->stackB->cur_size / 2];
 	while (super_stack->stackB->nums[0] != max)
 	{
@@ -142,10 +144,15 @@ char	*b_solver(char *solution, t_super_stack *super_stack)
 {
 	while (!empty_stack(super_stack->stackA)) 
 	{
+		find_min(super_stack->stackB);
+		find_max(super_stack->stackB);
 		solution = move_to_B(solution, super_stack);
 		zero_super_stack_moves(super_stack);
 	}
 	while (super_stack->stackB->cur_size)	
+	{
+		find_max(super_stack->stackB);
 		solution = push_back_on_A(solution, super_stack);
+	}
 	return (solution);
 }
