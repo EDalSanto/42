@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 08:51:09 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:24:16 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct	s_super_stack
 	t_flags		*flags;
 }				t_super_stack;
 
+int				find_max_idx(int *nums, int size);
+int				find_max_num(int *nums, int size);
 void			zero_super_stack_moves(t_super_stack *super_stack);
 char			*quicksort(char *solution, t_stack *stackA,
 					t_stack *stackB, t_flags *flags);
