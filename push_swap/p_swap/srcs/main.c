@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/07 11:26:06 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/08 21:30:10 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			make_stackA(char **av, int ac, t_stack *stackA)
 	return (1);
 }
 
-static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
+static void	setup_stacks(t_stack *stackA, t_stack *stackB, int size, char **av)
 {
 	int		nums;
 	int		i;
@@ -84,16 +84,30 @@ static void	setup(t_stack *stackA, t_stack *stackB, int size, char **av)
 	stackB->nums = (int*)malloc(sizeof(int) * nums); 
 }
 
-void		solve(t_stack *stackA, t_stack *stackB, t_flags *flags)
+void		solve(t_super_stack *super_stack)
 {
 	char	*solution;
 
 	solution = ft_strnew(5);
-	if (flags->v)	
-		display_stacks(stackA, stackB);
-	//solution = min_num_solver(solution, stackA, stackB, flags);	
-	solution = b_solver(solution, stackA, stackB, flags);	
+	if (super_stack->flags->v)	
+		display_stacks(super_stack->stackA, super_stack->stackB);
+	solution = b_solver(solution, super_stack);	
 	ft_printf("%s", solution);
+}
+
+void		zero_super_stack_moves(t_super_stack *super_stack)
+{
+	super_stack->moves->rb = 0;
+	super_stack->moves->ra = 0;
+	super_stack->moves->rr = 0;
+	super_stack->moves->rrb = 0;
+	super_stack->moves->rra = 0;
+	super_stack->moves->rrr = 0;
+	super_stack->moves->sb = 0;
+	super_stack->moves->sa = 0;
+	super_stack->moves->ss = 0;
+	super_stack->moves->pb = 0;
+	super_stack->moves->pa = 0;
 }
 
 int			main(int ac, char **av)
@@ -101,13 +115,22 @@ int			main(int ac, char **av)
 	t_stack	stackA;
 	t_stack stackB;
 	t_flags	flags;
+	t_moves	moves;
+	t_super_stack	super_stack;
 
 	if (ac > 1)
 	{
 		av = check_for_flags(av, &flags, &ac);
-		setup(&stackA, &stackB, (ac - 1), av);
+		setup_stacks(&stackA, &stackB, (ac - 1), av);
 		if (make_stackA(av, (ac - 1), &stackA))
-			solve(&stackA, &stackB, &flags);
+		{
+			super_stack.stackA = &stackA;	
+			super_stack.stackB = &stackB;
+			super_stack.moves = &moves;
+			super_stack.flags = &flags;
+			zero_super_stack_moves(&super_stack);
+			solve(&super_stack);
+		}
 		else
 		{
 			ft_printf("Error\n");

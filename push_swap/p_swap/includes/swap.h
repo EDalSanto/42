@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/08 11:14:46 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/08 21:06:41 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,36 @@ typedef struct	s_stack
 	int			min_num;
 }				t_stack;
 
+typedef struct	s_moves
+{
+	int			rb;
+	int			ra;
+	int			rr;
+	int			rrb;
+	int			rra;
+	int			rrr;
+	int			sb;
+	int			sa;
+	int			ss;
+	int			pa;
+	int			pb;
+}				t_moves;
+
+typedef struct	s_super_stack
+{
+	t_stack		*stackA;
+	t_stack		*stackB;
+	t_moves		*moves;	
+	t_flags		*flags;
+}				t_super_stack;
+
+void			zero_super_stack_moves(t_super_stack *super_stack);
 char			*quicksort(char *solution, t_stack *stackA,
 					t_stack *stackB, t_flags *flags);
 char			*update_solution(char *solution, char *op);
 char			**check_for_flags(char **av, t_flags *flags, int *ac);
-char			*move_to_B(char *solution, t_stack *stackA,
-							t_stack *stackB, t_flags *flags);
-char			*b_solver(char *solution, t_stack *stackA,
-							t_stack *stackB, t_flags *flags);
+char			*move_to_B(char *solution, t_super_stack *super_stack);
+char			*b_solver(char *solution, t_super_stack *super_stack);
 void			swap_first_two(t_stack *stack);
 void			swap_both(t_stack *stackA, t_stack *stackB);
 int				empty_stack(t_stack *stack);
@@ -71,8 +93,8 @@ char			*revsort(char *solution, t_stack *stackA,
 t_stack			copy_stack(t_stack *stack_to_copy);
 int				move_down_counter(int indexA, t_stack *stackA, t_stack *stackB, t_flags *flags);
 int				move_up_counter(int indexA, t_stack *stackA, t_stack *stackB, t_flags *flags);
-int				calculate_steps(int indexA, t_stack *stackA, t_stack *stackB, t_flags *flags);
-int				find_shortest_path_to_sorted_B(t_stack *stackA, t_stack *stackB, t_flags *flags);
+int				calculate_steps(int indexA, t_super_stack *super_stack);
+int				find_shortest_path_to_sorted_B(t_super_stack *super_stack);
 
 
 #endif
