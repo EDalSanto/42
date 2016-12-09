@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 09:24:29 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:09:23 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*move_to_B(char *solution, t_super_stack *super_stack)
 	midA = super_stack->stackA->cur_size / 2;
 	midB = super_stack->stackB->nums[super_stack->stackB->cur_size / 2];		
 	right_place = find_right_location(super_stack->stackB, num_to_move);
-	//ft_printf("idx_to_move: %d, right_place: %d, rra: %d, rrb: %d, rb: %d, ra: %d\n", idx_to_move, right_place, super_stack->moves->rra, super_stack->moves->rrb, super_stack->moves->rb, super_stack->moves->ra);
 	while (((super_stack->moves->rrb)) && ((super_stack->moves->rra)))
 	{
 		solution = update_solution(solution, "rrr");
@@ -65,27 +64,6 @@ char	*move_to_B(char *solution, t_super_stack *super_stack)
 		perform_op("ra", super_stack->stackA, super_stack->stackB, super_stack->flags);
 		(super_stack->moves->ra)--;
 	}
-
-	//else if (idx_to_move != 0 && idx_to_move <= midA)
-	//{
-	//	while (super_stack->stackA->nums[0] != num_to_move)	
-	//	{
-	//		if ((super_stack->moves->rb)--)
-	//		{
-	//			perform_op("rr", super_stack->stackA,
-	//						super_stack->stackB, super_stack->flags);
-	//			solution = update_solution(solution, "rr");
-	//		}
-	//		else
-	//		{
-	//			perform_op("ra", super_stack->stackA,
-	//					super_stack->stackB, super_stack->flags);
-	//			solution = update_solution(solution, "ra");
-	//		}
-	//	}
-	//}
-//	if (midB != num_to_move)
-//		solution = revsort(solution, super_stack);
 	solution = update_solution(solution, "pb");
 	perform_op("pb", super_stack->stackA, super_stack->stackB, super_stack->flags);
 	return (solution);

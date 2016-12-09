@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 12:13:16 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 10:07:40 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:09:03 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			find_right_location(t_stack *stack, int num)
 	}
 	if (right_loc == -1)
 		right_loc = i;
-	ft_printf("right loc: %d\n", right_loc);
 	return (right_loc);
 }
 
@@ -119,7 +118,6 @@ int			find_shortest_path_to_sorted_B(t_super_stack *super_stack)
 		i++;
 	}
 	B_loc = find_right_location(super_stack->stackB, super_stack->stackA->nums[min_idx]);
-	ft_printf("min_steps found: %d, b_loc: %d\n", min_steps, B_loc);
 	if (min_idx <= super_stack->stackA->cur_size / 2)
 		super_stack->moves->ra = min_idx;
 	else
