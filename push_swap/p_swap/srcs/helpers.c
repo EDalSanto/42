@@ -60,18 +60,17 @@ int			calculate_steps(int indexA, t_super_stack *super_stack)
 
 	steps = 0;
 	mid = 0;
-	ft_printf("indexA: %d\n", indexA);
 	if (indexA == 0)
 		steps = 0;
 	else if (indexA <= super_stack->stackA->cur_size / 2)
 	{
 		steps += indexA;
-		super_stack->moves->ra = indexA;
+	//	super_stack->moves->ra = indexA;
 	}
 	else
 	{
 		steps += super_stack->stackA->cur_size - indexA;
-		super_stack->moves->rra = super_stack->stackA->cur_size - indexA;
+//		super_stack->moves->rra = super_stack->stackA->cur_size - indexA;
 	}
 	steps++;
 	mid = super_stack->stackB->nums[(super_stack->stackB->cur_size / 2)];
@@ -82,13 +81,13 @@ int			calculate_steps(int indexA, t_super_stack *super_stack)
 	{
 		steps += find_right_location(super_stack->stackB,
 				super_stack->stackA->nums[indexA]);
-		super_stack->moves->rb = (steps - super_stack->moves->ra); 
+//		super_stack->moves->rb = (steps - super_stack->moves->ra); 
 	}
 	else
 	{
 		steps += super_stack->stackB->cur_size - 
 			find_right_location(super_stack->stackB, super_stack->stackA->nums[indexA]);
-		super_stack->moves->rrb = (steps - super_stack->moves->rra); 
+//		super_stack->moves->rrb = (steps - super_stack->moves->rra); 
 	}
 	super_stack->flags->v = flag_holder;
 	return (steps);
@@ -102,10 +101,9 @@ int			find_shortest_path_to_sorted_B(t_super_stack *super_stack)
 	int		steps;
 
 	i = 0;
-	min_steps = calculate_steps(i, super_stack);
-	min_idx = i;
-	i++;
-	while ((!(min_steps <= 1)) && i < super_stack->stackA->cur_size)
+	min_steps = 400000;
+	min_idx = 400000;
+	while (i < super_stack->stackA->cur_size)
 	{
 		steps = calculate_steps(i, super_stack);
 		if (steps < min_steps)
@@ -115,6 +113,14 @@ int			find_shortest_path_to_sorted_B(t_super_stack *super_stack)
 		}
 		i++;
 	}
+	if (min_idx <= super_stack->stackA->cur_size / 2)
+		super_stack->moves->ra = min_idx;
+	else
+		super_stack->moves->rra = super_stack->stackA->cur_size - min_idx;
+	if (super_stack->stackA->nums[min_idx] > super_stack->stackB->nums[(super_stack->stackB->cur_size / 2)])
+		super_stack->moves->rb = (min_steps - super_stack->moves->ra - 1); 
+	else
+		super_stack->moves->rrb = (min_steps - super_stack->moves->rra - 1); 
 	return (min_idx);
 }
 

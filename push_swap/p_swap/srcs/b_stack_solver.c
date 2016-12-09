@@ -26,7 +26,7 @@ char	*move_to_B(char *solution, t_super_stack *super_stack)
 	midA = super_stack->stackA->cur_size / 2;
 	midB = super_stack->stackB->nums[super_stack->stackB->cur_size / 2];		
 	right_place = find_right_location(super_stack->stackB, num_to_move);
-	ft_printf("idx_to_move: %d, right_place: %d, rra: %d, rrb: %d\n", idx_to_move, right_place, super_stack->moves->rra, super_stack->moves->rrb);
+	ft_printf("idx_to_move: %d, right_place: %d, rra: %d, rrb: %d, rb: %d, ra: %d\n", idx_to_move, right_place, super_stack->moves->rra, super_stack->moves->rrb, super_stack->moves->rb, super_stack->moves->ra);
 	while (((super_stack->moves->rrb)) && ((super_stack->moves->rra)))
 	{
 		solution = update_solution(solution, "rrr");
