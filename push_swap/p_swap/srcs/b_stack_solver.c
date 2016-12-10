@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 09:44:32 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 10:40:02 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*assure_proper_orderB(char *solution, t_super_stack *super_stack)
 
 char	*b_solver(char *solution, t_super_stack *super_stack)
 {
-	while (super_stack->stackA->cur_size) 
+	while (super_stack->stackA->cur_size > 1) 
 	{
 		find_min(super_stack->stackB);
 		find_max(super_stack->stackB);
@@ -95,10 +95,29 @@ char	*b_solver(char *solution, t_super_stack *super_stack)
 	}
 	find_max(super_stack->stackB);
 	solution = put_max_on_top(solution, super_stack);
-	while (super_stack->stackB->cur_size)	
+	while (super_stack->stackB->nums[0] >
+			super_stack->stackA->nums[super_stack->stackA->cur_size - 1] &&
+				super_stack->stackB->cur_size)	
 	{
 		solution = update_solution(solution, "pa");
 		perform_op("pa", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	if (super_stack->stackB->cur_size)
+	{
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		while (super_stack->stackB->cur_size)
+		{
+			solution = update_solution(solution, "pa");
+			perform_op("pa", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		}
+
+	}
+	if (super_stack->stackA->nums[0] >
+			super_stack->stackA->nums[super_stack->stackA->cur_size - 1])
+	{
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
 	}
 	return (solution);
 }

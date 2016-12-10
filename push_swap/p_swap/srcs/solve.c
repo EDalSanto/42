@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 09:44:04 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 11:23:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ char		*update_solution(char *solution, char *op)
 }
 
 int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
-{
+{	
+	if (flags->v)	
+		display_stacks(op, stackA, stackB);
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stackA);
 	else if (ft_strcmp(op, "sb") == 0)
@@ -75,8 +77,6 @@ int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 		ft_printf("Error\n");
 		exit(1);
 	}
-	if (flags->v)	
-		display_stacks(stackA, stackB);
 	return (1);
 }
 
@@ -162,15 +162,15 @@ void		solve(t_super_stack *super_stack)
 	solution = ft_strnew(5);
 	if (is_sorted(super_stack->stackA->nums, super_stack->stackA->cur_size))
 		return ;
-	else if (super_stack->stackA->cur_size <= 3)
+	if (super_stack->flags->v)	
+			display_stacks("Initial", super_stack->stackA, super_stack->stackB);
+	if (super_stack->stackA->cur_size <= 3)
 		solution = handle_small_stack(solution, super_stack);
 	else if (super_stack->stackA->cur_size < 10)
 		solution = min_num_solver(solution, super_stack);
 	else
-	{
-		if (super_stack->flags->v)	
-			display_stacks(super_stack->stackA, super_stack->stackB);
 		solution = b_solver(solution, super_stack);	
-	}
+	if (super_stack->flags->v)	
+			display_stacks("Final", super_stack->stackA, super_stack->stackB);
 	ft_printf("%s", solution);
 }

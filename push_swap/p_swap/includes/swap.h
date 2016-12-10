@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 09:15:59 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 10:54:39 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			rotate(t_stack *stack);
 void			rotate_both(t_stack *stackA, t_stack *stackB);
 void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stackA, t_stack *stackB);
-void			display_stacks(t_stack *stackA, t_stack *stackB);
+void			display_stacks(char *op, t_stack *stackA, t_stack *stackB);
 void			find_min(t_stack *stack);
 char			*move_min_num(char *solution, t_super_stack *super_stack);
 char			*handle_three(char *solution, t_super_stack *super_stack);

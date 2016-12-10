@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 09:44:43 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 11:21:42 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*move_min_num(char *solution, t_super_stack *super_stack)
 					super_stack->stackB, super_stack->flags);	
 		solution = update_solution(solution, "sa");
 	}
-	else if (super_stack->stackA->min_idx >= (super_stack->stackA->cur_size / 2))	
+	else if (super_stack->stackA->min_idx > (super_stack->stackA->cur_size / 2))	
 	{	
 		perform_op("rra", super_stack->stackA,
 					super_stack->stackB, super_stack->flags);	
 		solution = update_solution(solution, "rra");
 	}
-	else if (super_stack->stackA->min_idx < (super_stack->stackA->cur_size / 2))
+	else if (super_stack->stackA->min_idx <= (super_stack->stackA->cur_size / 2))
 	{
 		perform_op("ra", super_stack->stackA,
 					super_stack->stackB, super_stack->flags);	

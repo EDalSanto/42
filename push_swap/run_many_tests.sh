@@ -15,12 +15,12 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 echo "25 Tests Commencing.."
-for i in {1..25}
+for i in {1..50}
 do
 	ARG=$(sh GenRandNums.sh)
 	echo "${PURPLE}Trial: $i${NC}"
 	printf "Number of operations needed: " 
-	NUM=$(./push_swap $ARG | wc -l)
+	NUM=$(./push_swap $ARG | wc -l) 
 	TOTAL=$((TOTAL+$NUM))
 	if [[ "$NUM" -gt $MAX_OPS ]] 
 	then
@@ -42,6 +42,7 @@ do
 	elif [ "$RES" == "KO" ]
 	then
 		echo ${RED}"FAILURE for Trial $i!${NC}"
+		echo "Here's the Arg: $ARG"
 	fi
 	echo "------------------------------"
 done

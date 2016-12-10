@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 10:39:00 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 11:18:45 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,25 @@ int			longest_int_len(t_stack *stackA)
 	return (len);
 }
 
-void		display_stacks(t_stack *stackA, t_stack *stackB)
+void	display_row(int a, int b, t_stack *stackA, t_stack *stackB)
+{
+	int	spaces;
+
+	spaces = longest_int_len(stackA) + 1;
+	if (a < (stackA->cur_size))
+	{
+		ft_printf("%d", stackA->nums[a]);
+		print_spaces(spaces - ft_int_len(stackA->nums[a]));
+	}
+	else
+		print_spaces(spaces);
+	if (b < (stackB->cur_size))
+		ft_printf("%d\n", stackB->nums[b]);
+	else
+		ft_printf("\n");
+}
+
+void		display_stacks(char *op, t_stack *stackA, t_stack *stackB)
 {
 	int		a;
 	int		b;
@@ -50,20 +68,11 @@ void		display_stacks(t_stack *stackA, t_stack *stackB)
 	a = 0;
 	b = 0;
 	spaces = longest_int_len(stackA) + 1;
+	ft_printf("%s\n", op);
 	ft_printf("--------\n");
 	while ((a < (stackA->cur_size) || (b < (stackB->cur_size))))
 	{
-		if (a < (stackA->cur_size))
-		{
-			ft_printf("%d", stackA->nums[a]);
-			print_spaces(spaces - ft_int_len(stackA->nums[a]));
-		}
-		else
-			print_spaces(spaces);
-		if (b < (stackB->cur_size))
-			ft_printf("%d\n", stackB->nums[b]);
-		else
-			ft_printf("\n");
+		display_row(a, b, stackA, stackB);
 		a++;
 		b++;
 	}
