@@ -15,12 +15,12 @@ do
 	echo "${PURPLE}Trial: $i${NC}"
 	printf "Number of operations needed: " 
 	NUM=$(./push_swap $ARG | wc -l)
+	TOTAL=$((TOTAL+$NUM))
 	if [[ "$NUM" -gt 5300 ]] 
 	then
 		echo "${RED}Your program took $NUM operations; The limit is 5300!${NC}"
 		continue
 	fi	
-	TOTAL=$((TOTAL+$NUM))
 	echo "${BOLD}${BLUE}$NUM${NC}"
 	printf "Checker: "
 	RES=$(./push_swap $ARG | ./checker $ARG)
