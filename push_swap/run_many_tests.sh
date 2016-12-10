@@ -1,4 +1,7 @@
 #!/bin/bash
+LIMIT=12
+MAX_OPS=0
+MAX_ARG=0
 TOTAL=0
 BOLD=$(tput bold)
 LIGHT_GREEN='\033[1;32m'
@@ -16,9 +19,15 @@ do
 	printf "Number of operations needed: " 
 	NUM=$(./push_swap $ARG | wc -l)
 	TOTAL=$((TOTAL+$NUM))
-	if [[ "$NUM" -gt 5300 ]] 
+	if [[ "$NUM" -gt $MAX_OPS ]] 
 	then
-		echo "${RED}Your program took $NUM operations; The limit is 5300!${NC}"
+		MAX_OPS=$NUM	
+		MAX_ARG=$ARG
+	fi
+	if [[ "$NUM" -gt 12 ]] 
+	then
+		echo "${RED}Your program took $NUM operations; The limit is $LIMIT!${NC}"
+		echo "Here's the Arg: $ARG"
 		continue
 	fi	
 	echo "${BOLD}${BLUE}$NUM${NC}"
@@ -33,4 +42,7 @@ do
 	fi
 	echo "------------------------------"
 done
+echo "--------------------------------"
 echo "Avg operations: ${PURPLE}$((TOTAL/25))${NC}"
+echo "Max num of operations: ${PURPLE}$((MAX_OPS))${NC}"
+echo "Max arg: ${PURPLE}$MAX_ARG${NC}"

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:08:48 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 08:20:21 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_nums(char *str, t_stack *stackA)
 {
-	int	sign;
-	int	num;
-	int	i;
+	int			sign;
+	long int	num;
+	int			i;
 
 	num = 0;
 	sign = 1;

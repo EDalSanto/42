@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 11:45:57 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 09:15:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,103 @@ int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 	return (1);
 }
 
+char		*handle_threeA(char *solution, t_super_stack *super_stack)
+{
+	solution = update_solution(solution, "ra");
+	perform_op("ra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	solution = update_solution(solution, "sa");
+	perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	solution = update_solution(solution, "rra");
+	perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	return (solution);
+}
+
+char		*handle_threeB(char *solution, t_super_stack *super_stack)
+{	
+	
+	if (super_stack->stackA->nums[0] > super_stack->stackA->nums[2])
+	{
+		solution = update_solution(solution, "ra");
+		perform_op("ra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	else
+	{
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		solution = update_solution(solution, "sa");
+		perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	return (solution);
+}
+
+char	*handle_threeC(char *solution, t_super_stack *super_stack)
+{
+
+	if (is_revsorted(super_stack->stackA->nums, super_stack->stackA->cur_size))
+	{
+		solution = update_solution(solution, "sa");
+		perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	else
+	{
+		solution = update_solution(solution, "rra");
+		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	return (solution);
+}
+
+char		*handle_three(char *solution, t_super_stack *super_stack)
+{
+	int		min_num;
+	int		*nums;
+
+	nums = super_stack->stackA->nums;
+	find_min(super_stack->stackA); 
+	min_num = super_stack->stackA->min_num;
+	if (min_num == nums[0])
+		solution = handle_threeA(solution, super_stack);
+	else if (min_num == nums[1])
+		solution = handle_threeB(solution, super_stack);
+	else
+		solution = handle_threeC(solution, super_stack);
+	return (solution);
+}
+
+char		*handle_small_stack(char *solution, t_super_stack *super_stack)
+{
+	if (super_stack->stackA->cur_size == 2)
+	{
+		if (super_stack->stackA->nums[0] > super_stack->stackA->nums[0]) 
+		{
+			solution = update_solution(solution, "ra");
+			perform_op("ra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+		}
+	}
+	else if (!is_sorted(super_stack->stackA->nums, super_stack->stackA->cur_size))
+		solution = handle_three(solution, super_stack);
+	return (solution);
+}
+
 void		solve(t_super_stack *super_stack)
 {
 	char	*solution;
 
 	solution = ft_strnew(5);
-	if (super_stack->flags->v)	
-		display_stacks(super_stack->stackA, super_stack->stackB);
-	solution = b_solver(solution, super_stack);	
+	if (is_sorted(super_stack->stackA->nums, super_stack->stackA->cur_size))
+		return ;
+	else if (super_stack->stackA->cur_size <= 3)
+		solution = handle_small_stack(solution, super_stack);
+	else if (super_stack->stackA->cur_size < 10)
+		solution = min_num_solver(solution, super_stack);
+	else
+	{
+		if (super_stack->flags->v)	
+			display_stacks(super_stack->stackA, super_stack->stackB);
+		solution = b_solver(solution, super_stack);	
+	}
 	ft_printf("%s", solution);
 }

@@ -6,52 +6,58 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 12:25:25 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 09:21:47 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-char	*move_min_num(char *solution, t_stack *stackA,
-						t_stack *stackB, t_flags *flags)
+char	*move_min_num(char *solution, t_super_stack *super_stack)
 {
-	if (stackA->min_idx == 1)
+	if (super_stack->stackA->min_idx == 1)
 	{
-		perform_op("sa", stackA, stackB, flags);	
+		perform_op("sa", super_stack->stackA,
+					super_stack->stackB, super_stack->flags);	
 		solution = update_solution(solution, "sa");
 	}
-	else if (stackA->min_idx > (stackA->cur_size / 2))	
+	else if (super_stack->stackA->min_idx > (super_stack->stackA->cur_size / 2))	
 	{	
-		perform_op("rra", stackA, stackB, flags);	
+		perform_op("rra", super_stack->stackA,
+					super_stack->stackB, super_stack->flags);	
 		solution = update_solution(solution, "rra");
 	}
-	else if (stackA->min_idx <= (stackA->cur_size / 2))
+	else if (super_stack->stackA->min_idx <= (super_stack->stackA->cur_size / 2))
 	{
-		perform_op("ra", stackA, stackB, flags);	
+		perform_op("ra", super_stack->stackA,
+					super_stack->stackB, super_stack->flags);	
 		solution = update_solution(solution, "ra");
 	}
 	return (solution);
 }
 
-char	*min_num_solver(char *solution, t_stack *stackA,
-						t_stack *stackB, t_flags *flags)
+char	*min_num_solver(char *solution, t_super_stack *super_stack)
 {
 	int		top;
 
-	while(!(is_sorted(stackA->nums, stackA->cur_size) &&
-													!stackB->cur_size))
+	while(!(is_sorted(super_stack->stackA->nums, super_stack->stackA->cur_size)
+				&& !super_stack->stackB->cur_size))
 	{	
-		find_min(stackA);
-		while ((top = stackA->nums[0]) && top != stackA->min_num)		
-			solution = move_min_num(solution, stackA, stackB, flags);
+		if (super_stack->stackA->cur_size == 3)
+			solution = handle_three(solution, super_stack);
+		find_min(super_stack->stackA);
+		while ((top = super_stack->stackA->nums[0]) && top !=
+				super_stack->stackA->min_num)		
+			solution = move_min_num(solution, super_stack);
 		if ((solution = update_solution(solution, "pb")) &&
-				!is_sorted(stackA->nums, stackA->cur_size))
-			perform_op("pb", stackA, stackB, flags);
+				!is_sorted(super_stack->stackA->nums, super_stack->stackA->cur_size))
+			perform_op("pb", super_stack->stackA,
+						super_stack->stackB, super_stack->flags);
 		else
 		{
 			while ((solution = update_solution(solution, "pa")) &&
-					stackB->cur_size)	
-				perform_op("pa", stackA, stackB, flags);
+					super_stack->stackB->cur_size)	
+				perform_op("pa", super_stack->stackA,
+							super_stack->stackB, super_stack->flags);
 		}
 	}
 	return (solution);

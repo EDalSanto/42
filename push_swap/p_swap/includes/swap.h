@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 11:48:09 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 09:15:59 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ char			*forward_rotations(char *solution, t_super_stack *super_stack);
 char			*move_to_B(char *solution, t_super_stack *super_stack);
 void			find_max(t_stack *stack);
 void			zero_super_stack_moves(t_super_stack *super_stack);
-char			*quicksort(char *solution, t_stack *stackA,
-					t_stack *stackB, t_flags *flags);
 char			*update_solution(char *solution, char *op);
 char			**check_for_flags(char **av, t_flags *flags, int *ac);
 char			*move_to_B(char *solution, t_super_stack *super_stack);
@@ -88,15 +86,10 @@ void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stackA, t_stack *stackB);
 void			display_stacks(t_stack *stackA, t_stack *stackB);
 void			find_min(t_stack *stack);
-char			*move_min_num(char *solution, t_stack *stackA,
-								t_stack *stackB, t_flags *flags);
-char			*min_num_solver(char *solution, t_stack *stackA,
-								t_stack *stackB, t_flags *flags);
+char			*move_min_num(char *solution, t_super_stack *super_stack);
+char			*handle_three(char *solution, t_super_stack *super_stack);
+char			*min_num_solver(char *solution, t_super_stack *super_stack);
 int				find_right_location(t_stack *stack, int num);
-char			*move_down(char *solution, t_stack *stackA,
-							t_stack *stackB, t_flags *flags);
-char			*move_up(char *solution, t_stack *stackA,
-							t_stack *stackB, t_flags *flags);
 char			*revsort(char *solution, t_stack *stackA,
 						t_stack *stackB, t_flags *flags);
 t_stack			copy_stack(t_stack *stack_to_copy);

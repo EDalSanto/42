@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:07:11 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:07:25 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 08:19:51 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			swap_first_two(t_stack *stack);
 void			swap_both(t_stack *stackA, t_stack *stackB);
 int				empty_stack(t_stack *stack);
 int				is_duplicate(t_stack *stack, int num);
-int				is_valid(int num, t_stack *stackA);
+int				is_valid(long int num, t_stack *stackA);
 int				is_sorted(int *nums, int size);
 int				is_revsorted(int *nums, int size);
 int				are_numbers(char *str);

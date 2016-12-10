@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:05:37 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 08:19:43 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		is_duplicate(t_stack *stack, int num)
 	return (0);
 }
 
-int		is_valid(int num, t_stack *stackA)
+int		is_valid(long int num, t_stack *stackA)
 {
 	if ((num > 2147483647) ||
 			(num < -2147483648) ||
