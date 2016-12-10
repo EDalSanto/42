@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 09:15:19 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/10 09:42:37 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,10 @@ int			perform_op(char *op, t_stack *stackA, t_stack *stackB, t_flags *flags)
 
 char		*handle_threeA(char *solution, t_super_stack *super_stack)
 {
-	solution = update_solution(solution, "ra");
-	perform_op("ra", super_stack->stackA, super_stack->stackB, super_stack->flags);
-	solution = update_solution(solution, "sa");
-	perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
 	solution = update_solution(solution, "rra");
 	perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	solution = update_solution(solution, "sa");
+	perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
 	return (solution);
 }
 
@@ -101,12 +99,8 @@ char		*handle_threeB(char *solution, t_super_stack *super_stack)
 	}
 	else
 	{
-		solution = update_solution(solution, "rra");
-		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
 		solution = update_solution(solution, "sa");
 		perform_op("sa", super_stack->stackA, super_stack->stackB, super_stack->flags);
-		solution = update_solution(solution, "rra");
-		perform_op("rra", super_stack->stackA, super_stack->stackB, super_stack->flags);
 	}
 	return (solution);
 }
