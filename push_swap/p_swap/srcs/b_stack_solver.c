@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 20:07:21 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/09 20:46:17 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,36 @@ char	*put_max_on_top(char *solution, t_super_stack *super_stack)
 	return (solution);
 }
 
+char	*assure_proper_orderB(char *solution, t_super_stack *super_stack)
+{
+	int	a_top;
+	int	b_top;
+	int	b_next;
+
+	a_top = super_stack->stackA->nums[0]; 
+	b_top = super_stack->stackB->nums[0]; 
+	b_next = super_stack->stackB->nums[1]; 
+	if (!((a_top > b_top && b_top > b_next) || (b_top > b_next && b_next > a_top)
+			|| (b_top < a_top && a_top < b_next)))
+	{
+		solution = update_solution(solution, "sb");
+		perform_op("sb", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	}
+	solution = update_solution(solution, "pb");
+	perform_op("pb", super_stack->stackA, super_stack->stackB, super_stack->flags);
+	return (solution);
+}
+
 char	*b_solver(char *solution, t_super_stack *super_stack)
 {
 	while (super_stack->stackA->cur_size) 
 	{
 		find_min(super_stack->stackB);
 		find_max(super_stack->stackB);
-		solution = move_to_B(solution, super_stack);
+		if (super_stack->stackB->cur_size == 2)
+			solution = assure_proper_orderB(solution, super_stack);
+		else
+			solution = move_to_B(solution, super_stack);
 		zero_super_stack_moves(super_stack);
 	}
 	find_max(super_stack->stackB);
