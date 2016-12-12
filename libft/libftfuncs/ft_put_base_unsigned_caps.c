@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/23 23:03:48 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/09 17:35:25 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:16:06 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ size_t			ft_put_base_unsigned_caps(unsigned long long int n, int base)
 	ft_strcpy(digits, "0123456789ABCDEF");
 	if (!(s = (char*)malloc((sizeof(char) * int_len(n)) + 2)))
 		return (0);
-	if (n == 0 || n == -0) 
-		zero_case(s); 
+	if (n == 0 || n == -0)
+		zero_case(s);
 	else
 	{
 		cpy = s;

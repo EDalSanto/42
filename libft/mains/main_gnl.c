@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_gnl.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/12 15:14:30 by edal-san          #+#    #+#             */
+/*   Updated: 2016/12/12 15:14:47 by edal-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/get_next_line.h"
 #include "includes/libft.h"
 
@@ -5,11 +17,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int        main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int        fd;
-	int        status;
-	char    *line;
+	int		fd;
+	int		status;
+	char	*line;
 
 	if (argc == 1)
 		fd = 0;

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 14:09:22 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/09 17:52:30 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:15:14 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void		handle_hex(t_pf_detective *pf)
 		}
 		else
 		{
-			pf->printed += ft_put_base_unsigned_caps(pf->unsigned_int_holder, 16);
+			pf->printed +=
+				ft_put_base_unsigned_caps(pf->unsigned_int_holder, 16);
 		}
 	}
 }

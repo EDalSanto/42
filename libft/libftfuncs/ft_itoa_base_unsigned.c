@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/23 23:03:48 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/09 17:24:48 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:13:16 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char			*ft_itoa_base_unsigned(unsigned long long int n, int base)
 	if (!(s = (char*)malloc((sizeof(char) * int_len(n)) + 2)))
 		return (NULL);
 	if (n == 0 || n == -0)
-		return (zero_case(s));	
+		return (zero_case(s));
 	cpy = s;
 	while (n)
 	{
