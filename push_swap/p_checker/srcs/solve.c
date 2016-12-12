@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/11 19:45:53 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 10:21:13 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void		reverse_op(char *op, t_stack *stack_a, t_stack *stack_b)
 int			perform_op(char *op, t_stack *stack_a,
 					t_stack *stack_b, t_flags *flags)
 {
-	if (flags->v)
-		display_stacks(op, stack_a, stack_b);
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stack_a);
 	else if (ft_strcmp(op, "sb") == 0)
@@ -61,6 +59,8 @@ int			perform_op(char *op, t_stack *stack_a,
 		reverse_op(op, stack_a, stack_b);
 	else if (ft_printf("Error\n"))
 		exit(1);
+	if (flags->v)
+		display_stacks(flags, op, stack_a, stack_b);
 	return (1);
 }
 

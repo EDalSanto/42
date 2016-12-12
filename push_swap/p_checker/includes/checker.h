@@ -6,13 +6,18 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:07:11 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/11 19:46:45 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 09:57:01 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 # include "libft.h"
+# define BLU "\x1B[34m"
+# define MAG "\x1B[35m"
+# define WHT "\x1B[37m"
+# define CYN "\x1B[36m"
+# define RESET "\x1B[0m"
 
 typedef struct	s_flags
 {
@@ -47,7 +52,8 @@ void			rotate(t_stack *stack);
 void			rotate_both(t_stack *stack_a, t_stack *stack_b);
 void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stack_a, t_stack *stack_b);
-void			display_stacks(char *op, t_stack *stack_a, t_stack *stack_b);
+void			display_stacks(t_flags *flags, char *op,
+					t_stack *stack_a, t_stack *stack_b);
 void			find_min(t_stack *stack_a);
 
 #endif

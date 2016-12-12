@@ -6,14 +6,17 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:14:47 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 09:48:43 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SWAP_H
 # define SWAP_H
-# define ANSI_COLOR_BLUE "\x1b[34m"
-# define ANSI_COLOR_MAGENTA "\x1b[35m"
+# define BLU "\x1B[34m"
+# define MAG "\x1B[35m"
+# define WHT "\x1B[37m"
+# define CYN "\x1B[36m"
+# define RESET "\x1B[0m"
 # include "libft.h"
 
 typedef struct	s_flags

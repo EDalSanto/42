@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/11 19:30:29 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 10:18:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			handle_input(char *line, t_stack *stack_a,
 						t_stack *stack_b, t_flags *flags)
 {
 	if (flags->v)
-		display_stacks("Initial", stack_a, stack_b);
+		display_stacks(flags, "Initial", stack_a, stack_b);
 	while ((get_next_line(0, &line) == 1))
 	{
 		if (!perform_op(line, stack_a, stack_b, flags))
@@ -110,7 +110,7 @@ int				main(int ac, char **av)
 		else if (ft_printf("Error\n"))
 			exit(1);
 		if (flags.v)
-			display_stacks("Final", &stack_a, &stack_b);
+			display_stacks(&flags, "Final", &stack_a, &stack_b);
 		if (is_sorted(stack_a.nums, stack_a.cur_size) &&
 					(stack_b.cur_size == 0))
 			ft_printf("OK\n");

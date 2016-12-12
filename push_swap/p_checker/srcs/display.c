@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/11 19:32:31 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 10:22:51 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,47 @@ int			longest_int_len(t_stack *stack_a)
 	return (len);
 }
 
-void		display_row(int a, int b, t_stack *stack_a, t_stack *stack_b)
+void		display_a(char *op, t_flags *flags, int a, t_stack *stack_a)
 {
 	int		spaces;
 
 	spaces = longest_int_len(stack_a) + 1;
 	if (a < (stack_a->cur_size))
 	{
-		ft_printf("%d", stack_a->nums[a]);
+		if (flags->c)
+		{
+			if (((ft_strcmp(op, "pb") == 0) || (ft_strcmp(op, "pa") == 0)) && a == 0)
+				ft_printf("%s%d%s", CYN, stack_a->nums[a], RESET);
+			else
+				ft_printf("%d", stack_a->nums[a]);
+		}
+		else
+			ft_printf("%d", stack_a->nums[a]);
 		print_spaces(spaces - ft_int_len(stack_a->nums[a]));
 	}
-	else
-		print_spaces(spaces);
+}
+
+void		display_b(char *op, t_flags *flags, int b, t_stack *stack_b)
+{
 	if (b < (stack_b->cur_size))
-		ft_printf("%d\n", stack_b->nums[b]);
+	{
+		if (flags->c)
+		{
+			if (((ft_strcmp(op, "pb") == 0) || (ft_strcmp(op, "pa") == 0)) && b == 0)
+				ft_printf("%s%d%s\n", CYN, stack_b->nums[b], RESET);
+			else
+				ft_printf("%d\n", stack_b->nums[b]);
+		}
+		else
+			ft_printf("%d\n", stack_b->nums[b]);
+	}
 	else
 		ft_printf("\n");
 }
 
-void		display_stacks(char *op, t_stack *stack_a, t_stack *stack_b)
+
+void		display_stacks(t_flags *flags, char *op,
+							t_stack *stack_a, t_stack *stack_b)
 {
 	int		a;
 	int		b;
@@ -72,7 +94,8 @@ void		display_stacks(char *op, t_stack *stack_a, t_stack *stack_b)
 	ft_printf("--------\n");
 	while ((a < (stack_a->cur_size) || (b < (stack_b->cur_size))))
 	{
-		display_row(a, b, stack_a, stack_b);
+		display_a(op, flags, a, stack_a);
+		display_b(op, flags, b, stack_b);
 		a++;
 		b++;
 	}
