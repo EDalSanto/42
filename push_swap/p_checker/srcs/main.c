@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 10:18:11 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 11:15:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void			handle_input(char *line, t_stack *stack_a,
 			ft_printf("Error\n");
 			exit(1);
 		}
+		free(line);
 	}
 }
 
