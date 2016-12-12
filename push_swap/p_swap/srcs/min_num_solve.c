@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:16:58 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 11:06:08 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char		*move_min_num(char *solution, t_super_stack *super_stack)
 					super_stack->stack_b, super_stack->flags);
 		solution = update_solution(solution, "sa");
 	}
-	else if (super_stack->stack_a->min_idx > (super_stack->stack_a->cur_size / 2))
+	else if (super_stack->stack_a->min_idx >
+				(super_stack->stack_a->cur_size / 2))
 	{
 		perform_op("rra", super_stack->stack_a,
 					super_stack->stack_b, super_stack->flags);
@@ -40,8 +41,8 @@ char		*min_num_solver(char *solution, t_super_stack *super_stack)
 {
 	int		top;
 
-	while (!(is_sorted(super_stack->stack_a->nums, super_stack->stack_a->cur_size)
-				&& !super_stack->stack_b->cur_size))
+	while (!(is_sorted(super_stack->stack_a->nums,
+		super_stack->stack_a->cur_size) && !super_stack->stack_b->cur_size))
 	{
 		if (super_stack->stack_a->cur_size == 3)
 			solution = handle_three(solution, super_stack);

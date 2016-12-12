@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:08:12 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:16:32 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 11:03:20 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			perform_op(char *op, t_stack *stack_a,
 						t_stack *stack_b, t_flags *flags)
 {
 	if (flags->v)
-		display_stacks(op, stack_a, stack_b);
+		display_stacks(flags, op, stack_a, stack_b);
 	if (ft_strcmp(op, "sa") == 0)
 		swap_first_two(stack_a);
 	else if (ft_strcmp(op, "sb") == 0)
@@ -93,7 +93,7 @@ void		solve(t_super_stack *super_stack)
 	if (is_sorted(super_stack->stack_a->nums, super_stack->stack_a->cur_size))
 		return ;
 	if (super_stack->flags->v)
-		display_stacks("Initial",
+		display_stacks(super_stack->flags, "Initial",
 					super_stack->stack_a, super_stack->stack_b);
 	if (super_stack->stack_a->cur_size <= 3)
 		solution = handle_small_stack(solution, super_stack);
@@ -102,7 +102,8 @@ void		solve(t_super_stack *super_stack)
 	else
 		solution = b_solver(solution, super_stack);
 	if (super_stack->flags->v)
-		display_stacks("Final", super_stack->stack_a, super_stack->stack_b);
+		display_stacks(super_stack->flags, "Final",
+				super_stack->stack_a, super_stack->stack_b);
 	ft_printf("%s", solution);
 	free(solution);
 }

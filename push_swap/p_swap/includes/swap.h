@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:22:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:48:43 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 11:02:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct	s_super_stack
 	t_flags		*flags;
 }				t_super_stack;
 
+void			print_spaces(int spaces);
+int				longest_int_len(t_stack *stack_a);
 int				make_stack_a(char **av, int ac, t_stack *stack_a);
 int				get_nums(char *str, t_stack *stack_a);
 void			solve(t_super_stack *super_stack);
@@ -91,7 +93,8 @@ void			rotate(t_stack *stack);
 void			rotate_both(t_stack *stack_a, t_stack *stack_b);
 void			reverse_rotate(t_stack *stack);
 void			reverse_rotate_both(t_stack *stack_a, t_stack *stack_b);
-void			display_stacks(char *op, t_stack *stack_a, t_stack *stack_b);
+void			display_stacks(t_flags *flags, char *op,
+					t_stack *stack_a, t_stack *stack_b);
 void			find_min(t_stack *stack);
 char			*move_min_num(char *solution, t_super_stack *super_stack);
 char			*handle_three(char *solution, t_super_stack *super_stack);

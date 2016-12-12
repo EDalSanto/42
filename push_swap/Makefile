@@ -6,7 +6,7 @@
 #    By: edal-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 13:19:43 by edal-san          #+#    #+#              #
-#    Updated: 2016/12/12 10:59:11 by edal-san         ###   ########.fr        #
+#    Updated: 2016/12/12 11:04:03 by edal-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFTLINK		= -L./libft -lft
 PSW_SRC_PATH	= ./p_swap/srcs/
 PSW_FILES		= main.c ops1.c ops2.c display.c is.c flags.c solve.c \
 				  min_num_solve.c b_stack_solver.c step_detectives.c  \
-				  rotaters.c setup_stack_a.c small.c
+				  rotaters.c setup_stack_a.c small.c help.c
 PSW_OBJ_PATH	= ./ps_objs/
 PSW_SRC			= $(addprefix $(PSW_SRC_PATH), $(PSW_FILES))
 PSW_OBJ			= $(addprefix $(PSW_OBJ_PATH), $(PSW_FILES:.c=.o))
