@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 11:18:45 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 08:45:59 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ void		print_spaces(int spaces)
 		ft_printf(" ");
 }
 
-int			longest_int_len(t_stack *stackA)
+int			longest_int_len(t_stack *stack_a)
 {
 	int		longest;
 	size_t	len;
 	int		i;
 
-	longest = stackA->nums[0];
+	longest = stack_a->nums[0];
 	len = ft_int_len(longest);
 	i = 1;
-	while (i < stackA->cur_size)
+	while (i < stack_a->cur_size)
 	{
-		if (ft_int_len(stackA->nums[i]) > len)
+		if (ft_int_len(stack_a->nums[i]) > len)
 		{
-			longest = stackA->nums[i];
-			len = ft_int_len(stackA->nums[i]);
+			longest = stack_a->nums[i];
+			len = ft_int_len(stack_a->nums[i]);
 		}
 		i++;
 	}
@@ -41,25 +41,25 @@ int			longest_int_len(t_stack *stackA)
 	return (len);
 }
 
-void	display_row(int a, int b, t_stack *stackA, t_stack *stackB)
+void		display_row(int a, int b, t_stack *stack_a, t_stack *stack_b)
 {
-	int	spaces;
+	int		spaces;
 
-	spaces = longest_int_len(stackA) + 1;
-	if (a < (stackA->cur_size))
+	spaces = longest_int_len(stack_a) + 1;
+	if (a < (stack_a->cur_size))
 	{
-		ft_printf("%d", stackA->nums[a]);
-		print_spaces(spaces - ft_int_len(stackA->nums[a]));
+		ft_printf("%d", stack_a->nums[a]);
+		print_spaces(spaces - ft_int_len(stack_a->nums[a]));
 	}
 	else
 		print_spaces(spaces);
-	if (b < (stackB->cur_size))
-		ft_printf("%d\n", stackB->nums[b]);
+	if (b < (stack_b->cur_size))
+		ft_printf("%d\n", stack_b->nums[b]);
 	else
 		ft_printf("\n");
 }
 
-void		display_stacks(char *op, t_stack *stackA, t_stack *stackB)
+void		display_stacks(char *op, t_stack *stack_a, t_stack *stack_b)
 {
 	int		a;
 	int		b;
@@ -67,16 +67,16 @@ void		display_stacks(char *op, t_stack *stackA, t_stack *stackB)
 
 	a = 0;
 	b = 0;
-	spaces = longest_int_len(stackA) + 1;
+	spaces = longest_int_len(stack_a) + 1;
 	ft_printf("%s\n", op);
 	ft_printf("--------\n");
-	while ((a < (stackA->cur_size) || (b < (stackB->cur_size))))
+	while ((a < (stack_a->cur_size) || (b < (stack_b->cur_size))))
 	{
-		display_row(a, b, stackA, stackB);
+		display_row(a, b, stack_a, stack_b);
 		a++;
 		b++;
 	}
-	ft_printf("-"); 
+	ft_printf("-");
 	print_spaces(spaces - 1);
 	ft_printf("-\na");
 	print_spaces(spaces - 1);

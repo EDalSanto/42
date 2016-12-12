@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_stackA.c                                     :+:      :+:    :+:   */
+/*   setup_stack_a.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 11:45:23 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/11 18:58:11 by edal-san         ###   ########.fr       */
+/*   Created: 2016/12/12 08:55:51 by edal-san          #+#    #+#             */
+/*   Updated: 2016/12/12 08:56:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-int				get_nums(char *str, t_stack *stackA)
+int				get_nums(char *str, t_stack *stack_a)
 {
 	int			sign;
 	long int	num;
@@ -28,10 +28,10 @@ int				get_nums(char *str, t_stack *stackA)
 		if (*str == ' ' || !(*(str + 1)))
 		{
 			num *= sign;
-			if (!is_valid(num, stackA) && ft_printf("Error\n"))
+			if (!is_valid(num, stack_a) && ft_printf("Error\n"))
 				exit(1);
-			stackA->nums[stackA->cur_size] = num;
-			stackA->cur_size++;
+			stack_a->nums[stack_a->cur_size] = num;
+			stack_a->cur_size++;
 			num = 0;
 			sign = 1;
 		}
@@ -40,14 +40,14 @@ int				get_nums(char *str, t_stack *stackA)
 	return (1);
 }
 
-int			make_stackA(char **av, int ac, t_stack *stackA)
+int				make_stack_a(char **av, int ac, t_stack *stack_a)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (i < ac)
 	{
-		get_nums(av[i], stackA);
+		get_nums(av[i], stack_a);
 		i++;
 	}
 	return (1);

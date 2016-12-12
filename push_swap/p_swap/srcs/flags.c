@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:11:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 11:44:34 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 09:39:44 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,27 @@ char		**check_for_flags(char **av, t_flags *flags, int *ac)
 {
 	int		s;
 	int		c;
-	
+	int		args;
+
 	s = 1;
 	c = 0;
-	while (av[s][c] == '-' && !ft_isdigit(av[s][c + 1]))
+	args = *ac;
+	while ((s < args) && (av[s][c] == '-' || av[s][c] == 'c' ||
+			av[s][c] == 'v') && !ft_isdigit(av[s][c + 1]))
 	{
-		c++;
+		ft_printf("ac: %d, av[%d][%d]: %c\n", args, s, c, av[s][c]);
 		if (av[s][c] == 'v')
-		{
 			flags->v = 1;
-			c++;
-		}
-		if (av[s][c] == 'c')
-		{
+		else if (av[s][c] == 'c')
 			flags->c = 1;
-			c++;
+		if ((av[s][c] == 'c' || av[s][c] == 'v') && !av[s][c + 1])
+		{
+			s++;
+			c = 0;
+			(*ac)--;
 		}
-		(*ac)--;
-		s++;
-		c = 0;
+		else
+			c++;
 	}
 	return (&(av[s]));
 }

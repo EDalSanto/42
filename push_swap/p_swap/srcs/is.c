@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 16:04:58 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 10:36:54 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 08:47:14 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		is_duplicate(t_stack *stack, int num)
 	return (0);
 }
 
-int		is_valid(int num, t_stack *stackA)
+int		is_valid(int num, t_stack *stack_a)
 {
 	if ((num > 2147483647) ||
 			(num < -2147483648) ||
-			is_duplicate(stackA, num)) 
+			is_duplicate(stack_a, num))
 		return (0);
 	else
 		return (1);
@@ -73,7 +73,8 @@ int		are_numbers(char *str)
 	{
 		if (*str == '-' && ft_isdigit(*(str + 1)))
 			str++;
-		else if (*str == ' ' && (ft_isdigit(*(str - 1)) || ft_isdigit(*(str + 1))))
+		else if (*str == ' ' && (ft_isdigit(*(str - 1)) ||
+							ft_isdigit(*(str + 1))))
 		{
 			str++;
 			nums++;
