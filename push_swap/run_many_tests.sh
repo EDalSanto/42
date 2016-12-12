@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Change Limit for different test size limits!
-LIMIT=5300
+LIMIT=700
 
 MAX_OPS=0
 MAX_ARG=0
@@ -14,8 +14,8 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-echo "25 Tests Commencing.."
-for i in {1..50}
+echo "10 Tests Commencing.."
+for i in {1..10}
 do
 	ARG=$(sh GenRandNums.sh)
 	echo "${PURPLE}Trial: $i${NC}"
@@ -27,12 +27,12 @@ do
 		MAX_OPS=$NUM	
 		MAX_ARG=$ARG
 	fi
-	if [[ "$NUM" -gt $LIMIT ]] 
-	then
-		echo "${RED}Your program took $NUM operations; The limit is $LIMIT!${NC}"
-		echo "Here's the Arg: $ARG"
-		continue
-	fi	
+#	if [[ "$NUM" -gt $LIMIT ]] 
+#	then
+#		echo "${RED}Your program took $NUM operations; The limit is $LIMIT!${NC}"
+#		echo "Here's the Arg: $ARG"
+#		continue
+#	fi	
 	echo "${BOLD}${BLUE}$NUM${NC}"
 	printf "Checker: "
 	RES=$(./push_swap $ARG | ./checker $ARG)
@@ -47,6 +47,4 @@ do
 	echo "------------------------------"
 done
 echo "--------------------------------"
-echo "Avg operations: ${PURPLE}$((TOTAL/25))${NC}"
-echo "Max num of operations: ${PURPLE}$((MAX_OPS))${NC}"
-echo "Max arg: ${PURPLE}$MAX_ARG${NC}"
+echo "Avg operations: ${PURPLE}$((TOTAL/10))${NC}"

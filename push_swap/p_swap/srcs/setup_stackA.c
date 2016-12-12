@@ -6,16 +6,16 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 11:45:23 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/09 11:52:07 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/11 18:58:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-int			get_nums(char *str, t_stack *stackA)
+int				get_nums(char *str, t_stack *stackA)
 {
-	int		sign;
-	int		num;
+	int			sign;
+	long int	num;
 
 	num = 0;
 	sign = 1;

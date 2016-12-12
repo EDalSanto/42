@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:11:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:05:29 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/11 19:33:11 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		**check_for_flags(char **av, t_flags *flags, int *ac)
 {
 	int		s;
 	int		c;
-	
+
 	s = 1;
 	c = 0;
 	while (av[s][c] == '-' && !ft_isdigit(av[s][c + 1]))

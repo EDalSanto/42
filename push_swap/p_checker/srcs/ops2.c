@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 08:55:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/05 11:05:56 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/11 19:36:19 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	rotate(t_stack *stack)
 	}
 }
 
-void	rotate_both(t_stack *stackA, t_stack *stackB)
+void	rotate_both(t_stack *stack_a, t_stack *stack_b)
 {
-	rotate(stackA);
-	rotate(stackB);
+	rotate(stack_a);
+	rotate(stack_b);
 }
 
 void	reverse_rotate(t_stack *stack)
@@ -41,8 +41,8 @@ void	reverse_rotate(t_stack *stack)
 	stack->nums[0] = temp;
 }
 
-void	reverse_rotate_both(t_stack *stackA, t_stack *stackB)
+void	reverse_rotate_both(t_stack *stack_a, t_stack *stack_b)
 {
-	reverse_rotate(stackA);
-	reverse_rotate(stackB);
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
 }

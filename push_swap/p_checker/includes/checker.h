@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:07:11 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/10 08:19:51 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/11 19:46:45 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ typedef struct	s_stack
 char			*update_solution(char *solution, char *op);
 char			**check_for_flags(char **av, t_flags *flags, int *ac);
 void			swap_first_two(t_stack *stack);
-void			swap_both(t_stack *stackA, t_stack *stackB);
+void			swap_both(t_stack *stack_a, t_stack *stack_b);
 int				empty_stack(t_stack *stack);
 int				is_duplicate(t_stack *stack, int num);
-int				is_valid(long int num, t_stack *stackA);
+int				is_valid(long int num, t_stack *stack_a);
 int				is_sorted(int *nums, int size);
 int				is_revsorted(int *nums, int size);
 int				are_numbers(char *str);
-int				perform_op(char *op, t_stack *stackA,
-							t_stack *stackB, t_flags *flags);
-void			push_on_A(t_stack *stackA, t_stack *stackB);
-void			push_on_B(t_stack *stackA, t_stack *stackB);
+int				perform_op(char *op, t_stack *stack_a,
+							t_stack *stack_b, t_flags *flags);
+void			push_on_a(t_stack *stack_a, t_stack *stack_b);
+void			push_on_b(t_stack *stack_a, t_stack *stack_b);
 void			rotate(t_stack *stack);
-void			rotate_both(t_stack *stackA, t_stack *stackB);
+void			rotate_both(t_stack *stack_a, t_stack *stack_b);
 void			reverse_rotate(t_stack *stack);
-void			reverse_rotate_both(t_stack *stackA, t_stack *stackB);
-void			display_stacks(t_stack *stackA, t_stack *stackB);
-void			find_min(t_stack *stackA);
+void			reverse_rotate_both(t_stack *stack_a, t_stack *stack_b);
+void			display_stacks(char *op, t_stack *stack_a, t_stack *stack_b);
+void			find_min(t_stack *stack_a);
 
 #endif
