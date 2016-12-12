@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:07:11 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:57:01 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 10:56:17 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct	s_stack
 	int			min_num;
 }				t_stack;
 
+void			print_spaces(int spaces);
+int				longest_int_len(t_stack *stack_a);
 char			*update_solution(char *solution, char *op);
 char			**check_for_flags(char **av, t_flags *flags, int *ac);
 void			swap_first_two(t_stack *stack);
