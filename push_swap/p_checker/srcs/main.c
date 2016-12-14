@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 11:15:11 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/13 17:09:36 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ void			handle_input(char *line, t_stack *stack_a,
 	}
 }
 
+static void		setup_flags(t_flags *flags)
+{
+	flags->v = 0;
+	flags->c = 0;
+}
+
 int				main(int ac, char **av)
 {
 	t_stack		stack_a;
@@ -103,6 +109,7 @@ int				main(int ac, char **av)
 
 	if (ac > 1)
 	{
+		setup_flags(&flags);
 		av = check_for_flags(av, &flags, &ac);
 		setup(&stack_a, &stack_b, (ac - 1), av);
 		line = NULL;

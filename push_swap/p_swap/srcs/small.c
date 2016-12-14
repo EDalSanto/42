@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 08:58:04 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:09:16 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/13 17:16:35 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ char		*handle_small_stack(char *solution,
 {
 	if (super_stack->stack_a->cur_size == 2)
 	{
-		if (super_stack->stack_a->nums[0] > super_stack->stack_a->nums[0])
+		if (super_stack->stack_a->nums[0] > super_stack->stack_a->nums[1])
 		{
-			solution = update_solution(solution, "ra");
-			perform_op("ra", super_stack->stack_a,
+			solution = update_solution(solution, "sa");
+			perform_op("sa", super_stack->stack_a,
 						super_stack->stack_b, super_stack->flags);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 07:50:35 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:23:27 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/13 17:14:32 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int					main(int ac, char **av)
 	t_moves			moves;
 	t_super_stack	super_stack;
 
+	flags.v = 0;
+	flags.c = 0;
 	if (ac > 1)
 	{
 		av = check_for_flags(av, &flags, &ac);

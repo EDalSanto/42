@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Change Limit for different test size limits!
-LIMIT=700
+#LIMIT=5300
 
 MAX_OPS=0
 MAX_ARG=0
