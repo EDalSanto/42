@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 10:11:13 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:39:44 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 11:24:55 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char		**check_for_flags(char **av, t_flags *flags, int *ac)
 	while ((s < args) && (av[s][c] == '-' || av[s][c] == 'c' ||
 			av[s][c] == 'v') && !ft_isdigit(av[s][c + 1]))
 	{
-		ft_printf("ac: %d, av[%d][%d]: %c\n", args, s, c, av[s][c]);
 		if (av[s][c] == 'v')
 			flags->v = 1;
 		else if (av[s][c] == 'c')
