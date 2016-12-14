@@ -6,13 +6,13 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:35:14 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 11:00:58 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 11:33:27 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-void		handle_ac(char *op, int a, t_stack *stack_a)
+void		handle_acolor(char *op, int a, t_stack *stack_a)
 {
 	if (((ft_strcmp(op, "pb") == 0) ||
 				(ft_strcmp(op, "pa") == 0)) && a == 0)
@@ -28,7 +28,7 @@ void		handle_ac(char *op, int a, t_stack *stack_a)
 		ft_printf("%d", stack_a->nums[a]);
 }
 
-void		handle_bc(char *op, int b, t_stack *stack_b)
+void		handle_bcolor(char *op, int b, t_stack *stack_b)
 {
 	if (((ft_strcmp(op, "pb") == 0) || (ft_strcmp(op, "pa") == 0)) && b == 0)
 		ft_printf("%s%d%s\n", CYN, stack_b->nums[b], RESET);
@@ -50,7 +50,7 @@ void		display_a(char *op, t_flags *flags, int a, t_stack *stack_a)
 	if (a < (stack_a->cur_size))
 	{
 		if (flags->c)
-			handle_ac(op, a, stack_a);
+			handle_acolor(op, a, stack_a);
 		else
 			ft_printf("%d", stack_a->nums[a]);
 	}
@@ -64,7 +64,7 @@ void		display_b(char *op, t_flags *flags, int b, t_stack *stack_b)
 	if (b < (stack_b->cur_size))
 	{
 		if (flags->c)
-			handle_bc(op, b, stack_b);
+			handle_bcolor(op, b, stack_b);
 		else
 			ft_printf("%d\n", stack_b->nums[b]);
 	}

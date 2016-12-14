@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:30:29 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 11:06:08 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 12:09:13 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,20 @@ char		*min_num_solver(char *solution, t_super_stack *super_stack)
 		while ((top = super_stack->stack_a->nums[0]) && top !=
 				super_stack->stack_a->min_num)
 			solution = move_min_num(solution, super_stack);
-		if ((solution = update_solution(solution, "pb")) &&
-				!is_sorted(super_stack->stack_a->nums,
-							super_stack->stack_a->cur_size))
+		if (!is_sorted(super_stack->stack_a->nums, super_stack->stack_a->cur_size))
+		{
+			solution = update_solution(solution, "pb");
 			perform_op("pb", super_stack->stack_a,
 						super_stack->stack_b, super_stack->flags);
+		}
 		else
 		{
-			while ((solution = update_solution(solution, "pa")) &&
-					super_stack->stack_b->cur_size)
+			while (super_stack->stack_b->cur_size)
+			{
+				solution = update_solution(solution, "pa");
 				perform_op("pa", super_stack->stack_a,
 							super_stack->stack_b, super_stack->flags);
+			}
 		}
 	}
 	return (solution);

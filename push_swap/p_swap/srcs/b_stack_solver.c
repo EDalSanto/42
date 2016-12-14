@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 10:49:30 by edal-san          #+#    #+#             */
-/*   Updated: 2016/12/12 09:17:41 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 11:32:23 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,16 @@ char	*b_solver(char *solution, t_super_stack *super_stack)
 		solution = update_solution(solution, "rra");
 		perform_op("rra", super_stack->stack_a,
 					super_stack->stack_b, super_stack->flags);
-		while (super_stack->stack_b->cur_size &&
-					(solution = update_solution(solution, "pa")))
+		while (super_stack->stack_b->cur_size)
+		{
+			solution = update_solution(solution, "pa");
 			perform_op("pa", super_stack->stack_a,
 						super_stack->stack_b, super_stack->flags);
+		}
 	}
 	if (super_stack->stack_a->nums[0] >
-			super_stack->stack_a->nums[super_stack->stack_a->cur_size - 1] &&
-				(solution = update_solution(solution, "rra")))
+			super_stack->stack_a->nums[super_stack->stack_a->cur_size - 1]) 
+		solution = update_solution(solution, "rra");
 		perform_op("rra", super_stack->stack_a,
 					super_stack->stack_b, super_stack->flags);
 	return (solution);
