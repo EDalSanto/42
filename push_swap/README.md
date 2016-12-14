@@ -24,6 +24,10 @@
 		* Larger stacks utilize an algorithm that pushes on B whichever number
 		  requires the least number of operations to keep B sorted(descending
 		  order) and then pushed back onto A.
+* Testing: the testing directory contains a python script and two shell scripts
+  that enable you to test for any amount of random numbers, and for any amount
+  of tests. My push\_swap program on average sorts 500 random numbers in under
+  5200 operations. 
 * Bonuses: the -v flag enables you to see the initial stacks, the stacks after
   each operation, and the final stacks. The -c flag adds color to the last
   changed numbers.
