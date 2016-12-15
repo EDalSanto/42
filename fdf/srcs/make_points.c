@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:23:59 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/29 19:17:54 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 16:43:04 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void		parse_line(t_point *point, char *line, int y, t_map *map)
 		if (ft_isdigit(*line))
 		{
 			z = parse_num(&line, z);
-			add_init_points(p, (x * map->scale),
-							(y * map->scale), (z * sign * map->scale));
+			add_init_points(p, (x * map->scale), (y * map->scale), (z * sign * map->scale));
 			p++;
 			x++;
 		}
@@ -57,8 +56,7 @@ t_point		**create_points(char *file, t_map *map)
 	int		fd;
 	int		arr_i;
 
-	points = (t_point**)malloc(sizeof(t_point*) *
-								map->num_lines + sizeof(void*));
+	points = (t_point**)malloc(sizeof(t_point*) * map->num_lines + sizeof(void*));
 	fd = open(file, O_RDONLY);
 	arr_i = 0;
 	while ((get_next_line(fd, &line)) == 1)
@@ -93,8 +91,7 @@ size_t		count_lines(char *file, t_map *map)
 	return (lines);
 }
 
-void		add_init_points(t_point *point,
-								double x_init, double y_init, double z_init)
+void		add_init_points(t_point *point, double x_init, double y_init, double z_init)
 {
 	point->x_init = x_init;
 	point->y_init = y_init;

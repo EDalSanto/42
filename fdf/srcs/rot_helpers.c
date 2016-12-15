@@ -6,7 +6,7 @@
 /*   By: edal-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 19:40:44 by edal-san          #+#    #+#             */
-/*   Updated: 2016/11/30 08:24:11 by edal-san         ###   ########.fr       */
+/*   Updated: 2016/12/14 16:44:42 by edal-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		translate_points(t_map *map)
 	int		zf;
 
 	zf = map->zoom_factor;
-	reset_primes(map->points);
+//	reset_primes(map->points);
 	z_rotate(map->points, map->angles.a_z);
 	x_rotate(map->points, map->angles.a_x);
 	y_rotate(map->points, map->angles.a_y);
