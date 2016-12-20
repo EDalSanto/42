@@ -1,5 +1,5 @@
 # 42
-* C projects from 42 USA coding university that have enabled to fundamentally understand how the computer thinks,
+* C projects from 42 USA that have enabled me to fundamentally understand how the computer thinks,
 essential data structures and algorithms, and solid procedural programming fundamentals. 
 * Libft: rewrite a significant part of the C standard library
 * Fillit: utilize a recursive backtracking algorithm to optimize the placement of tetriminos on the smallest possible map, oriented to the top left corner
