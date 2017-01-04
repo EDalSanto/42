@@ -7,7 +7,7 @@
   conversion and saves it in the "pf detective struct"
 * Once I have the arg information, I obtain the argument, its length(used to
   calculate proper field width and precision), spacing and zeros to print, and
-  justificaiton(left or right)
+  justification(left or right)
 * Each arg is handled according to its specifications
 * The function returns the total numbers of chars printed
 
