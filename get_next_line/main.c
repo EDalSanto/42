@@ -9,7 +9,7 @@ int        main(int argc, char **argv)
 {
 	int        fd;
 	int        status;
-	char    *line;
+	char	   *line;
 
 	if (argc == 1)
 		fd = 0;
