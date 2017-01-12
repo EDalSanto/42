@@ -19,14 +19,14 @@
 # include "libft.h"
 # define BUFF_SIZE 32
 
-typedef struct				s_data
+typedef struct						s_data
 {
 	int						r;
-	char					b[BUFF_SIZE + 1];
+	char						b[BUFF_SIZE + 1];
 	int						b_index;
 	int						fd;
-	struct s_data			*next;
-	struct s_data			*prev;
+	struct s_data					*next;
+	struct s_data					*prev;
 }							t_data;
 
 int							get_next_line(const int fd, char **line);
