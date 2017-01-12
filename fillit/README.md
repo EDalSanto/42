@@ -112,7 +112,7 @@ int			valid_placement(char *solution_arr, int sa_i, t_offsets tetri)
 ```
 ## Validation
 1. ```count_blocks```: ensures number of blocks per input section are 4
-2. ```touch_detective```: ensures that the continuousness of each tetromino. There should be 6 "connections" between the squares of each tetromino except for the square which has 8. This helps protect against false-positives when using the offset method of detection.
+2. ```touch_detective```: ensures that the contiguousness of each tetromino. There should be 6 "connections" between the squares of each tetromino except for the square which has 8. This helps protect against false-positives when using the offset method of detection.
 3. ```examine_file```: ensures a valid input stream. One that has one newline separating each block, 4 newlines in each block... etc
 ```
 static int	count_blocks(char *row)
